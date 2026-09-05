@@ -1,3 +1,10 @@
+from .dataset_manifest import (
+    REQUIRED_DATASET_FIELDS,
+    assert_person_partition_disjointness,
+    audit_multimodal_topology,
+    dataset_manifest_hash,
+    validate_dataset_records,
+)
 from .hashing import hash_ordered_records, hash_split_manifest, sha256_text
 from .run_manifest import REQUIRED_RUN_FIELDS, run_manifest_hash, validate_run_manifest
 from .splits import assert_disjoint_subject_splits, assert_unique_sample_ids
@@ -15,6 +22,11 @@ __all__ = [
     "sha256_text",
     "hash_split_manifest",
     "hash_ordered_records",
+    "REQUIRED_DATASET_FIELDS",
+    "validate_dataset_records",
+    "dataset_manifest_hash",
+    "assert_person_partition_disjointness",
+    "audit_multimodal_topology",
     "REQUIRED_TRIAL_FIELDS",
     "validate_trial_records",
     "validate_score_records",
