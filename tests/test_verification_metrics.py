@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from deepmm.metrics.verification import eer, roc_auc, tar_at_far
+from deepmm.metrics.verification import eer, eer_rocch, roc_auc, tar_at_far
 
 
 def test_perfect_separation_has_zero_eer_and_unit_auc():
@@ -10,15 +10,29 @@ def test_perfect_separation_has_zero_eer_and_unit_auc():
     value, threshold = eer(labels, scores)
     assert value == pytest.approx(0.0)
     assert threshold >= 0.8
+    assert eer_rocch(labels, scores) == pytest.approx(0.0)
     assert roc_auc(labels, scores) == pytest.approx(1.0)
 
 
-def test_reversed_separation_has_unit_eer_and_zero_auc():
+def test_reversed_separation_empirical_eer_and_rocch_are_distinguished():
     labels = np.array([0, 0, 1, 1])
     scores = np.array([0.9, 0.8, 0.2, 0.1])
     value, _ = eer(labels, scores)
     assert value == pytest.approx(1.0)
+    # ROCCH can discard a systematically harmful operating point and fall back to
+    # the randomized no-information diagonal, yielding 0.5 rather than 1.0.
+    assert eer_rocch(labels, scores) == pytest.approx(0.5)
     assert roc_auc(labels, scores) == pytest.approx(0.0)
+
+
+def test_all_tied_scores_have_half_eer_and_no_finite_interpolated_threshold():
+    labels = np.array([0, 0, 1, 1])
+    scores = np.full(4, 0.5)
+    value, threshold = eer(labels, scores)
+    assert value == pytest.approx(0.5)
+    assert np.isnan(threshold)
+    assert eer_rocch(labels, scores) == pytest.approx(0.5)
+    assert roc_auc(labels, scores) == pytest.approx(0.5)
 
 
 def test_tar_at_far_is_conservative():
