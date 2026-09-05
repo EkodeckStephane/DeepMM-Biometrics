@@ -1,6 +1,17 @@
-# Dataset Feasibility Audit v0.1
+# Dataset Feasibility Audit v0.2
 
 Primary evidence for Q1-Q3 requires **real subject-level multimodal correspondence**. This document records only candidates for which a credible source has been located. Access, licensing, completeness, and protocol suitability must still be checked before dataset lock.
+
+## Dataset-selection policy
+
+The project will **not block early scientific work on access-request workflows**. Dataset access will be handled when the experimental lock becomes necessary, while giving priority to datasets that are directly and lawfully accessible for research.
+
+Priority order:
+1. directly downloadable research datasets with verified same-subject multimodal correspondence and usable terms;
+2. datasets accessible after lightweight registration or standard research agreement;
+3. datasets requiring individual email approval or lengthy institutional access procedures.
+
+Accessibility is a practical selection criterion, not a scientific substitute for validity. A directly downloadable dataset is admissible as primary evidence only if subject correspondence, sample structure, licensing, and leakage-free verification design all satisfy the dataset-lock criteria below.
 
 ## Candidate A — SDUMLA-HMT
 
@@ -19,9 +30,9 @@ Primary evidence for Q1-Q3 requires **real subject-level multimodal corresponden
 **Risks / items to verify before lock:**
 - only 106 subjects may constrain end-to-end training of high-capacity fusion models;
 - exact face-image count and session structure needed by our split protocol must be verified from the delivered archive/documentation;
-- current response/access time is unknown until a request is made.
+- access is not direct and therefore this candidate is deferred until the dataset-lock stage unless no equally valid direct-access alternative is available.
 
-**Current status:** **HIGH-PRIORITY CANDIDATE — ACCESS REQUEST REQUIRED.**
+**Current status:** **SCIENTIFICALLY STRONG CANDIDATE — DEFERRED ACCESS REQUEST.**
 
 ## Candidate B — BioSecure Multimodal Biometric Database (BMDB)
 
@@ -43,7 +54,7 @@ Primary evidence for Q1-Q3 requires **real subject-level multimodal corresponden
 - exact subset in which face and fingerprint are jointly available for the same subjects must be reconstructed from official protocol documentation;
 - redistribution may be restricted.
 
-**Current status:** **STRONG CANDIDATE — CURRENT ACCESS CONDITIONS NOT YET CONFIRMED.**
+**Current status:** **STRONG CANDIDATE — ACCESS PATH TO BE CHECKED AT DATASET-LOCK STAGE.**
 
 ## Candidate C — BiosecurID
 
@@ -54,7 +65,7 @@ Primary evidence for Q1-Q3 requires **real subject-level multimodal corresponden
 - eight biometric traits including face and fingerprints;
 - multiple acquisition characteristics and compatibility with other multimodal databases.
 
-**Current status:** **CANDIDATE — OFFICIAL CURRENT ACCESS/LICENSING AND exact face-fingerprint protocol still to be verified before use.**
+**Current status:** **CANDIDATE — DIRECT ACCESS, OFFICIAL LICENSING, AND EXACT FACE-FINGERPRINT PROTOCOL TO BE VERIFIED.**
 
 ## Candidate D — LUTBIO
 
@@ -64,7 +75,7 @@ Primary evidence for Q1-Q3 requires **real subject-level multimodal corresponden
 - 306 individuals;
 - nine biometric modalities including face and fingerprint, plus voice, palmprint, ECG, ear and periocular information.
 
-**Current status:** **PROMISING MODERN CANDIDATE — must verify subject-level completeness, acquisition sessions, download terms, and benchmark literature.**
+**Current status:** **HIGH-PRIORITY ACCESSIBILITY CHECK — appears promising for direct-access evaluation, but subject-level completeness, acquisition sessions, download terms, and benchmark literature must be verified before use.**
 
 ## Explicitly excluded as primary evidence
 
@@ -84,8 +95,9 @@ A primary dataset is locked only if all criteria pass:
 5. impostor sampling can be frozen reproducibly;
 6. quality/degradation and missing-modality experiments remain meaningful;
 7. raw data can be acquired by the research team without prohibited redistribution;
-8. sample count supports the planned model capacity or a justified pretraining/frozen-encoder strategy is defined.
+8. sample count supports the planned model capacity or a justified pretraining/frozen-encoder strategy is defined;
+9. among scientifically adequate candidates, practical preference is given to the least restrictive reproducible access path.
 
 ## Current decision
 
-No dataset is locked yet. **SDUMLA-HMT is the first face-fingerprint dataset for which an official access request should be initiated.** BioSecure/BiosecurID/LUTBIO are being evaluated as alternatives or additional generalization datasets.
+No dataset is locked yet. **No access request will be initiated at this stage.** The immediate priority is to complete the verified SOTA and experimental taxonomy while auditing directly accessible multimodal datasets first. Access-request datasets such as SDUMLA-HMT remain valid fallback or generalization candidates and will be handled when the experimental dataset lock becomes necessary.
