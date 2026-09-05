@@ -1,4 +1,5 @@
 from .hashing import hash_ordered_records, hash_split_manifest, sha256_text
+from .run_manifest import REQUIRED_RUN_FIELDS, run_manifest_hash, validate_run_manifest
 from .splits import assert_disjoint_subject_splits, assert_unique_sample_ids
 from .trials import (
     REQUIRED_TRIAL_FIELDS,
@@ -19,4 +20,7 @@ __all__ = [
     "validate_score_records",
     "trial_manifest_hash",
     "score_manifest_hash",
+    "REQUIRED_RUN_FIELDS",
+    "validate_run_manifest",
+    "run_manifest_hash",
 ]
