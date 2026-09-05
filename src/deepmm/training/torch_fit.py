@@ -334,7 +334,7 @@ def fit_binary_score_model(
             stale_epochs = 0
         else:
             stale_epochs += 1
-            if stale_epochs > budget.early_stopping_patience:
+            if stale_epochs >= budget.early_stopping_patience:
                 break
 
     if best_state is None or best_value is None:
