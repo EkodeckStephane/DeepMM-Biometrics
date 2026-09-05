@@ -27,6 +27,8 @@ All three neural families receive the same search budget:
 | Maximum epochs | 40 |
 | Early-stopping patience | 6 |
 | Training objective | binary cross-entropy with logits |
+| Fit sampling | deterministic class balancing: each impostor once, each genuine 19× |
+| Selection data | original unmodified trial distribution |
 | Selection metric | empirical EER on `selection` only |
 | Optimizer | AdamW |
 | Learning rate | 1e-3 |
@@ -35,7 +37,9 @@ All three neural families receive the same search budget:
 | Batch size | 256 |
 | Deterministic algorithms | enabled |
 
-The maximum number of development fits is therefore 2 candidates × 3 seeds = **6 runs per neural family**, or 18 neural fits overall.
+The fit role contains 120 genuine and 2,280 impostor trials. The 19× deterministic replication therefore yields 2,280 genuine and 2,280 impostor training examples without changing the validation distribution. Exactly the same balancing rule is used for D1, D2 and D3S.
+
+The maximum number of development fits is 2 candidates × 3 seeds = **6 runs per neural family**, or 18 neural fits overall.
 
 ## Locked architecture candidates
 
@@ -83,6 +87,6 @@ Calibration is a separate held-out operation after the selected architecture IDs
 
 SHA-256 of the canonical machine-readable training lock:
 
-`ba8c5e381940fd2b31763ecbb0f702a564ae48d9f79f64da1a26d3eb4cc29c44`
+`d7a118af2bd02cdb0625602713cf3254f65a8acc06459672a72ff3a48ec22f45`
 
-Changing any locked encoder, candidate, seed, optimizer value, budget, batch size, selection rule or reporting rule invalidates this hash and must be treated as a new protocol version rather than silently replacing V1.
+Changing any locked encoder, candidate, seed, optimizer value, budget, batch size, fit-sampling rule, selection rule or reporting rule invalidates this hash and must be treated as a new protocol version rather than silently replacing V1.
