@@ -1,4 +1,11 @@
-from .calibration import brier_score, expected_calibration_error, negative_log_likelihood
+from .calibration import (
+    brier_score,
+    cllr,
+    cllr_calibration_loss,
+    expected_calibration_error,
+    min_cllr,
+    negative_log_likelihood,
+)
 from .verification import eer, roc_auc, tar_at_far
 
 __all__ = [
@@ -8,4 +15,7 @@ __all__ = [
     "brier_score",
     "negative_log_likelihood",
     "expected_calibration_error",
+    "cllr",
+    "min_cllr",
+    "cllr_calibration_loss",
 ]
