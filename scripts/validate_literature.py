@@ -34,6 +34,9 @@ REQUIRED_COLUMNS = {
 }
 ALLOWED_CODE_STATUS = {
     "official_public_code",
+    # Publisher/article explicitly reports a code repository, but the repository
+    # itself has not yet passed the DeepMM reproducibility/code-provenance audit.
+    "publisher_reports_github",
     "public_repository_data_request",
     "not_located",
     "not_applicable",
