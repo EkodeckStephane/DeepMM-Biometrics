@@ -1,0 +1,90 @@
+name: v1-calibration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/deepmm/calibration/**"
+      - "src/deepmm/evaluation/v1_final_config.py"
+      - "src/deepmm/fusion/**"
+      - "src/deepmm/robustness/**"
+      - "src/deepmm/training/**"
+      - "src/deepmm/vision/**"
+      - "src/deepmm/datasets/nupt_public_v1.py"
+      - "scripts/run_v1_development_training.py"
+      - "scripts/run_v1_calibration.py"
+      - "tests/test_v1_final_policy_lock.py"
+      - "tests/test_v1_selection_lock.py"
+      - "tests/test_v1_stress_plan.py"
+      - ".github/workflows/v1-calibration.yml"
+      - "pyproject.toml"
+  workflow_dispatch:
+
+jobs:
+  held-out-calibration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout DeepMM-Biometrics
+        uses: actions/checkout@v4
+        with:
+          path: deepmm
+
+      - name: Checkout official NUPT-FPV public subset
+        uses: actions/checkout@v4
+        with:
+          repository: REN382333467/NUPT-FPV
+          ref: main
+          path: external/NUPT-FPV
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: deepmm/pyproject.toml
+
+      - name: Install pinned CPU stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "numpy==1.26.4"
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.2.2 torchvision==0.17.2
+          python -m pip install "Pillow>=10,<13" "scikit-learn>=1.4,<1.9" "pytest>=8,<10" "pytest-cov>=5,<8"
+
+      - name: Install DeepMM without dependency re-resolution
+        working-directory: deepmm
+        run: python -m pip install -e . --no-deps
+
+      - name: Validate all pre-calibration locks
+        working-directory: deepmm
+        run: |
+          pytest \
+            tests/test_v1_training_lock.py \
+            tests/test_v1_selection_lock.py \
+            tests/test_v1_final_policy_lock.py \
+            tests/test_v1_stress_plan.py \
+            tests/test_logistic_calibration.py \
+            tests/test_stress_conditions.py \
+            tests/test_missingness_harness.py \
+            tests/test_neural_torch.py \
+            tests/test_torch_fit.py
+
+      - name: Execute held-out V1 calibration
+        working-directory: deepmm
+        env:
+          OMP_NUM_THREADS: "2"
+          MKL_NUM_THREADS: "2"
+        run: |
+          mkdir -p artifacts
+          python scripts/run_v1_calibration.py \
+            ../external/NUPT-FPV \
+            --output artifacts/v1_calibration.json
+
+      - name: Upload locked calibration evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: v1-calibration
+          path: deepmm/artifacts/v1_calibration.json
+          if-no-files-found: error
+          retention-days: 30
