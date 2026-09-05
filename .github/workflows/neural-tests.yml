@@ -1,0 +1,35 @@
+name: neural-tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/deepmm/fusion/neural_torch.py"
+      - "src/deepmm/fusion/neural_contracts.py"
+      - "tests/test_neural_torch.py"
+      - "pyproject.toml"
+      - ".github/workflows/neural-tests.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/deepmm/fusion/neural_torch.py"
+      - "src/deepmm/fusion/neural_contracts.py"
+      - "tests/test_neural_torch.py"
+      - "pyproject.toml"
+      - ".github/workflows/neural-tests.yml"
+
+jobs:
+  torch-cpu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install CPU PyTorch
+        run: python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2,<3"
+      - name: Install package
+        run: python -m pip install -e ".[dev]"
+      - name: Run neural tests
+        run: pytest tests/test_neural_torch.py
