@@ -1,103 +1,159 @@
-# Dataset Feasibility Audit v0.2
+# Dataset Feasibility Audit v0.3
 
-Primary evidence for Q1-Q3 requires **real subject-level multimodal correspondence**. This document records only candidates for which a credible source has been located. Access, licensing, completeness, and protocol suitability must still be checked before dataset lock.
+Primary evidence for Q1-Q3 requires **genuine subject-level multimodal correspondence** and a verification protocol that can be split without biological-subject leakage. Access convenience is relevant only after scientific admissibility is established.
 
 ## Dataset-selection policy
 
-The project will **not block early scientific work on access-request workflows**. Dataset access will be handled when the experimental lock becomes necessary, while giving priority to datasets that are directly and lawfully accessible for research.
+The project distinguishes three states:
 
-Priority order:
-1. directly downloadable research datasets with verified same-subject multimodal correspondence and usable terms;
-2. datasets accessible after lightweight registration or standard research agreement;
-3. datasets requiring individual email approval or lengthy institutional access procedures.
+1. **access candidate** — public documentation is sufficiently credible to justify requesting/inspecting the data;
+2. **provisional experimental candidate** — the archive has been obtained and its identity/session/sample topology has passed audit;
+3. **locked dataset** — split/trial/statistical design, legal terms, encoder feasibility and final-test firewall are frozen.
 
-Accessibility is a practical selection criterion, not a scientific substitute for validity. A directly downloadable dataset is admissible as primary evidence only if subject correspondence, sample structure, licensing, and leakage-free verification design all satisfy the dataset-lock criteria below.
+No dataset may move directly from a web description to `locked` status.
 
-## Candidate A — SDUMLA-HMT
+## P1 — NUPT-FPV (primary access candidate)
 
-**Source:** Shandong University Artificial Intelligence Research Center, official database page: https://www.sai.sdu.edu.cn/info/1075/1115.htm
+**Official project repository:** https://github.com/REN382333467/NUPT-FPV  
+**Reference:** H. Ren, L. Sun, J. Guo and C. Han, *A Dataset and Benchmark for Multimodal Biometric Recognition Based on Fingerprint and Finger Vein*, IEEE Transactions on Information Forensics and Security 17 (2022), 2030–2043. DOI `10.1109/TIFS.2022.3175599`.
 
-**Verified properties from the official page:**
-- 106 individuals.
-- Real multimodal data.
-- Modalities include face and fingerprint, as well as finger vein, gait, and iris.
-- Face data include multiple view angles and acquisition variations.
-- Fingerprints were acquired from six fingers using five sensors, eight impressions per finger/sensor combination (25,440 fingerprint images reported).
-- Research/noncommercial use only; the official page instructs researchers to request the database by email.
+### Verified public properties
 
-**Strength for this project:** direct face-fingerprint subject correspondence is available in a recognized homologous multimodal database.
+- 140 human volunteers;
+- six fingers per volunteer (left/right index, middle and ring), yielding 840 finger instances;
+- fingerprint and finger-vein modalities;
+- 20 acquisitions per finger across two sessions (the public table reports 10 repetitions per session × 2 sessions);
+- 16,800 fingerprint and 16,800 finger-vein images, 33,600 images total;
+- reported image size 300 × 400;
+- the project repository states that research use is available free of charge and provides a release-agreement PDF;
+- complete-data access is by contact with the authors rather than anonymous direct download.
 
-**Risks / items to verify before lock:**
-- only 106 subjects may constrain end-to-end training of high-capacity fusion models;
-- exact face-image count and session structure needed by our split protocol must be verified from the delivered archive/documentation;
-- access is not direct and therefore this candidate is deferred until the dataset-lock stage unless no equally valid direct-access alternative is available.
+### Why P1 is currently preferred
 
-**Current status:** **SCIENTIFICALLY STRONG CANDIDATE — DEFERRED ACCESS REQUEST.**
+NUPT-FPV offers a particularly useful structure for the present study: paired modalities, repeated acquisitions, two sessions, a nontrivial number of human subjects, modest image size, and an explicit research-access path. It supports a meaningful clean/degradation/missing-modality verification study without forcing the project back to the former face-fingerprint design.
 
-## Candidate B — BioSecure Multimodal Biometric Database (BMDB)
+### Mandatory biological-subject rule
 
-**Reference:** Fierrez et al., *The multiscenario multienvironment BioSecure Multimodal Database (BMDB)*. PubMed record: https://pubmed.ncbi.nlm.nih.gov/20431134/
+The 840 fingers are **not 840 independent human subjects**. Confirmatory train/development/calibration/test partitions must be disjoint at the **volunteer/person level**. Different fingers from the same volunteer may not cross these partitions. Finger-level identity may be used inside the biometric matching protocol only after this person-level grouping constraint is enforced.
 
-**Verified properties from the publication abstract:**
-- more than 600 individuals;
-- three acquisition scenarios;
-- face/audio common components;
-- fingerprints acquired in desktop and mobile scenarios;
-- two acquisition sessions;
-- multiple sensors for some modalities;
-- database designed for unimodal and multimodal evaluation.
+### Required archive audit before provisional lock
 
-**Strength for this project:** substantially larger subject count and realistic multisession/multienvironment design.
+- signed/accepted access terms and redistribution constraints recorded;
+- exact file naming and modality correspondence verified;
+- session labels 1/2 and acquisition indices reconstructed;
+- volunteer IDs proven identical across fingerprint/finger-vein records;
+- missing/corrupt files enumerated;
+- exact per-volunteer/per-finger sample counts checked rather than assumed from the paper;
+- feasibility of subject-disjoint split and held-out calibration confirmed;
+- trial topology selected so dependence-aware inference can be specified;
+- any benchmark-specific preprocessing that would leak test information excluded.
 
-**Risks / items to verify before lock:**
-- current access mechanism and legal terms must be verified;
-- exact subset in which face and fingerprint are jointly available for the same subjects must be reconstructed from official protocol documentation;
-- redistribution may be restricted.
+**Current status:** **P1 ACCESS CANDIDATE — NOT YET DATASET-LOCKED.**
 
-**Current status:** **STRONG CANDIDATE — ACCESS PATH TO BE CHECKED AT DATASET-LOCK STAGE.**
+## G1 — SDUMLA-HMT (generalization/fallback candidate)
 
-## Candidate C — BiosecurID
+**Official source:** Shandong University Artificial Intelligence Research Center: https://www.sai.sdu.edu.cn/info/1075/1115.htm
 
-**Reference:** Fierrez et al., *BiosecurID: a multimodal biometric database*, arXiv:2111.03472 (database paper).
+### Verified public properties
 
-**Reported properties:**
-- 400 subjects;
-- eight biometric traits including face and fingerprints;
-- multiple acquisition characteristics and compatibility with other multimodal databases.
+- 106 individuals;
+- real multimodal data;
+- modalities include face, fingerprint, finger vein, gait and iris;
+- fingerprints from six fingers, five sensors and eight impressions per finger/sensor combination, with 25,440 fingerprint images reported;
+- research/noncommercial access is requested by email.
 
-**Current status:** **CANDIDATE — DIRECT ACCESS, OFFICIAL LICENSING, AND EXACT FACE-FINGERPRINT PROTOCOL TO BE VERIFIED.**
+### Strengths and risks
 
-## Candidate D — LUTBIO
+It offers a recognized homologous multimodal collection and would permit an important cross-pair/generalization check. Its smaller human-subject count makes high-capacity end-to-end fusion less attractive unless upstream encoders are frozen or strongly regularized. The delivered archive/session topology must still be audited.
 
-**Dataset record:** Mendeley Data DOI: https://doi.org/10.17632/jszw485f8j.6
+**Current status:** **G1 GENERALIZATION/FALLBACK CANDIDATE — ACCESS REQUEST NOT YET SENT.**
 
-**Indexed description located in 2025:**
+## G2 — LUTBIO (large multimodal generalization candidate)
+
+**Dataset record:** Mendeley Data v6, DOI `10.17632/jszw485f8j.6`.  
+**Associated paper:** *Information Fusion* (2025), DOI `10.1016/j.inffus.2025.102945`.
+
+### Verified public properties
+
 - 306 individuals;
-- nine biometric modalities including face and fingerprint, plus voice, palmprint, ECG, ear and periocular information.
+- nine modalities including voice, face, fingerprint, contact/contactless palmprint, ECG, back-of-hand, ear and periocular data;
+- current v6 description instructs researchers to download an application document, complete it, and send it to the dataset contact;
+- the record states research-only/confidentiality access conditions;
+- the Mendeley record displays a CC BY 4.0 licence for the record, but this must not be interpreted as unrestricted redistribution of raw biometric files.
 
-**Current status:** **HIGH-PRIORITY ACCESSIBILITY CHECK — appears promising for direct-access evaluation, but subject-level completeness, acquisition sessions, download terms, and benchmark literature must be verified before use.**
+### Important ambiguity
 
-## Explicitly excluded as primary evidence
+The v6 `Steps to reproduce` text contains the sentence that the “multimodal biometric data presented in the paper is not from the same individual”. **Je ne peux pas confirmer à partir de cette wording seule qu’il s’agit d’une absence de correspondance d’identité dans la base complète.** It may concern data displayed/presented for privacy rather than the stored database topology. Consequently, LUTBIO cannot be primary evidence until the application materials, collection protocol and obtained archive explicitly demonstrate the same-subject correspondence required by DeepMM.
 
-### Unverified face-fingerprint pair compilations
-Datasets that combine publicly available face and fingerprint sources without authenticated subject correspondence are **not admissible as primary evidence** for cross-modal representation learning.
+**Current status:** **G2 CANDIDATE — APPLICATION REQUIRED; IDENTITY TOPOLOGY MUST BE VERIFIED BEFORE ADMISSIBILITY.**
 
-A public Kaggle dataset currently describes itself as an unofficial compilation and explicitly states that it does not contain validated face-to-fingerprint identity mappings. It is therefore unsuitable for our primary Q1-Q3 claims.
+## G3 — OU-MB (high-scale scientific candidate; access path open)
+
+**Reference:** C. Xu et al., *OU-MB: The OU Multimodal Biometric Database and Its Performance Evaluation*, IEEE Transactions on Biometrics, Behavior, and Identity Science (2026), DOI `10.1109/TBIOM.2026.3710514`.
+
+### Verified publication properties
+
+- 1,099 subjects;
+- eleven modalities including iris, palm vein, 2D face, signatures, gait, voice, full-body images, online-signature time series, brain signals, inertial and health data;
+- the paper reports representative score-level and feature-level multimodal fusion experiments;
+- OU-MB is already a critical Gate-4 comparator because its fusion baseline holds modality-specific recognition models fixed while comparing model-agnostic score/feature fusion.
+
+### Access uncertainty
+
+The publication describes OU-MB as publicly available, but **Je ne peux pas confirmer actuellement un stable raw-data download/request mechanism from the public sources audited for this project.** Until a canonical access route and terms are verified, it remains scientifically attractive but operationally unselected.
+
+**Current status:** **G3 HIGH-SCALE CANDIDATE — RAW-DATA ACCESS PATH TO VERIFY.**
+
+## G4 — BioSecure BMDB / BiosecurID
+
+### BioSecure BMDB
+
+Published descriptions report more than 600 individuals, multiple acquisition scenarios, face/audio, fingerprints, multiple sensors and two sessions. The current 2026 access path and exact same-subject subset required by DeepMM still need verification.
+
+### BiosecurID
+
+The database paper reports 400 subjects and eight traits including face and fingerprints. Historical descriptions report repeated acquisition sessions. Current official access/licensing and exact usable cross-modal subset remain to verify.
+
+**Current status:** **VALID SCIENTIFIC CANDIDATES — CURRENT ACCESS NOT YET VERIFIED.**
+
+## G5 — FaciaVox (secondary only at present)
+
+**Canonical dataset record:** Zenodo DOI `10.5281/zenodo.14861092`.
+
+### Verified public properties
+
+- 100 participants;
+- 1,800 face images and 6,000 voice recordings;
+- restricted files;
+- access requires a request and signed Data Usage Agreement;
+- research-only/no-sharing conditions;
+- Zenodo reports approximately 126 GB of data.
+
+The pair is scientifically useful for cross-modality generalization, but the storage/access burden is high relative to the subject count and the project's no-funded-infrastructure constraint.
+
+**Current status:** **SECONDARY/GENERALIZATION CANDIDATE — NOT PREFERRED FOR PRIMARY CAMPAIGN.**
+
+## Explicit exclusions from primary evidence
+
+Datasets or compilations that create multimodal identities by matching unrelated labels across independently collected unimodal databases are not admissible for a headline cross-modal/fusion claim. Chimeric data may only appear in a clearly labelled secondary sensitivity experiment if a specific scientific reason is preregistered.
 
 ## Dataset-lock criteria
 
 A primary dataset is locked only if all criteria pass:
 
-1. subject correspondence across selected modalities is explicitly verified;
-2. verification use is permitted by the dataset terms;
-3. subject-disjoint train/validation/test splitting is possible;
-4. enough within-subject samples exist to construct genuine verification comparisons without leakage;
-5. impostor sampling can be frozen reproducibly;
-6. quality/degradation and missing-modality experiments remain meaningful;
-7. raw data can be acquired by the research team without prohibited redistribution;
-8. sample count supports the planned model capacity or a justified pretraining/frozen-encoder strategy is defined;
-9. among scientifically adequate candidates, practical preference is given to the least restrictive reproducible access path.
+1. same-human correspondence across selected modalities is explicitly verified;
+2. verification research use is permitted and legal terms are archived;
+3. person-disjoint train/development/calibration/test splitting is feasible;
+4. enough within-person repeated samples exist for genuine comparisons without leakage;
+5. impostor trials can be frozen reproducibly;
+6. trial dependence can be modeled with a defensible inference/resampling method;
+7. controlled degradation and missing-modality experiments are meaningful;
+8. selected encoders/fusion capacity are compatible with sample size and compute;
+9. calibration can be fitted outside the final test set;
+10. raw biometric redistribution is avoided unless explicitly permitted;
+11. all final trial lists and split manifests can be hashed before confirmatory testing;
+12. the dataset choice was not made because a pilot happened to favor a preferred DL family.
 
 ## Current decision
 
-No dataset is locked yet. **No access request will be initiated at this stage.** The immediate priority is to complete the verified SOTA and experimental taxonomy while auditing directly accessible multimodal datasets first. Access-request datasets such as SDUMLA-HMT remain valid fallback or generalization candidates and will be handled when the experimental dataset lock becomes necessary.
+**No dataset is locked.** NUPT-FPV is promoted to **P1 primary access candidate** because its publicly documented topology is currently the strongest combination of scientific suitability and practical feasibility. The next data-dependent action is to request/obtain NUPT-FPV and audit the delivered archive before any confirmatory training or final-test evaluation. SDUMLA-HMT and LUTBIO remain the first generalization/fallback paths; OU-MB remains a high-value option pending a verified access route.
