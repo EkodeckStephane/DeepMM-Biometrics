@@ -55,7 +55,7 @@ def _block(seed: int, n_subjects: int, *, stress: bool = False):
 
 
 def _systems(dev_scores, dev_quality, dev_labels):
-    systems = {
+    return {
         "C1": EqualScoreFusion().fit(dev_scores),
         "C2": WeightedScoreFusion(grid_step=0.1).fit(dev_scores, dev_labels),
         "C3": LogisticScoreFusion(C=1.0).fit(dev_scores, dev_labels),
@@ -63,7 +63,6 @@ def _systems(dev_scores, dev_quality, dev_labels):
             dev_scores, dev_quality, dev_labels
         ),
     }
-    return systems
 
 
 def _transform(system_id, system, scores, quality):
@@ -146,6 +145,9 @@ def run_synthetic_smoke(*, n_subjects: int = 40, n_boot: int = 80) -> dict[str, 
         minimize=[True, True],
     )
 
+    eer_tau = float(kendall_tau_b(clean_eer_a, stress_eer_a))
+    cllr_tau = float(kendall_tau_b(clean_cllr_a, stress_cllr_a))
+
     return {
         "synthetic_only": True,
         "method_ids": method_ids,
@@ -159,7 +161,16 @@ def run_synthetic_smoke(*, n_subjects: int = 40, n_boot: int = 80) -> dict[str, 
         "stress_cllr": stress_cllr_a,
         "clean_pareto": clean_pareto,
         "stress_pareto": stress_pareto,
-        "eer_tau_b": float(kendall_tau_b(clean_eer_a, stress_eer_a)),
+        # Kendall tau-b is mathematically undefined when one ranking is completely
+        # tied. Preserve NaN rather than fabricating a rank order; `*_tau_defined`
+        # makes that state explicit for downstream reporting.
+        "eer_tau_b": eer_tau,
+        "eer_tau_defined": bool(np.isfinite(eer_tau)),
+        "cllr_tau_b": cllr_tau,
+        "cllr_tau_defined": bool(np.isfinite(cllr_tau)),
         "eer_rank_reversals": tuple(pairwise_rank_reversals(clean_eer_a, stress_eer_a)),
+        "cllr_rank_reversals": tuple(
+            pairwise_rank_reversals(clean_cllr_a, stress_cllr_a)
+        ),
         "bootstrap_eer": bootstrap_eer,
     }
