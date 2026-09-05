@@ -72,7 +72,7 @@ def test_v1_rejects_missing_required_final_capture(tmp_path):
     missing = tmp_path / "image" / "Session2" / "FingerVein" / "001" / "001_10.bmp"
     missing.unlink()
     rows = scan_nupt_fpv(tmp_path)
-    with pytest.raises(ValueError, match="missing required V1 evidence unit"):
+    with pytest.raises(ValueError, match="missing modalities"):
         generate_v1_trials(rows, "final")
 
 
