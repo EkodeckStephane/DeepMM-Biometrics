@@ -18,7 +18,7 @@ The headline experiment is a **controlled fusion-mechanism benchmark**, not a co
 
 ### Track I — controlled fusion benchmark (primary)
 
-Strong unimodal evidence is shared/frozen wherever scientifically possible. Eligible fusion families receive the same subject-disjoint splits, ordered trial lists, preprocessing outputs and matched development/tuning budget. The independent variable is the **fusion mechanism**.
+Strong unimodal evidence is shared/frozen wherever scientifically possible. Eligible fusion families receive the same person-disjoint splits, ordered trial lists, preprocessing outputs and matched development/tuning budget. The independent variable is the **fusion mechanism**.
 
 ### Track II — full-system optimization (secondary)
 
@@ -26,7 +26,7 @@ Selected systems may be fine-tuned end to end under a matched budget to estimate
 
 ## Gate-4-locked scientific positioning
 
-Gate 4 is closed at **PASS-POSITIONING (2026-09-05)**. The search did not locate a biometric-specific study that simultaneously keeps upstream unimodal evidence controlled, compares representative classical and deep fusion mechanisms on identical subject-disjoint verification evidence, jointly measures discrimination, held-out calibration, controlled degradation, modality absence and compute, and quantifies dependence-aware rank/Pareto stability across conditions.
+Gate 4 is closed at **PASS-POSITIONING (2026-09-05)**. The completed falsification search did not locate a biometric-specific study that simultaneously keeps upstream unimodal evidence controlled, compares representative classical and deep fusion mechanisms on identical person-disjoint verification evidence, jointly measures discrimination, held-out calibration, controlled degradation, modality absence and compute, and quantifies dependence-aware rank/Pareto stability across conditions.
 
 This is an operational research gap, **not a proof of uniqueness**. No `first`, `only`, or universal `best` claim is authorized. Gate 4 is reopened if a later equivalent benchmark is found, and a submission-time SOTA refresh is mandatory.
 
@@ -61,6 +61,19 @@ One attention/Transformer representative is confirmatory only if the selected fr
 
 `src/deepmm/fusion/contracts.py` enforces these information tiers, explicit availability masks and quality-access rules. A richer-input method cannot be credited with a pure fusion gain over a poorer-input method.
 
+## Neural implementation status
+
+The framework-independent search/budget contract lives in `src/deepmm/fusion/neural_contracts.py`. A CPU-testable PyTorch backend now implements the four currently eligible neural families in `src/deepmm/fusion/neural_torch.py`:
+
+- D1 `ScoreMLPFusion`;
+- D2 `FeatureFusionMLP`, using one shared enrollment/probe encoder followed by cosine verification;
+- D3S `ScoreQualityGate`, with explicit quality/availability-conditioned masked weights;
+- D3F `FeatureQualityGate`, with per-modality projections and joint-availability gating.
+
+Optimizer choice, final hidden widths, final training epochs and the final search grid are **not** hard-coded into these model classes. Those choices remain governed by the preregisterable training-budget contract and must be frozen only after the primary data/encoder dimensionality is known.
+
+PyTorch is an optional dependency (`.[neural]`) and has its own CPU CI workflow. The ordinary non-neural scientific infrastructure remains usable without PyTorch.
+
 ## Evaluation and reproducibility infrastructure
 
 The repository implements/tests infrastructure for:
@@ -79,6 +92,8 @@ The repository implements/tests infrastructure for:
 - deterministic missing-modality masks/fallback utilities;
 - hashable preregistration-style clean/corruption/missing stress plans;
 - matched hardware/batch/precision/scope cost-measurement records and raw latency retention;
+- metadata-only dataset archive manifests with person/instance/session/capture structure;
+- person-level partition leakage detection for multi-instance datasets;
 - an end-to-end synthetic smoke harness covering development-only fitting, held-out calibration transfer, clustered uncertainty, Pareto analysis and clean-vs-stress ranking logic.
 
 The synthetic harness is **CI/debug evidence only** and can never be used as a scientific result.
@@ -91,6 +106,16 @@ Missing evidence is represented explicitly; `NaN`, infinity and sentinel values 
 
 Final corruption operators and severities remain data/modality dependent. Their condition IDs, targets, parameters and severity order will be frozen and hashed before final-test inspection. Missing-modality handling is a second experimental axis rather than automatically a separate fusion family.
 
+## Dataset direction — P1 access candidate selected
+
+**NUPT-FPV (fingerprint + finger vein) is the current P1 access candidate. It is not yet the locked primary dataset.** The public project documentation reports 140 human volunteers, six fingers per volunteer, 20 acquisitions per finger across two sessions and 33,600 images in total. The final scientific lock requires obtaining the official archive and independently auditing its identity/session/capture topology and access terms.
+
+For a multi-finger dataset, the outer biological grouping unit is the **human volunteer**, not the finger. All fingers from one volunteer must remain in the same train/development/calibration/test partition. `person_id` and nested `instance_id` are therefore separate fields in the dataset manifest contract.
+
+Current fallback/generalization order is recorded in `docs/dataset_feasibility.md` and `docs/dataset_lock_decision_v0.1.md`. Restricted raw biometric data are never committed unless source terms explicitly permit redistribution.
+
+After lawful access, a local metadata manifest can be audited with `scripts/audit_dataset_manifest.py`; `data/manifest_template.csv` documents the required schema. The tool validates multimodal/session completeness and emits a deterministic dataset-manifest SHA-256 without reading biometric pixels.
+
 ## Literature traceability
 
 - `literature/sota_registry.csv` contains the machine-readable verified SOTA registry.
@@ -102,28 +127,23 @@ Final corruption operators and severities remain data/modality dependent. Their 
 
 “Code not located” means that the targeted search did not locate an official implementation; it is never treated as proof that no implementation exists.
 
-## Dataset policy
-
-Dataset locking is intentionally deferred. Directly and lawfully accessible real multimodal datasets are preferred, but accessibility cannot override subject-level identity correspondence, leakage-free splitting, adequate repeated samples, and trial/statistical feasibility. Chimeric identities are not admissible as primary evidence for learned cross-modal interaction.
-
-Restricted raw biometric data will not be committed to this repository unless redistribution terms explicitly allow it.
-
 ## Repository map
 
 ```text
 DeepMM-Biometrics/
-├── .github/workflows/        # CI
-├── docs/                     # research protocol, SOTA, Gates, experimental contracts
+├── .github/workflows/        # standard + optional PyTorch CPU CI
+├── data/                     # metadata schema only; no raw restricted biometrics
+├── docs/                     # protocol, SOTA, Gates, dataset/access contracts
 ├── literature/               # verified registry + BibTeX + Gate-4 search log
-├── scripts/                  # validation/regeneration utilities
+├── scripts/                  # literature, documentation and dataset-manifest audits
 ├── src/deepmm/
 │   ├── calibration/          # held-out score calibration
 │   ├── evaluation/           # cost contract + synthetic pipeline smoke harness
-│   ├── fusion/               # classical baselines, evidence contracts, missingness
+│   ├── fusion/               # classical + neural fusion, evidence/missingness contracts
 │   ├── metrics/              # discrimination + calibration metrics
 │   ├── robustness/           # frozen stress-condition contract
 │   ├── stats/                # bootstrap, paired inference, Pareto/rank analysis
-│   └── validation/           # split/leakage/trial/hash/provenance controls
+│   └── validation/           # dataset/split/trial/hash/provenance controls
 ├── tests/                    # scientific software validation
 ├── pyproject.toml
 └── README.md
@@ -137,13 +157,15 @@ DeepMM-Biometrics/
 | G2 — claim/evidence alignment | **PASS-DESIGN / evidence open** |
 | G3 — final scientific narrative | **rule fixed** |
 | G4 — current SOTA / novelty | **PASS-POSITIONING — 2026-09-05** |
-| G5 — experimental validity | **DESIGN/INFRASTRUCTURE READY / data-dependent lock open** |
+| G5 — experimental validity | **P1 ACCESS CANDIDATE SELECTED / archive & data lock open** |
 | G8 — reproducibility | **ADVANCED INFRASTRUCTURE / real evidence open** |
 | G9 — bibliography/editorial hygiene | **OPEN / machine consistency active** |
 | G10 — submission readiness | **NO-GO** |
 
 ## Immediate next boundary
 
-**GO:** common neural-head interfaces, deterministic stress/missingness plumbing, synthetic end-to-end validation, directly accessible dataset screening, and development-only pilot preparation.
+**GO:** obtain NUPT-FPV through the official research route, audit its delivered archive, complete dataset-agnostic neural training infrastructure, freeze person-disjoint development/calibration/test logic after topology verification, and run non-final pilots without final-test access.
 
-**NO-GO:** final-test model selection, post-hoc family additions, unvalidated dense-trial inference, test-fitted calibration, token/Transformer information privilege, or final corruption severities before the real data/protocol lock.
+**NO-GO:** confirmatory final-test model selection, post-hoc family additions, treating fingers as independent human subjects, unvalidated dense-trial inference, test-fitted calibration, token/Transformer information privilege, or final corruption severities before the real data/protocol lock.
+
+No scientific biometric performance result is currently claimed.
