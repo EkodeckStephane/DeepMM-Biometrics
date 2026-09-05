@@ -118,7 +118,7 @@ The database paper reports 400 subjects and eight traits including face and fing
 
 ## G5 — FaciaVox (secondary only at present)
 
-**Canonical dataset record:** Zenodo DOI `10.5281/zenodo.14861092`.
+**Canonical dataset record:** Zenodo record `14861092` (*FaciaVox a Multimodal Biometric Dataset*).
 
 ### Verified public properties
 
