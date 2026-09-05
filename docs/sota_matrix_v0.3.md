@@ -12,6 +12,7 @@ This working matrix extends v0.2 with the closest 2024-2026 precedents to Q1-Q3.
 | Soleymani et al., DOI `10.1109/TBIOM.2021.3131664` | IEEE T-BIOM, 2022 | Quality-aware deep multimodal recognition; weakly supervised modality/sample quality weighting; face/iris/fingerprint; verification metrics include AUC/EER/TAR@FAR. | Does not establish that quality-aware fusion is globally best across deep score, deep feature, attention/Transformer and strong classical fusion under a matched budget. |
 | Ren et al., DOI `10.1109/TIFS.2022.3175599` | IEEE TIFS, 2022 | Real paired fingerprint-finger-vein dataset and deep multimodal benchmark with two acquisition sessions. | Benchmark is not designed to jointly rank broad fusion families by discrimination, calibration, degradation robustness, missingness and compute. |
 | A. El_Rahman & Alluhaidan, DOI `10.1371/journal.pone.0291084` | PLOS ONE, 2024 | Directly compares CNN and traditional classifiers with parallel/serial multimodal systems and different fusion levels. | Primary multimodal evidence uses a virtual/chimeric ECG-fingerprint construction; therefore it cannot close our real-subject matched-fusion question. It also does not jointly evaluate calibration, controlled missing modalities and cost. |
+| Artabaz & Sliman, Scientific Reports 15:29237 | Scientific Reports, 2025 | Explicitly compares handcrafted/feature-selection fusion against EfficientNetV2 in a fingerprint+palmprint setting and discusses efficiency–accuracy trade-offs. | Fusion combines FVC2006-DB1_A fingerprint data with MS-PolyU palmprint data, reported as 140 and 300 users respectively; the article does not establish same-subject correspondence across those databases. It also does not jointly compare the representative fusion families or missingness/calibration dimensions required by Q2–Q3. |
 | Fan et al., DOI `10.1109/TSMC.2024.3382877` | IEEE TSMC: Systems, 2024 | Adaptive weighted multimodal hand recognition with recognition-time efficiency as an explicit design objective. | Not a broad family-level fusion benchmark and not a calibration/missingness study. |
 | Lu, Wu & Bao, DOI `10.1016/j.engappai.2025.110865` | Engineering Applications of AI, 2025 | Face-fingerprint multilevel spatial/channel attention plus knowledge distillation; explicitly targets model compression/resource-constrained deployment and evaluates on two real multimodal datasets. | Does not answer whether attention/distillation is Pareto-superior to representative deep score, feature, gating and Transformer families under one matched protocol. |
 | Zheng et al., DOI `10.1016/j.patrec.2025.06.017` | Pattern Recognition Letters, 2025 | SSM encoders + cross-modal attention + contrastive alignment for PPG-fingerprint verification; single- and dual-session evaluation. | Strong architecture paper rather than a broad fusion-family benchmark. |
@@ -24,7 +25,7 @@ This working matrix extends v0.2 with the closest 2024-2026 precedents to Q1-Q3.
 
 ## 2. Implications for Q1
 
-Q1 cannot be framed as “does deep learning improve multimodal biometrics?” in an unconditional sense. The literature already contains cases where deep multimodal models improve over selected traditional or unimodal baselines, as well as cases where the strongest single modality is already very competitive.
+Q1 cannot be framed as “does deep learning improve multimodal biometrics?” in an unconditional sense. The literature already contains direct classical-versus-learning comparisons, quality-aware deep fusion, cost-aware deep fusion, and cases where the strongest single modality is already very competitive. Several apparent multimodal comparisons also rely on virtual or cross-database modality combinations, which makes subject-level pairing a central validity criterion for our benchmark.
 
 The defensible Q1 contribution is therefore a **matched decomposition**:
 
@@ -103,6 +104,7 @@ Highest priority for deeper extraction:
 - Tiong et al., Information Fusion 2026, flexible biometrics survey;
 - Rajkumar & Yuvasini, Pattern Analysis and Applications 2026;
 - Lu et al., EAAI 2025, MPAD;
+- Artabaz & Sliman, Scientific Reports 2025, classical-vs-deep feature fusion;
 - Alazawi et al., 2026 cross-architecture evaluation;
 - the closest recent benchmark papers discovered in the remaining T-BIOM/TIFS/IJCB search.
 
