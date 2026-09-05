@@ -4,14 +4,14 @@ This project adapts the owner-supplied **Q1 Scientific-Article Editorial Gates**
 
 | Gate | DeepMM-Biometrics requirement | Current status | Evidence required for PASS |
 |---|---|---|---|
-| **G1 — Scientific object first** | The paper is organized around Q1-Q3, not around a named model or repository. | **PASS-DESIGN** | Frozen research questions + protocol. |
-| **G2 — Claim/evidence alignment** | Every conclusion about DL benefit, best family, calibration, robustness, or missing modalities maps to direct measurements. Negative results retained. | **OPEN** | Final claim-evidence matrix linked to raw outputs. |
+| **G1 — Scientific object first** | The paper is organized around Q1-Q3, not around a named model or repository. | **PASS-DESIGN** | Frozen research questions + controlled benchmark protocol exist. |
+| **G2 — Claim/evidence alignment** | Every conclusion about DL benefit, best family, calibration, robustness, or missing modalities maps to direct measurements. Negative results retained. | **PASS-DESIGN / EVIDENCE OPEN** | Q1-Q3 evidence map and planned contrasts exist; final claim-evidence matrix must link to raw outputs. |
 | **G3 — Final scientific narrative** | Final article contains the final valid study, not development/debug/audit history. | **RULE FIXED** | Editorial audit of final manuscript. |
-| **G4 — Novelty/current SOTA** | No architectural-priority claim. Positioning must show what matched family-level comparison is missing in current literature. | **OPEN — CRITICAL** | Verified SOTA matrix with current representative work and explicit unresolved gap. |
-| **G5 — Experimental validity** | Real multimodal identity correspondence, leakage-free splits, matched baselines, correct experimental unit, uncertainty, paired tests, multiplicity correction. | **DESIGNING** | Frozen dataset/splits/statistical plan + tests + raw results. |
+| **G4 — Novelty/current SOTA** | No architectural-priority claim. Positioning must show what matched family-level comparison is missing in current literature. | **IN PROGRESS — CRITICAL** | `sota_matrix_v0.2.md` + `sota_search_protocol.md` exist; systematic representative-current-work search must be completed before a novelty lock. |
+| **G5 — Experimental validity** | Real multimodal identity correspondence, leakage-free splits, matched baselines, correct experimental unit, uncertainty, paired tests, multiplicity correction. | **DESIGN-READY / DATA OPEN** | Controlled two-track benchmark + statistical analysis plan + anti-leakage core exist; final dataset, splits, trial list and run count remain to lock. |
 | **G6 — Article structure/prose** | Problem → gap → comparison framework → protocol → results Q1/Q2/Q3 → discussion/limits. | **PLANNED** | Final manuscript structural audit. |
 | **G7 — Scope/operational claims** | No claim of universal superiority, deployment readiness, spoof resistance, fairness, or security improvement unless directly measured. | **RULE FIXED** | Scope/threats/validity audit. |
-| **G8 — Reproducibility** | Code, configs, split manifests, seeds, raw scores, hashes, environment, regeneration scripts; restricted datasets referenced rather than redistributed. | **PLANNED** | Public artifact package reproducing main tables/figures. |
+| **G8 — Reproducibility** | Code, configs, split manifests, seeds, raw scores, hashes, environment, regeneration scripts; restricted datasets referenced rather than redistributed. | **STARTED** | Package skeleton + metric and leakage tests exist; final experiment manifests/raw evidence/regeneration scripts remain. |
 | **G9 — Bibliographic/editorial hygiene** | Every reference exists and supports its citing sentence; same title/numbers across manuscript and submission files. | **OPEN** | DOI/source audit + cross-file consistency audit. |
 | **G10 — Submission readiness** | No contribution/evidence mismatch, unfair comparison, article-code-data contradiction, unverified reference, or journal-scope mismatch. | **NO-GO NOW** | Reviewer Senior final pass + all prior gates closed. |
 
@@ -42,3 +42,7 @@ Before any article draft is considered mature, a strict reviewer must be able to
 - Are the data truly multimodal at subject level?
 - Is any architectural complexity unsupported by measurable benefit?
 - Can every principal table/figure be regenerated from committed scripts and raw outputs?
+
+## Current scientific status
+
+**GO for infrastructure, SOTA closure and pilot preparation. NO-GO for a final training campaign or manuscript claims.**
