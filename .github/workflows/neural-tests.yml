@@ -6,7 +6,10 @@ on:
     paths:
       - "src/deepmm/fusion/neural_torch.py"
       - "src/deepmm/fusion/neural_contracts.py"
+      - "src/deepmm/training/**"
       - "tests/test_neural_torch.py"
+      - "tests/test_torch_fit.py"
+      - "tests/test_training_contracts.py"
       - "pyproject.toml"
       - ".github/workflows/neural-tests.yml"
   pull_request:
@@ -14,7 +17,10 @@ on:
     paths:
       - "src/deepmm/fusion/neural_torch.py"
       - "src/deepmm/fusion/neural_contracts.py"
+      - "src/deepmm/training/**"
       - "tests/test_neural_torch.py"
+      - "tests/test_torch_fit.py"
+      - "tests/test_training_contracts.py"
       - "pyproject.toml"
       - ".github/workflows/neural-tests.yml"
 
@@ -31,5 +37,5 @@ jobs:
         run: python -m pip install --index-url https://download.pytorch.org/whl/cpu "torch>=2.2,<3"
       - name: Install package
         run: python -m pip install -e ".[dev]"
-      - name: Run neural tests
-        run: pytest tests/test_neural_torch.py
+      - name: Run neural and training tests
+        run: pytest tests/test_neural_torch.py tests/test_torch_fit.py tests/test_training_contracts.py
