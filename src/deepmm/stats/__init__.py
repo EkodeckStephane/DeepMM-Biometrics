@@ -5,6 +5,7 @@ from .bootstrap import (
     paired_cluster_bootstrap_difference,
     percentile_interval,
 )
+from .inference import holm_adjust, holm_reject, paired_cluster_permutation_test
 from .multicriteria import (
     bootstrap_dominance_probability,
     kendall_tau_b,
@@ -17,6 +18,9 @@ __all__ = [
     "cluster_bootstrap_metric",
     "paired_cluster_bootstrap_difference",
     "percentile_interval",
+    "paired_cluster_permutation_test",
+    "holm_adjust",
+    "holm_reject",
     "non_dominated_mask",
     "bootstrap_dominance_probability",
     "non_dominated_probability",
