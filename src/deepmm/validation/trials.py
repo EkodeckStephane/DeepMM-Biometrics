@@ -1,9 +1,16 @@
-"""Validation rules for frozen biometric verification trial manifests."""
+"""Validation rules for frozen biometric verification trial manifests.
+
+A verification result is scientifically meaningful only if every system is scored
+on the same, immutable trial list. This module validates the identity semantics,
+order, and score coverage of that list before any metric is computed.
+"""
 
 from __future__ import annotations
 
 from collections.abc import Iterable, Mapping
 from typing import Any
+
+from .hashing import hash_ordered_records
 
 REQUIRED_TRIAL_FIELDS = (
     "trial_id",
@@ -28,16 +35,14 @@ def _text(record: Mapping[str, Any], field: str, index: int) -> str:
 
 
 def _label(record: Mapping[str, Any], index: int) -> int:
+    """Accept literal integer/string 0 or 1; reject booleans and float-like labels."""
     raw = record.get("label")
     if isinstance(raw, bool):
-        return int(raw)
-    try:
-        value = int(raw)
-    except (TypeError, ValueError) as exc:
-        raise ValueError(f"trial {index}: label must be 0/1") from exc
-    if value not in {0, 1} or str(raw).strip() not in {"0", "1"}:
+        raise ValueError(f"trial {index}: label must be exactly 0 or 1, not boolean")
+    text = str(raw).strip()
+    if text not in {"0", "1"}:
         raise ValueError(f"trial {index}: label must be exactly 0 or 1")
-    return value
+    return int(text)
 
 
 def validate_trial_records(
@@ -62,8 +67,9 @@ def validate_trial_records(
       identities when ``require_anchor_member=True``.
 
     The returned records preserve input order and use canonical string IDs / int
-    labels. Additional fields (sessions, sensors, corruption severity, etc.) are
-    retained unchanged and therefore participate in downstream ordered hashing.
+    labels. Additional fields (sessions, sensors, corruption severity, modality
+    availability, etc.) are retained unchanged and therefore participate in
+    downstream ordered hashing.
     """
     canonical: list[dict[str, Any]] = []
     seen_trials: set[str] = set()
@@ -134,14 +140,21 @@ def validate_score_records(
 ) -> list[dict[str, Any]]:
     """Require one finite score for every frozen trial in the exact same order.
 
-    This intentionally rejects missing/extra/reordered trial scores. If a model
-    cannot produce a score for a planned trial, that is a run failure or an
-    explicitly modeled failure-to-acquire condition; it is not silently dropped.
+    Missing, extra, and reordered trial scores are rejected. If a model cannot
+    produce a score for a planned trial, that is a run failure or an explicitly
+    modelled failure-to-acquire outcome; the row is not silently dropped.
     """
     import math
 
+    if not isinstance(score_field, str) or not score_field.strip():
+        raise ValueError("score_field must be a non-empty string")
+
     trials = validate_trial_records(trial_records)
-    scores = [dict(row) for row in score_records]
+    scores: list[dict[str, Any]] = []
+    for index, raw in enumerate(score_records):
+        if not isinstance(raw, Mapping):
+            raise TypeError(f"score row {index} must be a mapping")
+        scores.append(dict(raw))
     if len(scores) != len(trials):
         raise ValueError("score record count must exactly match trial count")
 
@@ -162,3 +175,21 @@ def validate_score_records(
         row[score_field] = score
         canonical_scores.append(row)
     return canonical_scores
+
+
+def trial_manifest_hash(records: Iterable[Mapping[str, Any]]) -> str:
+    """Validate and hash the complete ordered trial manifest with SHA-256."""
+    return hash_ordered_records(validate_trial_records(records))
+
+
+def score_manifest_hash(
+    trial_records: Iterable[Mapping[str, Any]],
+    score_records: Iterable[Mapping[str, Any]],
+    *,
+    score_field: str = "score",
+) -> str:
+    """Validate score coverage/order and hash the complete ordered score records."""
+    canonical_scores = validate_score_records(
+        trial_records, score_records, score_field=score_field
+    )
+    return hash_ordered_records(canonical_scores)
