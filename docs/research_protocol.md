@@ -1,10 +1,12 @@
-# Research Protocol v0.1
+# Research Protocol v0.2
 
 ## 1. Scope
 
 The project evaluates deep-learning approaches for **multimodal biometric verification**. The empirical modality pair(s) will be locked only after a dataset-feasibility audit confirms real subject-level correspondence, adequate sample structure, lawful/research access, and sufficient data for fair model comparison.
 
 Face + fingerprint is a priority candidate because it directly matches the motivating use case, but it is **not yet locked** as the sole empirical pair.
+
+Dataset access is deliberately **deferred until the experimental lock becomes necessary**. During SOTA and protocol design, priority is given to identifying scientifically valid datasets that are directly accessible. Access-request datasets remain eligible when they provide materially stronger validity or generalization evidence.
 
 ## 2. Experimental hierarchy
 
@@ -98,6 +100,8 @@ Primary cross-modal evidence requires verified subject correspondence across mod
 
 Synthetic/chimeric pairings may be used only for explicitly labeled secondary analyses whose conclusions are bounded accordingly.
 
+Among datasets that satisfy the scientific criteria, the project will prefer directly downloadable or low-friction research access because this improves practical reproducibility. Accessibility never overrides subject correspondence, legal use, sample adequacy, or leakage-control requirements.
+
 ## 8. Robustness protocol
 
 Corruptions must be modality-appropriate and applied at predeclared severity levels. Candidate image degradations:
@@ -133,6 +137,8 @@ No large training campaign starts until all are true:
 4. Split and pair-generation code passes leakage tests.
 5. Metrics and statistical plan are frozen.
 6. Q1/Q2/Q3 each maps directly to planned experiments.
+
+The dataset itself does not need to be locked while the SOTA, taxonomy, software skeleton, metric implementation, and synthetic/unit tests are being developed, provided no empirical claim is made from placeholder data.
 
 ## 11. Manuscript discipline
 
