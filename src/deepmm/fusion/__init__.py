@@ -8,6 +8,14 @@ from .contracts import (
     method_spec,
 )
 from .features import StandardizedConcatFusion, cosine_similarity_rows
+from .missingness import (
+    apply_embedding_availability,
+    apply_score_availability,
+    deterministic_modality_dropout_mask,
+    fixed_subset_mask,
+    masked_weighted_score_sum,
+    modality_subset_id,
+)
 from .quality import QualityWeightedScoreFusion
 
 __all__ = [
@@ -25,4 +33,10 @@ __all__ = [
     "FusionMethodSpec",
     "canonical_confirmatory_method_specs",
     "method_spec",
+    "deterministic_modality_dropout_mask",
+    "fixed_subset_mask",
+    "apply_score_availability",
+    "apply_embedding_availability",
+    "masked_weighted_score_sum",
+    "modality_subset_id",
 ]
