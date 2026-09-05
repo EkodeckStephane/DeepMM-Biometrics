@@ -1,0 +1,48 @@
+name: nupt-public-smoke
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/deepmm/datasets/**"
+      - "src/deepmm/validation/**"
+      - "scripts/audit_nupt_public_subset.py"
+      - "tests/test_nupt_fpv_adapter.py"
+      - ".github/workflows/nupt-public-smoke.yml"
+  workflow_dispatch:
+
+jobs:
+  public-subset-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout DeepMM-Biometrics
+        uses: actions/checkout@v4
+        with:
+          path: deepmm
+
+      - name: Checkout official NUPT-FPV public subset
+        uses: actions/checkout@v4
+        with:
+          repository: REN382333467/NUPT-FPV
+          ref: main
+          path: external/NUPT-FPV
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: deepmm/pyproject.toml
+
+      - name: Install DeepMM
+        working-directory: deepmm
+        run: python -m pip install -e ".[dev]"
+
+      - name: Run adapter unit tests
+        working-directory: deepmm
+        run: pytest tests/test_nupt_fpv_adapter.py
+
+      - name: Audit real official public subset
+        working-directory: deepmm
+        run: python scripts/audit_nupt_public_subset.py ../external/NUPT-FPV
