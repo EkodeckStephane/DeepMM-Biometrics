@@ -127,11 +127,34 @@ class FrozenTorchvisionEncoder:
         self.transform = weights.transforms()
         self.weight_state_hash = _state_hash(model)
 
+    def encode_pil(self, source: Image.Image) -> np.ndarray:
+        """Encode an in-memory image under the exact frozen V1 preprocessing rule.
+
+        This is used for deterministic Q3 probe corruptions. It intentionally shares
+        the same grayscale→RGB conversion, official weight transform and L2 output
+        normalization as :meth:`encode_image` without changing any model state.
+        """
+        if not isinstance(source, Image.Image):
+            raise TypeError("source must be a PIL.Image.Image")
+        image = source.convert("L").convert("RGB")
+        batch = self.transform(image).unsqueeze(0).to(self.device)
+        with torch.inference_mode():
+            embedding = self.model(batch)
+            if embedding.ndim != 2 or embedding.shape != (1, self.spec.embedding_dim):
+                raise RuntimeError(
+                    f"unexpected {self.spec.encoder_id} embedding shape {tuple(embedding.shape)}"
+                )
+            embedding = F.normalize(embedding, p=2, dim=1, eps=1e-12)
+        result = embedding[0].detach().cpu().numpy().astype(np.float32, copy=False)
+        if not np.all(np.isfinite(result)):
+            raise RuntimeError("encoder produced non-finite evidence")
+        return result
+
     def encode_image(self, path: str | Path) -> np.ndarray:
         image_path = Path(path)
         with Image.open(image_path) as source:
-            # NUPT-FPV public files are 8-bit grayscale BMPs. Explicit conversion
-            # avoids palette/mode differences entering the frozen encoder.
+            # Keep the path-based route byte-for-byte semantically identical to
+            # the development campaign; the in-memory path is additive only.
             image = source.convert("L").convert("RGB")
             batch = self.transform(image).unsqueeze(0).to(self.device)
         with torch.inference_mode():
