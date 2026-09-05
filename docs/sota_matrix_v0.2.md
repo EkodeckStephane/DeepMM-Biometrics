@@ -10,9 +10,11 @@ This is a curated, verified working matrix, not yet the final systematic review.
 |---|---|---|---|---|---|---|---|
 | Poh et al., DOI `10.1109/TIFS.2009.2034885` | IEEE TIFS, 2009 | Face + fingerprint + iris (score/quality benchmark) | Quality-dependent and cost-sensitive score fusion benchmark | Failure-to-acquire/failure-to-match considered in cost-sensitive setting | Explicit quality-dependent evaluation; quality-aware fusion performed strongly | Explicit acquisition/computation/hardware cost discussion | Historical strong baseline: quality and cost were already legitimate fusion objectives before modern DL |
 | Poh, Bourlai, Kittler, DOI `10.1016/j.patcog.2009.09.011` | Pattern Recognition, 2010 | BioSecure multimodal scores | Test bed for quality-dependent, client-specific, cost-sensitive fusion | Indirectly through system/failure setting | Explicit quality metadata | Explicit cost-sensitive benchmark | Benchmark-design precedent |
+| Edwards & Hossain, DOI `10.1109/TAI.2021.3064003` | IEEE TAI, 2021 | Face + fingerprint + palm | Siamese DL match-score generation + serial fusion | Serial decision may stop before all modalities are acquired; not the same as arbitrary sensor loss | Uses a reject/uncertainty region for sequential decisions | Explicit AUC–average-number-of-stages trade-off | Important precedent for Q1/Q2: deep biometric fusion has already been evaluated jointly with acquisition/decision cost on a real multimodal dataset |
 | Ren et al., DOI `10.1109/TIFS.2022.3175599` | IEEE TIFS, 2022 | Fingerprint + finger vein | CNN multimodal benchmark (FPV-Net) on simultaneously collected paired data | Not primary focus | Realistic repeated acquisitions across 2 sessions | Benchmark paper; hardware/training described | Strong paired-data and deep-fusion benchmark anchor |
 | Fan et al., DOI `10.1109/TSMC.2024.3382877` | IEEE TSMC: Systems, 2024 | Palmprint + palm vein | Hybrid two-stage recognition + adaptive weighted fusion | Not primary focus | Uses uncertainty subset in coarse/fine recognition | Time efficiency is an explicit objective | Evidence that “best” fusion can be a performance–cost trade-off, not raw accuracy only |
 | Zheng et al., DOI `10.1016/j.patrec.2025.06.017` | Pattern Recognition Letters, 2025 | Camera PPG + fingerprint | SSM encoders + cross-modal attention + contrastive distribution alignment | Not primary focus | Single-session and two-session verification | Not primary contribution | Current evidence for attention/cross-modal interaction in biometric verification |
+| Lu, Wu & Bao, DOI `10.1016/j.engappai.2025.110865` | Engineering Applications of AI, 2025 | Face + fingerprint | Multilevel parallel spatial/channel attention + knowledge distillation | Not primary focus | Evaluated on two real-world multimodal biometric datasets | Model compression/resource-constrained deployment is a central objective | Direct face–fingerprint evidence that attention must be judged together with model efficiency; also identifies XJTU and SDUMLA-HMT as real multimodal evaluation datasets |
 | Gimba et al., DOI `10.1007/s10791-025-09775-z` | Discover Computing, 2025 | Face + fingerprint | CNN-based multimodal authentication | Not central | Claims robustness to common acquisition issues | Not central | Useful face–fingerprint example showing multimodal accuracy need not exceed every unimodal accuracy; metric choice matters |
 
 ## B. Missing-modality biometric recognition
@@ -68,7 +70,7 @@ The reviewed literature contains diverse methods, modalities, datasets, objectiv
 
 **Working hypothesis, not yet a priority claim:**
 
-> Current multimodal-biometric literature contains strong individual methods, surveys, and historical quality/cost benchmarks, but we have not yet located a recent biometric-specific study that compares representative classical and deep fusion families under one matched verification protocol while jointly evaluating discrimination, score calibration, controlled quality degradation, missing-modality behavior, and computational cost.
+> Current multimodal-biometric literature contains strong individual methods, surveys, historical quality/cost benchmarks, a serial deep-fusion performance–cost study, and recent attention/distillation systems, but we have not yet located a recent biometric-specific study that compares representative classical and deep fusion families under one matched verification protocol while jointly evaluating discrimination, score calibration, controlled quality degradation, missing-modality behavior, and computational cost.
 
 This gap must remain marked **PROVISIONAL** until the systematic Gate-4 search is completed.
 
@@ -76,7 +78,7 @@ If a direct recent benchmark with the same scope is found, the contribution must
 
 ## H. Search work still required before Gate 4 can pass
 
-1. Search IEEE T-BIOM, TIFS, TPAMI, TSMC, Pattern Recognition, Information Fusion, Neurocomputing, Signal Processing, Digital Signal Processing, Expert Systems with Applications, and IET Biometrics for 2020–2026.
+1. Search IEEE T-BIOM, TIFS, TPAMI, TSMC, Pattern Recognition, Information Fusion, Neurocomputing, Signal Processing, Digital Signal Processing, Expert Systems with Applications, IET Biometrics, Engineering Applications of AI, and IEEE TAI for 2020–2026.
 2. Search IJCB/ICB, CVPR/ICCV/ECCV where biometric multimodal fusion is materially addressed.
 3. Verify whether any study has a matched family-level benchmark spanning classical + deep + attention/Transformer fusion.
 4. Verify whether calibration is reported in multimodal biometrics beyond isolated application papers.
