@@ -14,9 +14,14 @@ def _separation(labels, scores):
     return float(np.mean(scores[labels == 1]) - np.mean(scores[labels == 0]))
 
 
+def _mean_score(labels, scores):
+    del labels
+    return float(np.mean(scores))
+
+
 def _clustered_toy():
     # Each subject-centric cluster contains both a genuine and an impostor trial,
-    # so every cluster-bootstrap replicate remains evaluable.
+    # so a whole-cluster bootstrap replicate remains evaluable by separation metrics.
     clusters = np.repeat(np.array(["s1", "s2", "s3", "s4"]), 2)
     labels = np.tile(np.array([0, 1]), 4)
     scores = np.array([0.1, 0.8, 0.2, 0.9, 0.3, 0.75, 0.15, 0.85])
@@ -34,16 +39,18 @@ def test_cluster_bootstrap_is_seed_deterministic():
 def test_paired_bootstrap_identical_systems_has_zero_difference():
     y, s, c = _clustered_toy()
     delta = paired_cluster_bootstrap_difference(y, s, s.copy(), c, _separation, n_boot=40, seed=3)
-    assert np.all(delta == pytest.approx(0.0))
+    assert np.allclose(delta, 0.0)
 
 
 def test_within_cluster_resampling_runs_and_is_deterministic():
+    # Within-cluster resampling can legitimately omit one class inside a tiny
+    # synthetic cluster, so this infrastructure test uses a class-agnostic scalar.
     y, s, c = _clustered_toy()
     a = cluster_bootstrap_metric(
-        y, s, c, _separation, n_boot=30, seed=9, resample_within_cluster=True
+        y, s, c, _mean_score, n_boot=30, seed=9, resample_within_cluster=True
     )
     b = cluster_bootstrap_metric(
-        y, s, c, _separation, n_boot=30, seed=9, resample_within_cluster=True
+        y, s, c, _mean_score, n_boot=30, seed=9, resample_within_cluster=True
     )
     assert np.array_equal(a, b)
 
