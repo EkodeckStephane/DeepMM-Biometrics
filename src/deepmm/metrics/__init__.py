@@ -6,10 +6,11 @@ from .calibration import (
     min_cllr,
     negative_log_likelihood,
 )
-from .verification import eer, roc_auc, tar_at_far
+from .verification import eer, eer_rocch, roc_auc, tar_at_far
 
 __all__ = [
     "eer",
+    "eer_rocch",
     "roc_auc",
     "tar_at_far",
     "brier_score",
