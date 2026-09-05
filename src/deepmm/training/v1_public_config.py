@@ -13,7 +13,6 @@ import hashlib
 import json
 
 from deepmm.fusion.neural_contracts import TrainingBudget
-from deepmm.training.torch_fit import TorchOptimizerConfig
 
 
 V1_PRIMARY_ENCODER = "resnet18_imagenet1k_v1"
@@ -33,13 +32,16 @@ V1_NEURAL_BUDGET = TrainingBudget(
     max_training_runs=6,
 )
 
-V1_OPTIMIZER = TorchOptimizerConfig(
-    optimizer="adamw",
-    learning_rate=1e-3,
-    weight_decay=1e-4,
-    gradient_clip_norm=5.0,
-    deterministic_algorithms=True,
-)
+# Kept as a plain serializable mapping so the scientific lock remains importable
+# in the lightweight base test environment where PyTorch is intentionally absent.
+# The execution script materializes TorchOptimizerConfig from this exact mapping.
+V1_OPTIMIZER = {
+    "optimizer": "adamw",
+    "learning_rate": 1e-3,
+    "weight_decay": 1e-4,
+    "gradient_clip_norm": 5.0,
+    "deterministic_algorithms": True,
+}
 
 V1_NEURAL_CANDIDATES = {
     "D1": (
@@ -102,7 +104,7 @@ def v1_training_lock_payload() -> dict[str, object]:
     return {
         "encoder_id": V1_PRIMARY_ENCODER,
         "neural_budget": V1_NEURAL_BUDGET.as_dict(),
-        "optimizer": V1_OPTIMIZER.as_dict(),
+        "optimizer": dict(V1_OPTIMIZER),
         "reporting_seed": V1_REPORTING_SEED,
         "batch_size": V1_BATCH_SIZE,
         "fit_sampling_rule": V1_FIT_SAMPLING_RULE,
@@ -136,7 +138,10 @@ def assert_v1_training_lock() -> None:
         raise RuntimeError("reporting seed is outside the locked seed set")
     if set(V1_NEURAL_CANDIDATES) != {"D1", "D2", "D3S"}:
         raise RuntimeError("V1 neural family set changed")
-    if any(len(candidates) != V1_NEURAL_BUDGET.max_candidate_configs for candidates in V1_NEURAL_CANDIDATES.values()):
+    if any(
+        len(candidates) != V1_NEURAL_BUDGET.max_candidate_configs
+        for candidates in V1_NEURAL_CANDIDATES.values()
+    ):
         raise RuntimeError("V1 candidate counts no longer match the locked budget")
     actual = v1_training_lock_hash()
     if actual != V1_TRAINING_LOCK_SHA256:
