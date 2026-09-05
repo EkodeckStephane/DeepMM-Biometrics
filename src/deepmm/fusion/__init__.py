@@ -16,6 +16,13 @@ from .missingness import (
     masked_weighted_score_sum,
     modality_subset_id,
 )
+from .neural_contracts import (
+    NeuralHeadConfig,
+    NeuralHeadKind,
+    NeuralSearchSpace,
+    TrainingBudget,
+    assert_matched_training_budgets,
+)
 from .quality import QualityWeightedScoreFusion
 
 __all__ = [
@@ -39,4 +46,9 @@ __all__ = [
     "apply_embedding_availability",
     "masked_weighted_score_sum",
     "modality_subset_id",
+    "NeuralHeadKind",
+    "NeuralHeadConfig",
+    "TrainingBudget",
+    "NeuralSearchSpace",
+    "assert_matched_training_budgets",
 ]
