@@ -66,7 +66,7 @@ def test_monte_carlo_mode_is_seed_deterministic():
         seed=77,
         exact_max_clusters=8,
     )
-    assert r1 == pytest.approx(r2[:2]) + (r2[2],) if False else r1 == r2
+    assert r1 == r2
     assert r1[2] == "monte-carlo"
 
 
