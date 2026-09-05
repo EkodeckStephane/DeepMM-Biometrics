@@ -20,18 +20,30 @@ from PIL import Image
 V1_QUALITY_MODALITIES = ("fingerprint", "finger_vein")
 
 
-def raw_quality_features(path: str | Path) -> np.ndarray:
-    """Return [contrast_std, gradient_rms] from an 8-bit grayscale image."""
-    with Image.open(path) as image:
-        gray = np.asarray(image.convert("L"), dtype=np.float64) / 255.0
+def _quality_features_from_gray(gray: np.ndarray) -> np.ndarray:
+    gray = np.asarray(gray, dtype=np.float64)
     if gray.ndim != 2 or min(gray.shape) < 2 or not np.all(np.isfinite(gray)):
         raise ValueError("quality input must be a finite non-trivial grayscale image")
     contrast = float(np.std(gray))
     dx = np.diff(gray, axis=1)
     dy = np.diff(gray, axis=0)
-    # Equal directional contribution avoids geometry-dependent weighting.
     gradient_rms = float(np.sqrt(0.5 * (np.mean(dx * dx) + np.mean(dy * dy))))
     return np.asarray([contrast, gradient_rms], dtype=np.float64)
+
+
+def raw_quality_features_image(image: Image.Image) -> np.ndarray:
+    """Return [contrast_std, gradient_rms] from an in-memory PIL image."""
+    if not isinstance(image, Image.Image):
+        raise TypeError("image must be a PIL.Image.Image")
+    gray = np.asarray(image.convert("L"), dtype=np.float64) / 255.0
+    return _quality_features_from_gray(gray)
+
+
+def raw_quality_features(path: str | Path) -> np.ndarray:
+    """Return [contrast_std, gradient_rms] from an 8-bit grayscale image."""
+    with Image.open(path) as image:
+        gray = np.asarray(image.convert("L"), dtype=np.float64) / 255.0
+    return _quality_features_from_gray(gray)
 
 
 @dataclass(frozen=True)
@@ -93,12 +105,19 @@ class V1QualityModel:
             matrix = np.stack([raw_quality_features(path) for path in paths], axis=0)
             low = np.quantile(matrix, 0.05, axis=0)
             high = np.quantile(matrix, 0.95, axis=0)
-            # Degenerate data are scientifically unusable for a quality gate rather
-            # than silently patched with arbitrary scaling.
             if np.any(high <= low):
                 raise ValueError(f"degenerate fit quality distribution for {modality}")
             scales[modality] = RobustQualityScale(tuple(low), tuple(high))
         return cls(scales)
+
+    def image_quality_pil(self, modality: str, image: Image.Image, *, available: bool = True) -> float:
+        """Score an in-memory image using the already frozen fit-role normalization."""
+        modality = str(modality).strip()
+        if modality not in self.scales:
+            raise ValueError(f"unknown modality {modality!r}")
+        if not available:
+            return 0.0
+        return self.scales[modality].score_features(raw_quality_features_image(image))
 
     def image_quality(self, modality: str, path: str | Path, *, available: bool = True) -> float:
         modality = str(modality).strip()
