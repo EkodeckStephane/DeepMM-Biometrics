@@ -5,7 +5,10 @@ on:
     branches: [main]
     paths:
       - "src/deepmm/vision/**"
+      - "src/deepmm/robustness/**"
       - "scripts/run_v1_encoder_screen.py"
+      - "tests/test_v1_vision_protocol.py"
+      - "tests/test_v1_stress_plan.py"
       - ".github/workflows/v1-encoder-screen.yml"
       - "pyproject.toml"
   workflow_dispatch:
@@ -59,6 +62,10 @@ jobs:
           print('torch', torch.__version__)
           print('torchvision', torchvision.__version__)
           PY
+
+      - name: Run V1 vision/stress protocol tests
+        working-directory: deepmm
+        run: pytest tests/test_v1_vision_protocol.py tests/test_v1_stress_plan.py
 
       - name: Run development-only frozen encoder screen
         working-directory: deepmm
