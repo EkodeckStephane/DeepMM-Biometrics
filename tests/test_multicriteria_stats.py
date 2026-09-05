@@ -55,11 +55,11 @@ def test_kendall_tau_b_handles_ties_and_degenerate_case():
     assert np.isnan(kendall_tau_b([1.0, 1.0], [2.0, 2.0]))
 
 
-def test_pairwise_rank_reversal_excludes_ties():
+def test_pairwise_rank_reversal_and_tie_handling():
     clean = np.array([1.0, 2.0, 3.0])
-    stress = np.array([3.0, 2.0, 1.0])
-    reversals = pairwise_rank_reversals(clean, stress)
-    assert reversals == [(0, 2)]  # pairs involving method 1 become ties, not reversals
+    fully_reversed = np.array([3.0, 2.0, 1.0])
+    assert pairwise_rank_reversals(clean, fully_reversed) == [(0, 1), (0, 2), (1, 2)]
 
-    strict_stress = np.array([3.0, 2.5, 1.0])
-    assert pairwise_rank_reversals(clean, strict_stress) == [(0, 1), (0, 2), (1, 2)]
+    # Method 0 and method 1 tie under stress, so that pair is not called a reversal.
+    stress_with_tie = np.array([3.0, 3.0, 1.0])
+    assert pairwise_rank_reversals(clean, stress_with_tie) == [(0, 2), (1, 2)]
