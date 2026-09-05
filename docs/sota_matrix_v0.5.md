@@ -3,7 +3,7 @@
 **Study:** *Deep Learning Approaches for Multimodal Biometrics*  
 **Cutoff:** 2026-09-05
 
-This version extends v0.4 with historical missing-score fusion and 2025 missing-modality/dynamic-fusion work. It is a **falsification document**, not an exhaustive systematic review. “Not located” means the current search has not found the property; it does not prove absence from the literature.
+This version extends v0.4 with historical missing-score fusion, a 2020 deep missing-modality precedent, 2025 missing-modality/dynamic-fusion work, and an adjacent 2025 EER–latency Pareto benchmark. It is a **falsification document**, not an exhaustive systematic review. “Not located” means the current search has not found the property; it does not prove absence from the literature.
 
 ## 1. Strongest lesson from the updated SOTA
 
@@ -16,6 +16,12 @@ Poh et al. (*IEEE TIFS*, 2009, DOI `10.1109/TIFS.2009.2034885`) benchmarked 22 s
 Poh et al. (*IEEE TIFS*, 2010, DOI `10.1109/TIFS.2010.2053535`) then addressed **missing match scores/modalities** with SVM fusion and neutral-point substitution on BioSecure DS2 scores.
 
 Consequently DeepMM-Biometrics cannot claim novelty merely because one benchmark contains quality, cost and missing evidence.
+
+### Deep learning plus missing inputs is also established prior art
+
+Maity, Abdel-Mottaleb & Asfour (*Journal of Information Processing Systems*, 2020, DOI `10.3745/JIPS.02.0129`) learned modality-specific features from facial video using supervised denoising autoencoders and fused the available modality-specific scores. Their experiments explicitly tested all-available inputs and combinations in which one, two or three of five extracted biometric views/modalities were absent.
+
+Thus, “DL works when modalities are missing” is not a DeepMM novelty claim either.
 
 ### Modern DL work occupies the architecture space densely
 
@@ -54,6 +60,7 @@ Legend: `Y` = directly established by the current extraction; `P` = partial/rela
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Poh et al., TIFS 2009 | Y at score-fusion benchmark level | Y at common supplied-score level | — | Y | Y | Y | — |
 | Poh et al., TIFS 2010 | P | Y at fixed score-input level | — | — | Y | — | — |
+| Maity et al., JIPS 2020 | — weighted score fusion of learned modality models | — | — | P | Y — multiple absent-modality combinations | — | — |
 | Edwards & Hossain, TAI 2021 | P — serial rules | P | — | — | P — sequential subset acquisition | Y | — |
 | Soleymani et al., T-BIOM 2022 | — proposed family | — | — | Y/quality-aware | P | — | — |
 | FBR, CVPR 2024 | — proposed architecture | — | — | — | P/flexible recognition | — | — |
@@ -64,11 +71,18 @@ Legend: `Y` = directly established by the current extraction; `P` = partial/rela
 | DIRS, KBS 2025 | — | — | — | P/sample-complexity adaptation | — | P | — |
 | MPAD, EAAI 2025 | — | — | — | — | — | Y | — |
 | Gu et al., IJCB 2025 | — | — | — | — | Y | — | — |
+| Solanki et al., IOSR-JCE 2025 | Y — decision/feature/score/quality-aware fusion configurations | — | P — calibrated decision mentioned, no locked calibration metric established | Y | Y/impact experiment | Y/latency | P — EER–latency Pareto frontier, not rank stability across stress |
 | AHFNet, TIFS 2026 | — | — | — | Y | Y | — | — |
 | Chitrapu et al., Sci Rep 2026 | — | — | — | P | — | Y/runtime | — |
 | Alazawi et al., 2026 | P — multiple backbones + score rules | **No: backbone is the main varying factor** | — | — | — | Y | — |
 
 No extracted row currently satisfies the complete DeepMM contract. This supports continued investigation but **does not establish a “first” claim**.
+
+### Adjacent Pareto benchmark: why it matters even though it is not our anchor venue
+
+Solanki, Karada & Yadav (2025, DOI `10.9790/0661-2704017280`) report a 120-subject, five-session fingerprint/face/voice dataset with subject-disjoint splits, compare unimodal, feature-, score-, decision- and quality-aware score fusion, test environmental stress and missing modality impact, and plot an empirical EER–latency Pareto frontier.
+
+This paper is not treated as the strongest methodological anchor for DeepMM, but **it invalidates any novelty wording based merely on “Pareto accuracy–latency analysis of biometric fusion”**. Our Q2/Q3 object must remain broader and more controlled: representative DL fusion families, matched unimodal evidence, calibration as a measured axis, and uncertainty-aware Pareto/rank changes across stress conditions.
 
 ## 4. What remains potentially distinctive
 
@@ -100,9 +114,11 @@ A family cannot be called “best” from EER or AUC alone. Q2 requires locked d
 
 The presence of DIRS, FBR, MPAD and quality-aware prior art means the representative DL mechanisms should be **minimal canonical family implementations or faithful reproducible baselines**, rather than unnecessary new branded architectures.
 
+The Solanki 2025 screening result further means that a simple two-dimensional EER–latency Pareto chart is not itself a contribution. DeepMM's Pareto analysis must be tied to the locked multidimensional Q2 definition and uncertainty.
+
 ## 7. Consequences for Q3
 
-Missing-modality robustness itself is already heavily occupied. Q3 must measure **comparative stability**:
+Missing-modality robustness itself is already heavily occupied, including deep work as early as 2020. Q3 must measure **comparative stability**:
 
 - clean-condition family ordering;
 - the same locked family set at every corruption severity;
