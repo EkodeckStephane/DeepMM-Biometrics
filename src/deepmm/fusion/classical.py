@@ -1,13 +1,15 @@
 """Classical score-fusion baselines for controlled multimodal verification.
 
 All fitting methods are intentionally explicit: callers must supply development /
-validation scores. Test labels must never be passed to ``fit`` in the benchmark.
-Higher scores are assumed to indicate stronger evidence for a genuine match.
+validation scores. Test labels must never be passed to a trainable ``fit`` method
+in the benchmark. Higher scores are assumed to indicate stronger evidence for a
+genuine match.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+from math import comb
 
 import numpy as np
 from sklearn.linear_model import LogisticRegression
@@ -57,31 +59,83 @@ def zscore_transform(scores, mean, scale) -> np.ndarray:
     return (x - mu) / sd
 
 
+class EqualScoreFusion:
+    """Equal-weight fusion after development-only score normalization.
+
+    This is the minimum-complexity multimodal reference. ``fit`` uses no class
+    labels; it only freezes normalization statistics from development scores.
+    """
+
+    def __init__(self, *, normalize: bool = True):
+        self.normalize = bool(normalize)
+
+    def fit(self, scores) -> "EqualScoreFusion":
+        x = _matrix(scores)
+        self.n_modalities_ = int(x.shape[1])
+        if self.normalize:
+            self.mean_, self.scale_ = zscore_fit(x)
+        else:
+            self.mean_ = None
+            self.scale_ = None
+        return self
+
+    def transform(self, scores) -> np.ndarray:
+        if not hasattr(self, "n_modalities_"):
+            raise RuntimeError("fit must be called before transform")
+        x = _matrix(scores)
+        if x.shape[1] != self.n_modalities_:
+            raise ValueError("modality dimension differs from fitted model")
+        z = zscore_transform(x, self.mean_, self.scale_) if self.normalize else x
+        return np.mean(z, axis=1)
+
+    def fit_transform(self, scores) -> np.ndarray:
+        return self.fit(scores).transform(scores)
+
+
+def _integer_compositions(total: int, parts: int):
+    """Yield deterministic non-negative integer compositions of total."""
+    if parts == 1:
+        yield (total,)
+        return
+    for first in range(total + 1):
+        for rest in _integer_compositions(total - first, parts - 1):
+            yield (first,) + rest
+
+
 @dataclass
 class WeightedScoreFusion:
-    """Deterministic non-negative weighted score fusion.
+    """Deterministic non-negative simplex-weighted score fusion.
 
-    ``fit`` performs a simplex grid search on development data. The grid and
-    objective must be frozen before final test evaluation. For two modalities,
-    ``grid_step=0.05`` yields weights [0, .05, ..., 1]. For more modalities the
-    class deliberately raises ``NotImplementedError`` rather than silently use an
-    uncontrolled optimizer; the primary DeepMM benchmark currently targets two
-    modalities.
+    ``fit`` performs an exhaustive simplex grid search on development data. The
+    grid and objective must be frozen before final test evaluation. ``grid_step``
+    must exactly divide 1 (within floating-point tolerance). A candidate-count cap
+    prevents an accidental combinatorial search when many modalities are used.
     """
 
     grid_step: float = 0.05
     objective: str = "eer"
     normalize: bool = True
+    max_candidates: int = 10000
 
     def fit(self, scores, labels) -> "WeightedScoreFusion":
         x = _matrix(scores)
         y = _labels(labels, x.shape[0])
-        if x.shape[1] != 2:
-            raise NotImplementedError("current controlled grid search supports exactly two modalities")
         if not (0.0 < self.grid_step <= 1.0):
             raise ValueError("grid_step must be in (0, 1]")
         if self.objective not in {"eer", "auc"}:
             raise ValueError("objective must be 'eer' or 'auc'")
+        if not isinstance(self.max_candidates, int) or self.max_candidates < 1:
+            raise ValueError("max_candidates must be an integer >= 1")
+
+        n_steps = int(round(1.0 / self.grid_step))
+        if n_steps < 1 or not np.isclose(n_steps * self.grid_step, 1.0, rtol=0.0, atol=1e-12):
+            raise ValueError("grid_step must divide 1 exactly, e.g. 0.1, 0.05, 0.02")
+        n_candidates = comb(n_steps + x.shape[1] - 1, x.shape[1] - 1)
+        if n_candidates > self.max_candidates:
+            raise ValueError(
+                f"simplex grid would contain {n_candidates} candidates; "
+                "increase grid_step or max_candidates deliberately"
+            )
 
         if self.normalize:
             self.mean_, self.scale_ = zscore_fit(x)
@@ -91,31 +145,37 @@ class WeightedScoreFusion:
             self.scale_ = None
             z = x
 
-        n_steps = int(round(1.0 / self.grid_step))
-        weights = np.linspace(0.0, 1.0, n_steps + 1)
+        equal = np.full(x.shape[1], 1.0 / x.shape[1], dtype=np.float64)
         best_key = None
-        best_weight = None
-        for w in weights:
-            fused = w * z[:, 0] + (1.0 - w) * z[:, 1]
+        best_weights = None
+        for composition in _integer_compositions(n_steps, x.shape[1]):
+            weights = np.asarray(composition, dtype=np.float64) / float(n_steps)
+            fused = z @ weights
             if self.objective == "eer":
                 value, _ = eer(y, fused)
-                key = (value, abs(w - 0.5), w)
+                primary = value
             else:
                 value = roc_auc(y, fused)
-                key = (-value, abs(w - 0.5), w)
+                primary = -value
+            # Prefer the simpler/less extreme solution on exact metric ties, then
+            # a deterministic lexicographic ordering for reproducibility.
+            key = (primary, float(np.sum(np.abs(weights - equal))), tuple(weights.tolist()))
             if best_key is None or key < best_key:
                 best_key = key
-                best_weight = float(w)
+                best_weights = weights
 
-        self.weight_ = best_weight
-        self.weights_ = np.array([best_weight, 1.0 - best_weight], dtype=np.float64)
+        self.weights_ = np.asarray(best_weights, dtype=np.float64)
+        self.n_modalities_ = int(x.shape[1])
+        # Compatibility convenience for the common two-modality case.
+        self.weight_ = float(self.weights_[0]) if self.n_modalities_ == 2 else None
+        self.n_candidates_ = int(n_candidates)
         return self
 
     def transform(self, scores) -> np.ndarray:
         if not hasattr(self, "weights_"):
             raise RuntimeError("fit must be called before transform")
         x = _matrix(scores)
-        if x.shape[1] != 2:
+        if x.shape[1] != self.n_modalities_:
             raise ValueError("modality dimension differs from fitted model")
         z = zscore_transform(x, self.mean_, self.scale_) if self.normalize else x
         return z @ self.weights_
@@ -142,6 +202,7 @@ class LogisticScoreFusion:
     def fit(self, scores, labels) -> "LogisticScoreFusion":
         x = _matrix(scores)
         y = _labels(labels, x.shape[0])
+        self.n_modalities_ = int(x.shape[1])
         if self.normalize:
             self.mean_, self.scale_ = zscore_fit(x)
             z = zscore_transform(x, self.mean_, self.scale_)
@@ -162,6 +223,8 @@ class LogisticScoreFusion:
         if not hasattr(self, "model_"):
             raise RuntimeError("fit must be called before transform")
         x = _matrix(scores)
+        if x.shape[1] != self.n_modalities_:
+            raise ValueError("modality dimension differs from fitted model")
         z = zscore_transform(x, self.mean_, self.scale_) if self.normalize else x
         return np.asarray(self.model_.decision_function(z), dtype=np.float64)
 
@@ -170,5 +233,7 @@ class LogisticScoreFusion:
         if not hasattr(self, "model_"):
             raise RuntimeError("fit must be called before predict_proba")
         x = _matrix(scores)
+        if x.shape[1] != self.n_modalities_:
+            raise ValueError("modality dimension differs from fitted model")
         z = zscore_transform(x, self.mean_, self.scale_) if self.normalize else x
         return np.asarray(self.model_.predict_proba(z)[:, 1], dtype=np.float64)
