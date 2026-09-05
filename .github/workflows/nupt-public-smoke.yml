@@ -8,6 +8,7 @@ on:
       - "src/deepmm/validation/**"
       - "scripts/audit_nupt_public_subset.py"
       - "tests/test_nupt_fpv_adapter.py"
+      - "tests/test_nupt_public_v1.py"
       - ".github/workflows/nupt-public-smoke.yml"
   workflow_dispatch:
 
@@ -39,10 +40,10 @@ jobs:
         working-directory: deepmm
         run: python -m pip install -e ".[dev]"
 
-      - name: Run adapter unit tests
+      - name: Run public-subset protocol unit tests
         working-directory: deepmm
-        run: pytest tests/test_nupt_fpv_adapter.py
+        run: pytest tests/test_nupt_fpv_adapter.py tests/test_nupt_public_v1.py
 
-      - name: Audit real official public subset
+      - name: Audit real official public subset and freeze V1 clean trial hashes
         working-directory: deepmm
         run: python scripts/audit_nupt_public_subset.py ../external/NUPT-FPV
