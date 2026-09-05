@@ -24,7 +24,12 @@ def test_synthetic_pipeline_exercises_clean_stress_calibration_and_uncertainty()
 
     assert result["clean_pareto"].shape == (4,)
     assert result["stress_pareto"].shape == (4,)
-    assert np.isfinite(result["eer_tau_b"])
+
+    # A fully tied metric ranking legitimately makes Kendall tau-b undefined. The
+    # pipeline must preserve that state instead of manufacturing an ordering.
+    assert result["eer_tau_defined"] == bool(np.isfinite(result["eer_tau_b"]))
+    assert result["cllr_tau_defined"] == bool(np.isfinite(result["cllr_tau_b"]))
+    assert result["cllr_tau_defined"] is True
 
     for method_id, replicates in result["bootstrap_eer"].items():
         assert method_id in result["method_ids"]
@@ -38,3 +43,4 @@ def test_synthetic_smoke_is_deterministic():
     for key in ("clean_eer", "stress_eer", "clean_cllr", "stress_cllr"):
         assert np.array_equal(a[key], b[key])
     assert a["eer_rank_reversals"] == b["eer_rank_reversals"]
+    assert a["cllr_rank_reversals"] == b["cllr_rank_reversals"]
