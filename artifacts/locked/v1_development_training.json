@@ -1,0 +1,375 @@
+{
+  "calibration_images_read": false,
+  "classical_selection": {
+    "C2_weights_fingerprint_finger_vein": [
+      0.6,
+      0.4
+    ],
+    "C5_gamma": 0.5,
+    "metrics": {
+      "C1": {
+        "auc": 0.9161842105263158,
+        "eer": 0.16578947368421051
+      },
+      "C2": {
+        "auc": 0.920657894736842,
+        "eer": 0.2
+      },
+      "C3": {
+        "auc": 0.9126315789473683,
+        "eer": 0.15526315789473685
+      },
+      "C4": {
+        "auc": 0.9517105263157895,
+        "eer": 0.1
+      },
+      "C5": {
+        "auc": 0.9230263157894737,
+        "eer": 0.14473684210526316
+      },
+      "U-FP": {
+        "auc": 0.8976315789473684,
+        "eer": 0.2
+      },
+      "U-FV": {
+        "auc": 0.8131578947368421,
+        "eer": 0.3
+      }
+    }
+  },
+  "dataset_manifest_sha256": "be7d83e353476e50a6193d77e47d7f176ab0a9cb805f81cb8b8a87f79368238c",
+  "encoder": {
+    "spec": {
+      "architecture": "torchvision.resnet18",
+      "embedding_dim": 512,
+      "encoder_id": "resnet18_imagenet1k_v1",
+      "input_policy": "grayscale->RGB; official weight transforms; L2 output",
+      "role": "primary",
+      "weights_id": "ResNet18_Weights.IMAGENET1K_V1"
+    },
+    "spec_hash": "2e9ac6f9398c68e26846959afd9d07ff8e57febbf280fd6f324bc996baf6040d",
+    "weight_state_hash": "00eb5b1bfe8ea60f64c93ce1aeba14523e5197adf8ba562afb56ee36e91e7e24"
+  },
+  "final_images_read": false,
+  "fit_balanced_examples": 4560,
+  "fit_original_class_counts": {
+    "genuine": 120,
+    "impostor": 2280
+  },
+  "fit_trial_manifest_sha256": "8125265b7407bdfdef2507b3ee6592625d6fc65e41657ad6ea8dd04989514eb7",
+  "n_unique_images_read": 280,
+  "neural_selection": {
+    "D1": {
+      "candidates": [
+        {
+          "candidate_id": "d1-h8",
+          "configuration": {
+            "activation": "relu",
+            "candidate_id": "d1-h8",
+            "dropout": 0.0,
+            "hidden_dims": [
+              8
+            ]
+          },
+          "runs": [
+            {
+              "best_epoch": 12,
+              "checkpoint_hash": "8b40a95b8144c70199a75f2205520fad5c94d8a3e0ed3e6910c79d74e57c2202",
+              "epochs_completed": 18,
+              "seed": 1701,
+              "selection_metrics": {
+                "auc": 0.7042105263157895,
+                "eer": 0.3
+              }
+            },
+            {
+              "best_epoch": 11,
+              "checkpoint_hash": "efec31a4c6f4f4b00ccbeaeff44ab9fe8ab56f27d016cb812f5bd4e996b38f42",
+              "epochs_completed": 17,
+              "seed": 2903,
+              "selection_metrics": {
+                "auc": 0.9159210526315789,
+                "eer": 0.1763157894736842
+              }
+            },
+            {
+              "best_epoch": 3,
+              "checkpoint_hash": "752f6c82306d0a9df23cd4f91c314af527c5aebec5d755a979bcd4dd24bdc594",
+              "epochs_completed": 9,
+              "seed": 4307,
+              "selection_metrics": {
+                "auc": 0.885657894736842,
+                "eer": 0.17894736842105263
+              }
+            }
+          ],
+          "selection_eer_mean": 0.21842105263157893,
+          "selection_eer_median": 0.17894736842105263,
+          "trainable_parameters": 33
+        },
+        {
+          "candidate_id": "d1-h16",
+          "configuration": {
+            "activation": "relu",
+            "candidate_id": "d1-h16",
+            "dropout": 0.0,
+            "hidden_dims": [
+              16
+            ]
+          },
+          "runs": [
+            {
+              "best_epoch": 3,
+              "checkpoint_hash": "89859538190356025c34b8e07f2b61efac99a0aa6dd6df55029ee1995b9abc82",
+              "epochs_completed": 9,
+              "seed": 1701,
+              "selection_metrics": {
+                "auc": 0.9121052631578948,
+                "eer": 0.19736842105263158
+              }
+            },
+            {
+              "best_epoch": 2,
+              "checkpoint_hash": "5837d2084997100ede88261772803fc139bf5d8c34417345185cfcd59235d357",
+              "epochs_completed": 8,
+              "seed": 2903,
+              "selection_metrics": {
+                "auc": 0.925,
+                "eer": 0.1763157894736842
+              }
+            },
+            {
+              "best_epoch": 4,
+              "checkpoint_hash": "4465bdb90536ca49e06f45e7e9d07b01309a062f47b3ed4c7567ac7bc6c55815",
+              "epochs_completed": 10,
+              "seed": 4307,
+              "selection_metrics": {
+                "auc": 0.9075,
+                "eer": 0.15
+              }
+            }
+          ],
+          "selection_eer_mean": 0.17456140350877192,
+          "selection_eer_median": 0.1763157894736842,
+          "trainable_parameters": 65
+        }
+      ],
+      "selected_candidate_id": "d1-h16",
+      "selection_rule": "min median selection EER across seeds; then min mean EER; then min trainable parameters; then candidate_id"
+    },
+    "D2": {
+      "candidates": [
+        {
+          "candidate_id": "d2-h128-z64",
+          "configuration": {
+            "activation": "relu",
+            "candidate_id": "d2-h128-z64",
+            "dropout": 0.0,
+            "fused_dim": 64,
+            "hidden_dims": [
+              128
+            ]
+          },
+          "runs": [
+            {
+              "best_epoch": 30,
+              "checkpoint_hash": "ac046ce1b3ff2c45c5ccef81b4479f20f81e5113c590d50c2850fccfa705f201",
+              "epochs_completed": 36,
+              "seed": 1701,
+              "selection_metrics": {
+                "auc": 0.974078947368421,
+                "eer": 0.05263157894736842
+              }
+            },
+            {
+              "best_epoch": 10,
+              "checkpoint_hash": "a972110430e9a1b4b3672893cb3303ccfcad0da65252acc55fc17895f4e35711",
+              "epochs_completed": 16,
+              "seed": 2903,
+              "selection_metrics": {
+                "auc": 0.9431578947368421,
+                "eer": 0.1
+              }
+            },
+            {
+              "best_epoch": 25,
+              "checkpoint_hash": "5063b4e9dc6cc671e47770dc00785ad5846b61020606eaae4f8661822a705d9d",
+              "epochs_completed": 31,
+              "seed": 4307,
+              "selection_metrics": {
+                "auc": 0.9819736842105263,
+                "eer": 0.05
+              }
+            }
+          ],
+          "selection_eer_mean": 0.06754385964912281,
+          "selection_eer_median": 0.05263157894736842,
+          "trainable_parameters": 139456
+        },
+        {
+          "candidate_id": "d2-h256-z64",
+          "configuration": {
+            "activation": "relu",
+            "candidate_id": "d2-h256-z64",
+            "dropout": 0.0,
+            "fused_dim": 64,
+            "hidden_dims": [
+              256
+            ]
+          },
+          "runs": [
+            {
+              "best_epoch": 20,
+              "checkpoint_hash": "d373a3ec998b07c3b3f585044f0c20971f9299b04ec0dc1728640df97272bad8",
+              "epochs_completed": 26,
+              "seed": 1701,
+              "selection_metrics": {
+                "auc": 0.9652631578947368,
+                "eer": 0.09736842105263158
+              }
+            },
+            {
+              "best_epoch": 16,
+              "checkpoint_hash": "82370b95ef9f731d4209a58b46f75e90953502ed435bda1c2ff313b3613699b3",
+              "epochs_completed": 22,
+              "seed": 2903,
+              "selection_metrics": {
+                "auc": 0.9592105263157895,
+                "eer": 0.08947368421052632
+              }
+            },
+            {
+              "best_epoch": 1,
+              "checkpoint_hash": "78521bc30b03854e935c35a506f5d0de1b03a4cc8e5a0f48f1a896b0aa6ed342",
+              "epochs_completed": 7,
+              "seed": 4307,
+              "selection_metrics": {
+                "auc": 0.926578947368421,
+                "eer": 0.15
+              }
+            }
+          ],
+          "selection_eer_mean": 0.11228070175438597,
+          "selection_eer_median": 0.09736842105263158,
+          "trainable_parameters": 278848
+        }
+      ],
+      "selected_candidate_id": "d2-h128-z64",
+      "selection_rule": "min median selection EER across seeds; then min mean EER; then min trainable parameters; then candidate_id"
+    },
+    "D3S": {
+      "candidates": [
+        {
+          "candidate_id": "d3s-h8",
+          "configuration": {
+            "activation": "relu",
+            "candidate_id": "d3s-h8",
+            "dropout": 0.0,
+            "hidden_dims": [
+              8
+            ]
+          },
+          "runs": [
+            {
+              "best_epoch": 17,
+              "checkpoint_hash": "8722fbecd55d3e35896df6e55aae69b25312b732f56cb7955284a3e2a032bad8",
+              "epochs_completed": 23,
+              "seed": 1701,
+              "selection_metrics": {
+                "auc": 0.9155263157894736,
+                "eer": 0.15526315789473685
+              }
+            },
+            {
+              "best_epoch": 1,
+              "checkpoint_hash": "5133a47acf4b8523b4ffdba6904547d38b976b484722336b22c9f05fef1c172b",
+              "epochs_completed": 7,
+              "seed": 2903,
+              "selection_metrics": {
+                "auc": 0.9097368421052632,
+                "eer": 0.15
+              }
+            },
+            {
+              "best_epoch": 11,
+              "checkpoint_hash": "aa10d5bb79ddc6587ec5c13363b165636aa72eefa342702a5ace38a4680254c1",
+              "epochs_completed": 17,
+              "seed": 4307,
+              "selection_metrics": {
+                "auc": 0.9163157894736842,
+                "eer": 0.15
+              }
+            }
+          ],
+          "selection_eer_mean": 0.15175438596491228,
+          "selection_eer_median": 0.15,
+          "trainable_parameters": 60
+        },
+        {
+          "candidate_id": "d3s-h16",
+          "configuration": {
+            "activation": "relu",
+            "candidate_id": "d3s-h16",
+            "dropout": 0.0,
+            "hidden_dims": [
+              16
+            ]
+          },
+          "runs": [
+            {
+              "best_epoch": 1,
+              "checkpoint_hash": "e9a407f6f8d2c81479b06d03d240810cdba06e8b3f731395a3d1d37ab68bcab1",
+              "epochs_completed": 7,
+              "seed": 1701,
+              "selection_metrics": {
+                "auc": 0.9125,
+                "eer": 0.15
+              }
+            },
+            {
+              "best_epoch": 1,
+              "checkpoint_hash": "de411adcdbdac8de7eeffeb5189dc6e26205bbf737402ebb7f03d561019233b1",
+              "epochs_completed": 7,
+              "seed": 2903,
+              "selection_metrics": {
+                "auc": 0.9061842105263158,
+                "eer": 0.15
+              }
+            },
+            {
+              "best_epoch": 20,
+              "checkpoint_hash": "aad724edaefebb3ceb4b114353c58dc3bde7862654768f310aa57529063ffc91",
+              "epochs_completed": 26,
+              "seed": 4307,
+              "selection_metrics": {
+                "auc": 0.9126315789473685,
+                "eer": 0.15
+              }
+            }
+          ],
+          "selection_eer_mean": 0.15,
+          "selection_eer_median": 0.15,
+          "trainable_parameters": 116
+        }
+      ],
+      "selected_candidate_id": "d3s-h16",
+      "selection_rule": "min median selection EER across seeds; then min mean EER; then min trainable parameters; then candidate_id"
+    }
+  },
+  "quality_model_hash": "219874362a61c6b181248820c17d24056644564512ec16ccafe5117133ad0f0d",
+  "reporting_seed": 1701,
+  "scope": "V1 development only: fit + selection",
+  "score_normalization": {
+    "fit_only": true,
+    "mean": [
+      0.8974587098325799,
+      0.912133503465562
+    ],
+    "scale": [
+      0.035744503492776886,
+      0.03103450226933214
+    ]
+  },
+  "selection_trial_manifest_sha256": "482086a4d3d7a57a68cdd9362363399a8b56174d3218f0b3eed138a7fe6d4fb4",
+  "training_lock_sha256": "d7a118af2bd02cdb0625602713cf3254f65a8acc06459672a72ff3a48ec22f45"
+}
