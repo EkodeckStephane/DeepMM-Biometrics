@@ -9,6 +9,7 @@ from deepmm.metrics.calibration import (
     min_cllr,
     negative_log_likelihood,
 )
+from deepmm.metrics.verification import roc_auc
 
 
 def test_perfect_probabilities_have_zero_brier_and_ece():
@@ -63,3 +64,19 @@ def test_calibration_loss_is_nonnegative_and_zero_for_optimal_monotonic_scores()
     assert loss >= 0.0
     # The ranking is perfect, so min-Cllr=0; finite LLRs still have non-zero actual Cllr.
     assert loss == pytest.approx(cllr(non, tar), rel=1e-12)
+
+
+def test_positive_affine_rescaling_preserves_discrimination_but_changes_cllr():
+    """Calibration and rank discrimination must remain separate scientific axes."""
+    non = np.array([-1.0, -0.5, -0.2])
+    tar = np.array([0.2, 0.5, 1.0])
+    labels = np.array([0, 0, 0, 1, 1, 1])
+    raw = np.concatenate([non, tar])
+    scaled = 5.0 * raw
+
+    # Positive affine scaling preserves every ordering and therefore ROC-AUC and
+    # minimum Cllr/discrimination, while changing the magnitude interpretation of
+    # the scores as LLRs and hence actual Cllr/calibration loss.
+    assert roc_auc(labels, raw) == pytest.approx(roc_auc(labels, scaled))
+    assert min_cllr(non, tar) == pytest.approx(min_cllr(5.0 * non, 5.0 * tar))
+    assert cllr(non, tar) != pytest.approx(cllr(5.0 * non, 5.0 * tar))
