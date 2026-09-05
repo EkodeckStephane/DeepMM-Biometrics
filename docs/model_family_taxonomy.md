@@ -1,181 +1,257 @@
-# Model-Family Taxonomy v0.1
+# Model-Family Taxonomy v0.2
 
 **Study:** *Deep Learning Approaches for Multimodal Biometrics*
 
-This taxonomy is designed to answer the fixed questions Q1–Q3. It is not a list of fashionable architectures. A family is retained only if it represents a materially different fusion mechanism that can be compared under a controlled verification protocol.
+This taxonomy serves Q1–Q3. It is intentionally organized by **information access and fusion mechanism**, not by fashionable architecture names. A family is retained only if it creates a scientifically distinct contrast under a common protocol.
 
-## 1. Comparison principle
+## 1. Primary causal comparison principle
 
-The study separates two effects that are frequently confounded in the multimodal-biometric literature:
+The study separates:
 
-1. **representation quality** — how strong the unimodal encoders are;
-2. **fusion quality** — what the multimodal combination mechanism adds once comparable unimodal evidence exists.
+1. **representation quality** — information supplied by the unimodal encoders/matchers;
+2. **fusion quality** — what the combination mechanism adds when the unimodal evidence is held fixed;
+3. **information access** — whether a fusion method sees only scalar scores, full embeddings, local/token features, quality variables, or availability masks.
 
-Accordingly, the primary benchmark will use **shared/frozen unimodal encoders** wherever technically possible. A secondary end-to-end/fine-tuning track may be added to measure attainable system performance, but it will not replace the controlled fusion comparison.
+These effects must not be conflated.
 
-This separation is essential for Q1: a deep fusion head cannot be credited for an improvement that actually comes from a stronger encoder.
+The primary Track I therefore freezes the unimodal evidence wherever technically possible. Track II may fine-tune/end-to-end train systems to measure attainable performance, but Track II cannot support the causal statement that a gain came specifically from the fusion mechanism.
 
-## 2. Tier U — unimodal anchors
+The 2026 OU-MB benchmark makes this distinction especially important: it already evaluates mean/weighted-score and normalized concatenation fusion using fixed modality-specific recognition models. DeepMM must extend, not rediscover, that baseline philosophy.
+
+## 2. Fairness rule: compare within information-access strata first
+
+A feature-level neural model has access to richer information than a score-only method. Therefore the confirmatory contrasts are stratified.
+
+### Score-input stratum
+
+All methods receive the exact same ordered per-modality scores and, when applicable, the same predeclared quality/availability variables.
+
+Primary score-level contrast:
+
+```text
+C1 equal score
+C2 weighted score
+C3 logistic score
+C5 classical quality-aware score
+vs.
+D1 nonlinear deep score fusion
+D3-score learned gated/quality-aware score fusion
+```
+
+### Embedding-input stratum
+
+All methods receive the same frozen unimodal embeddings.
+
+Primary feature-level contrast:
+
+```text
+C4 normalized/standardized concatenation
+vs.
+D2 nonlinear feature fusion
+D3-feature learned gated feature fusion
+D4 attention/Transformer interaction (only when justified)
+```
+
+### Cross-stratum comparisons
+
+Score-level versus feature-level systems may be compared for **overall system trade-off**, but a cross-stratum advantage is not automatically attributed to “better fusion”: it may arise from richer input information.
+
+## 3. Tier U — unimodal anchors
 
 For each selected modality:
 
-- one strong reproducible encoder;
-- a fixed embedding normalization procedure;
-- a fixed matcher (cosine or another modality-appropriate matcher selected before final testing);
-- thresholding/calibration fitted on validation only.
+- one strong reproducible encoder/matcher pipeline;
+- frozen embedding normalization and score orientation;
+- fixed enrollment/probe construction;
+- thresholds and deployable calibration fitted on held-out development/calibration data only.
 
-These systems provide the best-single-modality references for Q1.
+The strongest unimodal modality is the Q1 reference; beating only the weaker modality is insufficient.
 
-## 3. Tier C — classical multimodal baselines
+## 4. Tier C — classical/model-agnostic baselines
 
-### C1. Normalized score sum
+### C1 — Equal normalized score fusion
 
-Input: per-modality verification scores.
+Per-modality score normalization is fitted on development data only, then scores are averaged with equal weights.
 
-Mechanism: normalize scores with parameters learned on the development split, then sum with equal weights.
+Purpose: minimum-complexity multimodal reference and direct OU-MB-style baseline.
 
-Purpose: minimum-complexity multimodal reference.
+### C2 — Validation-weighted score fusion
 
-### C2. Validation-weighted score fusion
+Non-negative weights sum to one and are selected on development data under a frozen objective/grid.
 
-Input: per-modality verification scores.
+Purpose: tests whether learned nonlinear score fusion adds anything beyond careful static weighting.
 
-Mechanism: weights selected using validation data only, with a constrained low-dimensional search.
+### C3 — Logistic score fusion
 
-Purpose: tests whether adaptive weighting is needed at all.
+Regularized logistic regression over the same score vector.
 
-### C3. Logistic score fusion
+Purpose: strong classical learned score-fusion baseline. It is not deep learning.
 
-Input: per-modality scores, optionally modality-quality variables only if the same variables are available to all comparable quality-aware methods.
+### C4 — Normalized classical feature fusion
 
-Mechanism: regularized logistic regression trained on development data.
+Per-modality embeddings are normalized under a frozen rule, concatenated, optionally re-normalized, then matched with a fixed non-deep similarity/classifier.
 
-Purpose: strong classical learned fusion baseline. It must not be mislabeled as deep learning.
+Purpose: controls for the advantage of seeing embeddings rather than scalar scores. OU-MB 2026 provides a strong precedent for normalized concatenation with cosine matching.
 
-### C4. Classical feature fusion
+### C5 — Classical quality-aware score fusion
 
-Input: fixed unimodal embeddings.
+Dynamic non-neural weighting from predeclared quality values, including deterministic renormalization when a modality is unavailable.
 
-Mechanism: standardized concatenation followed by a non-deep metric/classifier when sample size supports it.
+Purpose: quality-aware DL must beat a quality-aware classical comparator, because quality-dependent biometric fusion is established prior art.
 
-Purpose: separates the effect of feature-level access from the effect of deep nonlinear learning.
+## 5. Tier D — deep fusion families
 
-## 4. Tier D — deep-learning fusion families
+### D1 — Nonlinear deep score fusion
 
-### D1. Deep score fusion
+Canonical representative: compact MLP receiving only the same scalar match scores used by C1–C3; availability/quality variables are excluded unless the corresponding classical comparison receives them too.
 
-Canonical representative: compact MLP over per-modality scores, availability masks, and predeclared quality variables.
+Scientific contrast:
 
-Scientific question: does nonlinear score combination add measurable value beyond logistic/weighted fusion?
+> Does nonlinear score interaction improve upon weighted and logistic score fusion when the input evidence is identical?
 
-Cost expectation: low.
+The MLP capacity must remain deliberately small enough that the study tests nonlinear fusion rather than arbitrary overparameterization.
 
-### D2. Deep feature fusion
+### D2 — Nonlinear feature fusion
 
-Canonical representative: modality-specific linear projection -> concatenation -> residual MLP projection -> normalized fused embedding.
+Canonical representative:
 
-Scientific question: does jointly learned nonlinear feature interaction outperform classical concatenation and score fusion?
+```text
+frozen embedding A -> fixed/common-dimension projection
+frozen embedding B -> fixed/common-dimension projection
+concatenate -> compact residual MLP -> normalized fused embedding
+```
 
-Cost expectation: low to moderate.
+The trainable projection/fusion head is the independent variable; upstream unimodal encoders remain frozen in Track I.
 
-### D3. Gated / quality-aware fusion
+Scientific contrast:
 
-Canonical representative: learned gate producing modality weights conditioned on embeddings, objective quality estimates, and availability masks. The fused representation is a normalized weighted combination of projected modality embeddings.
+> Does learned nonlinear feature interaction improve upon normalized concatenation under the same frozen embeddings?
 
-Scientific question: does dynamic trust allocation help when modality quality is heterogeneous?
+### D3 — Learned gated / quality-aware fusion
 
-Historical relevance: quality-dependent biometric fusion has long shown that automatically derived quality can matter; the deep model must therefore beat strong quality-aware classical baselines, not merely equal-weight fusion.
+This family has two access-matched variants, not one privileged model:
 
-Cost expectation: low to moderate.
+- **D3-score:** gate sees scores plus the exact same objective quality/availability variables available to C5;
+- **D3-feature:** gate sees frozen projected embeddings and the same quality/availability variables.
 
-### D4. Interaction / bilinear-style fusion
+The gate produces normalized modality weights or reliability coefficients.
 
-Canonical representative: compact multiplicative interaction (e.g., low-rank bilinear or factorized interaction) between projected modality embeddings.
+Scientific contrast:
 
-Scientific question: are second-order cross-modal interactions useful beyond concatenation/gating?
+> Does a learned dynamic reliability mapping add value beyond classical quality-aware weighting under heterogeneous quality or missing evidence?
 
-Inclusion rule: retain only if the final SOTA and data regime justify the extra family. It is optional rather than mandatory.
+Quality awareness, dynamic weighting and adaptive hybrid fusion are established prior art (Poh et al. 2009; Soleymani et al. 2022; Fan et al. 2024; DIRS 2025; AHFNet 2026), so D3 is a comparison family, not a novelty claim.
 
-Cost expectation: moderate.
+### D4 — Attention/Transformer interaction family
 
-### D5. Attention / cross-attention fusion
+Retained as **one** high-capacity interaction family for the primary benchmark, not two redundant “attention” and “Transformer” rows.
 
-Canonical representative: modality-specific token sequences projected to a common dimension, followed by symmetric or alternating cross-attention and pooled to a fused embedding.
+Admission rule: D4 is included only when the chosen modality pipeline exposes semantically meaningful token/local feature sequences. A construction that converts two scalar scores into two fake “tokens” merely to use self-attention is inadmissible.
 
-Scientific question: does explicit cross-modal interaction improve verification under matched encoders and matched tuning budget?
+Possible canonical representative:
 
-Important constraint: attention must receive meaningful token sequences. A two-scalar or two-token construction created merely to label a method “attention” is not admissible.
+- modality-specific frozen token/local features;
+- projection to common dimension;
+- modality/type embeddings;
+- one or a small number of symmetric cross-attention/Transformer blocks;
+- pooled normalized fused embedding.
 
-Cost expectation: moderate to high.
+Scientific contrast:
 
-### D6. Multimodal Transformer
+> Does explicit token-level cross-modal interaction provide a benefit large enough to justify its added cost versus D2/D3 under matched upstream evidence?
 
-Canonical representative: shared-dimensional modality tokens/local tokens plus modality/type embeddings, a compact Transformer encoder, and a fused verification embedding.
+FBR 2024, MPAD 2025 and PPG–fingerprint cross-attention work already establish attention-based biometric fusion as prior art. DeepMM therefore evaluates this family; it does not brand attention itself as a contribution.
 
-Scientific question: does a Transformer provide a favorable performance–robustness–calibration–cost trade-off rather than merely higher capacity?
+### D5 — Multiplicative/bilinear interaction — optional
 
-Inclusion rule: parameter budget and tuning budget must be reported and matched as far as practicable.
+A low-rank bilinear/factorized interaction family is included only if final SOTA closure shows that it represents a distinct important mechanism not already adequately covered by D2/D4 **and** the dataset size supports the extra trainable capacity.
 
-Cost expectation: high relative to D1–D3.
+D5 is not part of the minimum confirmatory set at present.
 
-## 5. Tier M — missing-modality mechanisms
+## 6. Tier M — missing-modality mechanisms are a second experimental axis
 
-Missing-modality handling is treated as a **second axis**, not automatically as a separate fusion family. This prevents Q2 from conflating fusion architecture with a robustness add-on.
+Missingness handling is intentionally separated from the fusion-family label.
 
-### M0. Deterministic fallback
+### M0 — Native/deterministic missingness policy
 
-- score fusion: renormalize over available modalities;
-- feature fusion: predeclared zero/mask strategy;
-- unimodal fallback: use the available modality directly.
+Applied without missing-modality training:
 
-### M1. Modality dropout / masked training
+- unimodal fallback when only one modality is available;
+- score fusion renormalizes over available evidence;
+- feature methods use a predeclared mask/absence representation where required.
 
-Randomly mask a modality during training with a frozen probability schedule selected before final testing.
+This measures **native graceful degradation**.
 
-### M2. Learned missing token / availability-aware gating
+### M1 — Modality-dropout training
 
-Represent absence explicitly through an availability mask or learned missing embedding.
+The same fusion family is retrained with a frozen modality-dropout schedule.
 
-### M3. Representation reconstruction / shared-specific modeling
+This measures the benefit of explicit missingness exposure during training and is treated as a factorial training condition, not as a new fusion family.
 
-Reconstruct or infer missing-modality information in representation space.
+### M2 — Availability-aware learned absence representation
 
-### M4. Cross-modal generation
+An explicit mask or learned missing token is allowed only for methods whose architecture requires it. The availability signal must be defined identically across comparable methods.
 
-Generate missing-modality data/features from the observed modality.
+### M3 — Reconstruction/shared-specific modeling — secondary
 
-M3/M4 are retained as dedicated Q3 families only if SOTA closure and compute/data feasibility justify a faithful implementation. They are not required to answer Q1.
+SSFD-Net-style shared/specific representation reconstruction can be evaluated as an advanced Q3 comparator if faithful implementation and compute/data feasibility permit.
 
-## 6. Why these families are SOTA-aligned
+### M4 — Cross-modal generation — secondary
 
-Verified current literature supports the relevance of the taxonomy:
+TIFS 2025-style cross-modal generation can be evaluated only as a separate advanced missing-modality comparator. It must not be conflated with the core Q1 question of whether DL fusion adds value under complete evidence.
 
-- Es-Sobbahi, Radouane, and Nafil, *IET Biometrics* (2025), DOI `10.1049/bme2/5055434`, documents the continuing dominance of feature- and score-level fusion in physiological multimodal biometrics.
-- Ren et al., *IEEE TIFS* (2022), DOI `10.1109/TIFS.2022.3175599`, provides a paired fingerprint–finger-vein dataset and CNN-based multimodal benchmark, showing the importance of real paired acquisition and learned fusion.
-- Fan et al., *IEEE TSMC: Systems* (2024), DOI `10.1109/TSMC.2024.3382877`, combines sequential decision logic with adaptive weighted palmprint/palm-vein fusion and explicitly treats recognition time as part of the design objective.
-- Zheng et al., *Pattern Recognition Letters* (2025), DOI `10.1016/j.patrec.2025.06.017`, uses structured state-space encoders, cross-modal attention, and contrastive alignment for PPG–fingerprint verification.
-- Pan et al., *IEEE TIFS* (2025), DOI `10.1109/TIFS.2025.3559802`, addresses missing-modality biometric recognition using hierarchical cross-modal generation and dynamic sparse fusion.
-- Pan et al., *Digital Signal Processing* (2025), DOI `10.1016/j.dsp.2025.105003`, addresses missing modalities through shared-specific feature disentanglement and cross-modal feature transformation.
-- Wu et al., *Transactions on Machine Learning Research* (2026), *Deep Multimodal Learning with Missing Modality: A Survey*, provides the broader MLMM taxonomy and confirms that missing-modality robustness is a distinct methodological problem.
+M3/M4 are not required for the minimum Q1/Q2 benchmark.
 
-These papers justify the *families*. They do **not** establish that any family is universally best.
+## 7. Calibration is an evaluation axis, not a fusion family
 
-## 7. Candidate benchmark set for the first implementation pass
+Calibration is applied/evaluated under a common protocol after each method generates verification scores.
 
-The minimum controlled set is:
+- deployable affine logistic calibration is fitted on held-out data only;
+- `C_llr`, `C_llr_min`, calibration loss, Brier/NLL and descriptive ECE are reported according to the locked protocol;
+- calibration transfer across clean/degraded/missing-subset conditions is separated from subset-specific recalibration.
 
-1. U-A: unimodal modality A;
-2. U-B: unimodal modality B;
-3. C1: equal score sum;
-4. C2: validation-weighted score fusion;
-5. C3: logistic score fusion;
-6. D1: deep score MLP;
-7. D2: deep feature fusion;
-8. D3: quality-aware gated fusion;
-9. D5/D6: one rigorously justified attention/Transformer representative.
+Mandasari et al. 2014 and Susyanto et al. 2019 establish calibration/Cllr as prior biometric concepts; DeepMM's role is to integrate calibration consistently into the family comparison.
 
-This gives a sufficiently broad test of Q1 and Q2 without turning the study into an uncontrolled architecture zoo.
+## 8. Minimum confirmatory family set
 
-## 8. Family-selection stop rule
+Subject to dataset feasibility and final Gate-4 falsification, the minimum set is:
 
-No additional family is added merely because it produces a better pilot result. After the SOTA lock, the family list is frozen before the final test campaign. Any later architecture is labeled exploratory and cannot replace the preregistered primary comparison.
+| ID | Family | Primary input |
+|---|---|---|
+| U-A | unimodal modality A | modality A |
+| U-B | unimodal modality B | modality B |
+| C1 | equal normalized score fusion | scores |
+| C2 | validation-weighted score fusion | scores |
+| C3 | logistic score fusion | scores |
+| C4 | normalized classical feature fusion | embeddings |
+| C5 | classical quality-aware fusion | scores + quality/availability |
+| D1 | nonlinear deep score fusion | scores |
+| D2 | nonlinear feature fusion | embeddings |
+| D3 | learned gated/quality-aware fusion | access-matched inputs |
+| D4 | attention/Transformer interaction | meaningful local/token features, if available |
+
+If D4 cannot be implemented without giving it different upstream information than all competitors, it moves to Track II or exploratory analysis rather than contaminating Track I.
+
+## 9. Complexity/tuning fairness
+
+Before final testing, each trainable family receives a documented tuning budget. The study reports at least:
+
+- trainable parameter count;
+- inference latency under identical hardware/batch/precision;
+- peak memory when measurable;
+- FLOPs/MACs where calculation is meaningful;
+- number of tuning configurations/runs attempted.
+
+A larger DL family does not receive unlimited hyperparameter search while classical baselines use defaults.
+
+## 10. Family freeze rule
+
+The family list is frozen **before final test evaluation**. Pilot results may reveal implementation bugs or infeasibility, but a new family is not added merely because it improves a disappointing result.
+
+Any post-freeze architecture is exploratory and cannot silently replace the preregistered comparison.
+
+## 11. Current status
+
+The family *definitions and fairness strata* are ready for pilot implementation. Exact modality-specific inputs, D4 token feasibility, parameter budgets and hyperparameter grids remain `TO LOCK` after dataset/encoder feasibility is known.
+
+This is intentionally not yet a final family lock.
