@@ -9,10 +9,31 @@ C5 quality-weighted score baseline using exactly the same quality cues.
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 import hashlib
 import json
 
 from deepmm.fusion.neural_contracts import TrainingBudget
+
+
+@dataclass(frozen=True)
+class V1OptimizerSpec:
+    """Torch-free optimizer specification with the execution-harness interface."""
+
+    optimizer: str
+    learning_rate: float
+    weight_decay: float
+    gradient_clip_norm: float | None
+    deterministic_algorithms: bool
+
+    def as_dict(self) -> dict[str, object]:
+        return {
+            "optimizer": self.optimizer,
+            "learning_rate": self.learning_rate,
+            "weight_decay": self.weight_decay,
+            "gradient_clip_norm": self.gradient_clip_norm,
+            "deterministic_algorithms": self.deterministic_algorithms,
+        }
 
 
 V1_PRIMARY_ENCODER = "resnet18_imagenet1k_v1"
@@ -32,16 +53,15 @@ V1_NEURAL_BUDGET = TrainingBudget(
     max_training_runs=6,
 )
 
-# Kept as a plain serializable mapping so the scientific lock remains importable
-# in the lightweight base test environment where PyTorch is intentionally absent.
-# The execution script materializes TorchOptimizerConfig from this exact mapping.
-V1_OPTIMIZER = {
-    "optimizer": "adamw",
-    "learning_rate": 1e-3,
-    "weight_decay": 1e-4,
-    "gradient_clip_norm": 5.0,
-    "deterministic_algorithms": True,
-}
+# This stays independent of PyTorch so the scientific lock can be imported and
+# audited in the lightweight base CI. The execution harness uses the same fields.
+V1_OPTIMIZER = V1OptimizerSpec(
+    optimizer="adamw",
+    learning_rate=1e-3,
+    weight_decay=1e-4,
+    gradient_clip_norm=5.0,
+    deterministic_algorithms=True,
+)
 
 V1_NEURAL_CANDIDATES = {
     "D1": (
@@ -104,7 +124,7 @@ def v1_training_lock_payload() -> dict[str, object]:
     return {
         "encoder_id": V1_PRIMARY_ENCODER,
         "neural_budget": V1_NEURAL_BUDGET.as_dict(),
-        "optimizer": dict(V1_OPTIMIZER),
+        "optimizer": V1_OPTIMIZER.as_dict(),
         "reporting_seed": V1_REPORTING_SEED,
         "batch_size": V1_BATCH_SIZE,
         "fit_sampling_rule": V1_FIT_SAMPLING_RULE,
