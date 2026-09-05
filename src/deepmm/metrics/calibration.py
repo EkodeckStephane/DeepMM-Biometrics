@@ -1,13 +1,19 @@
 """Calibration metrics for held-out binary verification trials.
 
-These functions evaluate probabilities already produced by a calibration stage.
-They do not fit a calibrator and therefore cannot accidentally consume test labels
-for model fitting.
+Probability metrics evaluate probabilities already produced by a calibration stage.
+The likelihood-ratio metrics follow the BOSARIS convention: larger log-likelihood
+ratios support the genuine/target hypothesis.
+
+No function in this module fits a *parametric* calibrator on test data. ``min_cllr``
+is an evaluation statistic: it uses an isotonic/PAV-equivalent monotonic mapping on
+the evaluated scores to estimate the best calibration achievable without changing
+their ranking. It must not be confused with a deployable held-out calibrator.
 """
 
 from __future__ import annotations
 
 import numpy as np
+from sklearn.isotonic import IsotonicRegression
 
 
 def _validated(labels, probabilities) -> tuple[np.ndarray, np.ndarray]:
@@ -22,6 +28,16 @@ def _validated(labels, probabilities) -> tuple[np.ndarray, np.ndarray]:
     if not np.all(np.isfinite(p)) or np.any((p < 0.0) | (p > 1.0)):
         raise ValueError("probabilities must be finite and lie in [0, 1]")
     return y, p
+
+
+def _score_vector(values, name: str, *, allow_inf: bool = False) -> np.ndarray:
+    x = np.asarray(values, dtype=np.float64)
+    if x.ndim != 1 or x.size == 0:
+        raise ValueError(f"{name} must be a non-empty 1-D array")
+    if np.any(np.isnan(x)) or (not allow_inf and not np.all(np.isfinite(x))):
+        requirement = "must not contain NaN" if allow_inf else "must be finite"
+        raise ValueError(f"{name} {requirement}")
+    return x
 
 
 def brier_score(labels, probabilities) -> float:
@@ -51,7 +67,6 @@ def expected_calibration_error(labels, probabilities, n_bins: int = 15) -> float
         raise ValueError("n_bins must be an integer >= 2")
 
     edges = np.linspace(0.0, 1.0, n_bins + 1)
-    # Probabilities exactly equal to 1 belong to the last bin.
     bins = np.minimum(np.digitize(p, edges[1:-1], right=False), n_bins - 1)
     ece = 0.0
     n = float(y.size)
@@ -63,3 +78,81 @@ def expected_calibration_error(labels, probabilities, n_bins: int = 15) -> float
         frequency = float(np.mean(y[mask]))
         ece += (float(np.sum(mask)) / n) * abs(confidence - frequency)
     return float(ece)
+
+
+def cllr(non_target_llrs, target_llrs) -> float:
+    """Return BOSARIS cost of log likelihood ratio ``C_llr``.
+
+    Inputs must already be **natural-log likelihood ratios**. Positive values
+    support the target/genuine hypothesis; negative values support non-target.
+    The result is expressed in bits because the BOSARIS definition uses log base 2.
+
+    ``+/-inf`` are accepted so that a mathematically perfect monotonic calibration
+    can have zero cost; NaN is always rejected.
+    """
+    non = _score_vector(non_target_llrs, "non_target_llrs", allow_inf=True)
+    tar = _score_vector(target_llrs, "target_llrs", allow_inf=True)
+    ln2 = np.log(2.0)
+    target_cost = np.mean(np.logaddexp(0.0, -tar) / ln2)
+    non_target_cost = np.mean(np.logaddexp(0.0, non) / ln2)
+    return float(0.5 * (target_cost + non_target_cost))
+
+
+def min_cllr(non_target_scores, target_scores) -> float:
+    """Return minimum ``C_llr`` obtainable by a monotonic score mapping.
+
+    This is the discrimination component used in BOSARIS-style calibration
+    analysis. Scores only need to obey the convention "higher = more target-like";
+    they do **not** need to be calibrated LLRs.
+
+    The implementation uses isotonic regression, which is the pool-adjacent-
+    violators solution for the monotonic posterior mapping. Tied raw scores are
+    handled jointly by the isotonic fit rather than being artificially ordered by
+    class label.
+    """
+    non = _score_vector(non_target_scores, "non_target_scores")
+    tar = _score_vector(target_scores, "target_scores")
+    scores = np.concatenate([non, tar])
+    labels = np.concatenate([
+        np.zeros(non.size, dtype=np.float64),
+        np.ones(tar.size, dtype=np.float64),
+    ])
+
+    isotonic = IsotonicRegression(
+        increasing=True,
+        out_of_bounds="clip",
+        y_min=0.0,
+        y_max=1.0,
+    )
+    posterior = np.asarray(isotonic.fit_transform(scores, labels), dtype=np.float64)
+
+    prior = float(tar.size) / float(tar.size + non.size)
+    log_prior_odds = np.log(prior) - np.log1p(-prior)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        posterior_log_odds = np.log(posterior) - np.log1p(-posterior)
+    llrs = posterior_log_odds - log_prior_odds
+
+    return cllr(llrs[: non.size], llrs[non.size :])
+
+
+def cllr_calibration_loss(non_target_llrs, target_llrs) -> float:
+    """Return ``C_llr_cal = C_llr - C_llr_min``.
+
+    ``C_llr`` assesses the supplied calibrated LLRs; ``C_llr_min`` removes
+    monotonic calibration error while preserving ranking. Small negative values
+    caused only by floating-point roundoff are clipped to zero.
+    """
+    non = _score_vector(non_target_llrs, "non_target_llrs", allow_inf=True)
+    tar = _score_vector(target_llrs, "target_llrs", allow_inf=True)
+    actual = cllr(non, tar)
+    # min_cllr requires finite raw scores. Actual deployed LLRs should be finite;
+    # perfect +/-inf toy cases have zero calibration loss by construction.
+    if not (np.all(np.isfinite(non)) and np.all(np.isfinite(tar))):
+        if actual == 0.0:
+            return 0.0
+        raise ValueError("calibration loss requires finite LLRs unless C_llr is exactly zero")
+    minimum = min_cllr(non, tar)
+    loss = actual - minimum
+    if loss < 0.0 and abs(loss) <= 1e-12:
+        loss = 0.0
+    return float(loss)
