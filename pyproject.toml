@@ -21,6 +21,11 @@ dev = [
 neural = [
   "torch>=2.2,<3",
 ]
+vision = [
+  "torch>=2.2,<3",
+  "torchvision>=0.17,<1",
+  "Pillow>=10,<13",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
