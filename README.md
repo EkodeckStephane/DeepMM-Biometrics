@@ -18,53 +18,87 @@ The headline experiment is a **controlled fusion-mechanism benchmark**, not a co
 
 ### Track I — controlled fusion benchmark (primary)
 
-Strong unimodal evidence is shared/frozen wherever scientifically possible. Eligible fusion families receive the same subject-disjoint splits, trial lists, preprocessing outputs, validation/test evidence and matched tuning budget. The independent variable is the **fusion mechanism**.
+Strong unimodal evidence is shared/frozen wherever scientifically possible. Eligible fusion families receive the same subject-disjoint splits, ordered trial lists, preprocessing outputs and matched development/tuning budget. The independent variable is the **fusion mechanism**.
 
 ### Track II — full-system optimization (secondary)
 
 Selected systems may be fine-tuned end to end under a matched budget to estimate attainable full-system performance. Track II cannot be used to attribute an encoder/backbone gain to the fusion mechanism.
 
-## Current controlled comparator families
+## Gate-4-locked scientific positioning
 
-Classical baseline infrastructure already includes:
+Gate 4 is closed at **PASS-POSITIONING (2026-09-05)**. The search did not locate a biometric-specific study that simultaneously keeps upstream unimodal evidence controlled, compares representative classical and deep fusion mechanisms on identical subject-disjoint verification evidence, jointly measures discrimination, held-out calibration, controlled degradation, modality absence and compute, and quantifies dependence-aware rank/Pareto stability across conditions.
 
-- equal normalized score fusion;
-- simplex-weighted score fusion selected on development data;
-- regularized logistic score fusion;
-- standardized equal-energy feature concatenation;
-- classical quality-aware score fusion.
+This is an operational research gap, **not a proof of uniqueness**. No `first`, `only`, or universal `best` claim is authorized. Gate 4 is reopened if a later equivalent benchmark is found, and a submission-time SOTA refresh is mandatory.
 
-Deep families remain SOTA-governed and are not yet frozen: deep score fusion, deep feature fusion, quality-aware/gated fusion, and one rigorously justified attention/Transformer representative form the current minimum candidate set. Missing-modality handling is a second experimental axis rather than automatically a separate fusion family.
+The locked contribution statement is:
 
-## Evaluation contract
+> **DeepMM-Biometrics is a controlled multimodal-biometric verification study that holds unimodal evidence and trials fixed while comparing representative classical and deep fusion mechanisms, jointly evaluates discrimination, held-out biometric calibration, controlled degradation, single-modality absence and computational cost, and quantifies dependence-aware changes in family ranking and Pareto non-dominance across stress conditions.**
 
-The repository already implements/tests infrastructure for:
+See `docs/sota_matrix_v1.0.md` and `literature/gate4_search_log.md`.
+
+## Controlled comparator families and information strata
+
+Fusion-only claims are made **within information strata**.
+
+### Score-input stratum
+
+- C1 equal normalized score fusion;
+- C2 validation-weighted score fusion;
+- C3 regularized logistic score fusion;
+- C5 classical quality-weighted score fusion;
+- D1 compact nonlinear score fusion;
+- D3S learned quality/availability-aware score gate.
+
+### Embedding-input stratum
+
+- C4 controlled feature concatenation;
+- D2 compact nonlinear feature fusion;
+- D3F learned quality/availability-aware feature gate.
+
+### Token/local-feature stratum
+
+One attention/Transformer representative is confirmatory only if the selected frozen upstream encoders expose meaningful comparable local/token features. Otherwise it is Track II/exploratory.
+
+`src/deepmm/fusion/contracts.py` enforces these information tiers, explicit availability masks and quality-access rules. A richer-input method cannot be credited with a pure fusion gain over a poorer-input method.
+
+## Evaluation and reproducibility infrastructure
+
+The repository implements/tests infrastructure for:
 
 - empirical EER and ROC-convex-hull EER as distinct quantities;
 - ROC-AUC and conservative TAR@FAR;
 - Brier score, NLL, ECE, `C_llr`, `C_llr_min`, and calibration loss;
-- subject/split leakage checks and immutable split/trial hashing;
+- held-out affine logistic score-to-LLR calibration;
+- subject/split leakage checks and immutable split/trial/score hashing;
+- strict trial-to-score ordering and provenance manifests;
 - dependence-aware subject-cluster bootstrap for compatible subject-centric trials;
 - paired cluster-level randomization tests and Holm correction;
 - Pareto non-dominance and bootstrap dominance probability;
-- Kendall tau-b and pairwise rank-reversal analysis.
+- Kendall tau-b and pairwise rank-reversal analysis;
+- explicit score/embedding evidence contracts;
+- deterministic missing-modality masks/fallback utilities;
+- hashable preregistration-style clean/corruption/missing stress plans;
+- matched hardware/batch/precision/scope cost-measurement records and raw latency retention;
+- an end-to-end synthetic smoke harness covering development-only fitting, held-out calibration transfer, clustered uncertainty, Pareto analysis and clean-vs-stress ranking logic.
 
-A one-way subject-cluster analysis is **not** assumed valid for dense symmetric all-vs-all impostor trials. The final dependence-aware resampling method will be locked after the dataset/trial construction is known.
+The synthetic harness is **CI/debug evidence only** and can never be used as a scientific result.
 
-## SOTA and novelty discipline
+A one-way subject-cluster analysis is **not** assumed valid for dense symmetric all-vs-all impostor trials. The final dependence-aware resampling method is locked after the dataset/trial construction is known.
 
-Gate 4 remains open. Strong prior work already covers quality-dependent fusion, cost-sensitive fusion, quality-aware deep fusion, attention/flexible biometrics, missing-modality robustness, and controlled backbone comparisons. Therefore none of these mechanisms alone is treated as the contribution.
+## Missingness and robustness discipline
 
-The current contribution candidate is the matched comparison of **fusion mechanisms themselves**, followed by multidimensional performance–robustness–calibration–cost analysis and family-ranking/Pareto stability under degradation and modality absence.
+Missing evidence is represented explicitly; `NaN`, infinity and sentinel values are forbidden as hidden modality-availability signals. Unavailable score/embedding slots use canonical zero serialization placeholders plus explicit availability masks.
 
-This remains a working novelty hypothesis until the systematic current-work falsification search is closed. No `first`, `only`, or universal `best` claim is permitted at this stage.
+Final corruption operators and severities remain data/modality dependent. Their condition IDs, targets, parameters and severity order will be frozen and hashed before final-test inspection. Missing-modality handling is a second experimental axis rather than automatically a separate fusion family.
 
 ## Literature traceability
 
-- `literature/sota_registry.csv` contains the current machine-readable verified SOTA seed.
+- `literature/sota_registry.csv` contains the machine-readable verified SOTA registry.
 - `literature/references.bib` contains synchronized BibTeX metadata.
-- `scripts/validate_literature.py` checks DOI/key/year/title consistency offline.
-- `docs/sota_search_log_2026-09-05.md`, `docs/sota_matrix_v0.4.md`, and `docs/sota_reproducibility_audit.md` record the novelty-boundary and reproducibility searches.
+- `literature/gate4_search_log.md` records the frozen Gate-4 falsification search.
+- `docs/sota_matrix_v1.0.md` records the locked positioning and forbidden novelty claims.
+- `scripts/validate_literature.py` checks registry/BibTeX consistency offline.
+- `scripts/validate_doc_references.py` rejects DOI mentions in project documentation that are not registered.
 
 “Code not located” means that the targeted search did not locate an official implementation; it is never treated as proof that no implementation exists.
 
@@ -79,14 +113,17 @@ Restricted raw biometric data will not be committed to this repository unless re
 ```text
 DeepMM-Biometrics/
 ├── .github/workflows/        # CI
-├── docs/                     # research protocol, SOTA, Gates, statistical contracts
-├── literature/               # verified registry + BibTeX
+├── docs/                     # research protocol, SOTA, Gates, experimental contracts
+├── literature/               # verified registry + BibTeX + Gate-4 search log
 ├── scripts/                  # validation/regeneration utilities
 ├── src/deepmm/
-│   ├── fusion/               # controlled classical baselines
+│   ├── calibration/          # held-out score calibration
+│   ├── evaluation/           # cost contract + synthetic pipeline smoke harness
+│   ├── fusion/               # classical baselines, evidence contracts, missingness
 │   ├── metrics/              # discrimination + calibration metrics
+│   ├── robustness/           # frozen stress-condition contract
 │   ├── stats/                # bootstrap, paired inference, Pareto/rank analysis
-│   └── validation/           # split/leakage/hash controls
+│   └── validation/           # split/leakage/trial/hash/provenance controls
 ├── tests/                    # scientific software validation
 ├── pyproject.toml
 └── README.md
@@ -99,10 +136,14 @@ DeepMM-Biometrics/
 | G1 — scientific object | **PASS-DESIGN** |
 | G2 — claim/evidence alignment | **PASS-DESIGN / evidence open** |
 | G3 — final scientific narrative | **rule fixed** |
-| G4 — current SOTA / novelty | **OPEN — critical, boundary narrowed** |
-| G5 — experimental validity | **DESIGN-READY / dataset-dependent lock open** |
-| G8 — reproducibility | **ACTIVE** |
-| G9 — bibliography/editorial hygiene | **OPEN / source audit running** |
+| G4 — current SOTA / novelty | **PASS-POSITIONING — 2026-09-05** |
+| G5 — experimental validity | **DESIGN/INFRASTRUCTURE READY / data-dependent lock open** |
+| G8 — reproducibility | **ADVANCED INFRASTRUCTURE / real evidence open** |
+| G9 — bibliography/editorial hygiene | **OPEN / machine consistency active** |
 | G10 — submission readiness | **NO-GO** |
 
-No scientific performance result is currently claimed. The project is ready for continued Gate-4 closure, baseline/SOTA reproducibility audit, experiment-schema preparation, and dataset feasibility work when needed; it is **not** yet ready for a final training campaign or article conclusion.
+## Immediate next boundary
+
+**GO:** common neural-head interfaces, deterministic stress/missingness plumbing, synthetic end-to-end validation, directly accessible dataset screening, and development-only pilot preparation.
+
+**NO-GO:** final-test model selection, post-hoc family additions, unvalidated dense-trial inference, test-fitted calibration, token/Transformer information privilege, or final corruption severities before the real data/protocol lock.
