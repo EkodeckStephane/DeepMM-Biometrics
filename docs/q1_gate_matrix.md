@@ -7,7 +7,7 @@ This project adapts the owner-supplied **Q1 Scientific-Article Editorial Gates**
 | **G1 — Scientific object first** | The paper is organized around Q1-Q3, not around a named model or repository. | **PASS-DESIGN** | Frozen research questions + controlled benchmark protocol exist. |
 | **G2 — Claim/evidence alignment** | Every conclusion about DL benefit, best family, calibration, robustness, or missing modalities maps to direct measurements. Negative results retained. | **PASS-DESIGN / EVIDENCE OPEN** | `claim_evidence_matrix.md` and planned contrasts exist; final claim-evidence matrix must link each headline statement to validated run manifests/raw outputs. |
 | **G3 — Final scientific narrative** | Final article contains the final valid study, not development/debug/audit history. | **RULE FIXED** | Editorial audit of final manuscript. |
-| **G4 — Novelty/current SOTA** | No architectural-priority claim. Positioning must show what matched fusion-mechanism comparison remains unresolved. | **IN PROGRESS — CRITICAL, BOUNDARY STRONGLY NARROWED** | `sota_matrix_v0.6.md` now incorporates historical quality/cost/missingness/calibration work and OU-MB's fixed-model score/feature fusion benchmark. Remaining targeted falsification searches must still exclude a benchmark combining representative DL fusion families, calibration, stress/missingness, cost and uncertainty-aware rank/Pareto stability before wording is locked. |
+| **G4 — Novelty/current SOTA** | No architectural-priority claim. Positioning must show what matched fusion-mechanism comparison remains unresolved. | **PASS-POSITIONING — 2026-09-05** | `docs/sota_matrix_v1.0.md` and `literature/gate4_search_log.md` freeze the bounded contribution after targeted falsification against OU-MB, LUTBIO, calibration, flexible/missing-modality, adaptation and adversarial fusion precedents. No `first`/`only` wording is authorized; submission-time SOTA refresh remains mandatory. |
 | **G5 — Experimental validity** | Real multimodal identity correspondence, leakage-free splits, matched baselines, correct experimental unit, dependence-aware uncertainty, paired tests, multiplicity correction. | **DESIGN/INFRASTRUCTURE READY; DATA-DEPENDENT LOCK OPEN** | Trial/score manifest validation, subject-split checks, paired statistics, calibration protocol and hard failure rules exist. Final dataset, trial topology, dense-impostor resampling rule, FAR grid, calibration partitions, corruption severities and run count remain to lock. |
 | **G6 — Article structure/prose** | Problem → gap → comparison framework → protocol → results Q1/Q2/Q3 → discussion/limits. | **PLANNED** | Final manuscript structural audit. |
 | **G7 — Scope/operational claims** | No claim of universal superiority, deployment readiness, spoof resistance, fairness, or security improvement unless directly measured. | **RULE FIXED** | Scope/threats/validity audit. |
@@ -34,6 +34,7 @@ The project must stop or reframe before the final campaign if any of the followi
 13. Fixed-model classical score/feature fusion is presented as novel despite the OU-MB 2026 baseline precedent.
 14. `C_llr`, score calibration or calibration loss is presented as a new biometric concept rather than an established evaluation axis.
 15. Any principal result lacks a frozen trial hash, score hash and run provenance record linking it to code/configuration/seed/condition.
+16. A later paper is found that satisfies the complete locked Gate-4 contribution contract and the positioning is not reopened/revised.
 
 ## Reviewer-Senior prescreen questions
 
@@ -53,4 +54,4 @@ Before any article draft is considered mature, a strict reviewer must be able to
 
 ## Current scientific status
 
-**GO for infrastructure completion, Gate-4 closure and pilot preparation. NO-GO for a final training campaign or manuscript claims.**
+**Gate 4 is closed at PASS-POSITIONING. GO for model-interface implementation, confirmatory pilot preparation and dataset/access screening. NO-GO for the final test campaign until Gate 5's data-dependent locks and Gate 2's final evidence contracts are satisfied.**
