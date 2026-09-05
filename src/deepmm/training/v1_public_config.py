@@ -19,6 +19,10 @@ from deepmm.training.torch_fit import TorchOptimizerConfig
 V1_PRIMARY_ENCODER = "resnet18_imagenet1k_v1"
 V1_REPORTING_SEED = 1701
 V1_BATCH_SIZE = 256
+V1_FIT_SAMPLING_RULE = (
+    "deterministic class-balanced replication: every impostor trial once and every "
+    "genuine trial 19 times; selection remains unmodified"
+)
 
 V1_NEURAL_BUDGET = TrainingBudget(
     max_epochs=40,
@@ -101,6 +105,7 @@ def v1_training_lock_payload() -> dict[str, object]:
         "optimizer": V1_OPTIMIZER.as_dict(),
         "reporting_seed": V1_REPORTING_SEED,
         "batch_size": V1_BATCH_SIZE,
+        "fit_sampling_rule": V1_FIT_SAMPLING_RULE,
         "families": {
             family: [
                 {
@@ -123,7 +128,7 @@ def v1_training_lock_hash() -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
-V1_TRAINING_LOCK_SHA256 = "ba8c5e381940fd2b31763ecbb0f702a564ae48d9f79f64da1a26d3eb4cc29c44"
+V1_TRAINING_LOCK_SHA256 = "d7a118af2bd02cdb0625602713cf3254f65a8acc06459672a72ff3a48ec22f45"
 
 
 def assert_v1_training_lock() -> None:
