@@ -483,8 +483,11 @@ def run(root: Path, *, output_dir: Path, code_commit: str, preflight_only: bool 
             for s in FUSION_SYSTEM_IDS
         ])
         reversals = pairwise_rank_reversals(clean_rank, values)
+        tau = kendall_tau_b(clean_rank, values)
         q3_conditions[condition_id] = {
-            "kendall_tau_b_vs_clean": kendall_tau_b(clean_rank, values),
+            # Tau-b is mathematically undefined when every compared method is tied.
+            # Preserve that fact as JSON null rather than emitting a non-standard NaN.
+            "kendall_tau_b_vs_clean": float(tau) if np.isfinite(tau) else None,
             "pairwise_rank_reversals": [
                 [FUSION_SYSTEM_IDS[i], FUSION_SYSTEM_IDS[j]] for i, j in reversals
             ],

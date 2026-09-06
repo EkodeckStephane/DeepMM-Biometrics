@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 V1_FINAL_SCRIPT_PATH = Path("scripts/run_v1_final_evaluation.py")
-V1_FINAL_SCRIPT_SHA256 = "6ab5b5e90a8027a56d467bad3cf792d74c7463e5b55c49f2ac913a93e30a88bc"
+V1_FINAL_SCRIPT_SHA256 = "2a63bb8546893d4884c1cbd7a82304a827c7148a33c005483daffdd20848bfee"
 
 
 def assert_v1_final_script_lock(path: Path | None = None) -> None:
