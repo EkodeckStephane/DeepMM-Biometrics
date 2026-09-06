@@ -1,0 +1,11 @@
+V1 Q1-Q3 FINAL CAMPAIGN AUTHORIZATION
+
+Prepared commit: f1596cc42d7f268a685a8a8b66c79b333178a54b
+Training lock: d7a118af2bd02cdb0625602713cf3254f65a8acc06459672a72ff3a48ec22f45
+Selection lock: 83ecd9e4f357babc7e7e70652dc3f7f95c2cf65dacea2c558f4b6c4d656ada14
+Calibration evidence: 047a4a786e5d88364d44227c03a4ae471ba6ff0481e011a72a7dda3295c56eaf
+Final policy: e9701015b541e9c7e4debccd01fd1f32affecc97abaf2996b8cf6c5811adbfb5
+Final runner: 6ab5b5e90a8027a56d467bad3cf792d74c7463e5b55c49f2ac913a93e30a88bc
+Final clean trials: 3b60ce30d0d496c35aefe0bf0b8c48f868cb3befba0c1fdfb52986645293f324
+
+All preflight checks passed. Opening of the final role is authorized exactly once under these locks.
