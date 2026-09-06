@@ -1,6 +1,9 @@
+import runpy
 from pathlib import Path
 
-from scripts.generate_v1_result_assets import generate
+
+ROOT = Path(__file__).resolve().parents[1]
+generate = runpy.run_path(str(ROOT / "scripts" / "generate_v1_result_assets.py"))["generate"]
 
 
 def test_locked_v1_assets_regenerate(tmp_path: Path):

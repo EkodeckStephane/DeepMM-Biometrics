@@ -1,4 +1,9 @@
-from scripts.audit_v1_final_evidence import audit
+import runpy
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+audit = runpy.run_path(str(ROOT / "scripts" / "audit_v1_final_evidence.py"))["audit"]
 
 
 def test_committed_v1_evidence_passes_claim_code_data_audit():
