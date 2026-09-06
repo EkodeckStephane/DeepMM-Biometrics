@@ -5,7 +5,7 @@
 **Calibration-role images read by this campaign:** no.  
 **Final-role images read by this campaign:** no.
 
-The locked campaign completed successfully in GitHub Actions run `33986109443` using the frozen training lock `d7a118af2bd02cdb0625602713cf3254f65a8acc06459672a72ff3a48ec22f45`. The exact JSON evidence is committed at `artifacts/locked/v1_development_training.json`.
+The locked campaign completed successfully in GitHub Actions run `34019887091` using the frozen training lock `d7a118af2bd02cdb0625602713cf3254f65a8acc06459672a72ff3a48ec22f45`. The exact JSON evidence is committed at `artifacts/locked/v1_development_training.json`.
 
 ## Deterministic classical selection scores
 
@@ -27,9 +27,9 @@ Candidate choice follows the predeclared rule: minimum median selection EER acro
 
 | Family | Selected candidate | Parameters | Median EER across seeds | Mean EER across seeds | Reporting-seed EER | Reporting-seed AUC |
 |---|---|---:|---:|---:|---:|---:|
-| D1 score MLP | `d1-h16` | 65 | 0.1763 | 0.1746 | 0.1974 | 0.9121 |
-| D2 feature MLP | `d2-h128-z64` | 139,456 | 0.0526 | 0.0675 | 0.0526 | 0.9741 |
-| D3S quality-aware score gate | `d3s-h16` | 116 | 0.1500 | 0.1500 | 0.1500 | 0.9125 |
+| D1 score MLP | `d1-h16` | 65 | 0.1763 | 0.1746 | 0.1763 | 0.9250 |
+| D2 feature MLP | `d2-h128-z64` | 139,456 | 0.0526 | 0.0675 | 0.1000 | 0.9433 |
+| D3S quality-aware score gate | `d3s-h16` | 116 | 0.1500 | 0.1500 | 0.1500 | 0.9062 |
 
 The fixed reporting seed is `1701`; it was chosen before observing these results. The corresponding selected checkpoint hashes are frozen in `src/deepmm/training/v1_selection_lock.py`.
 
@@ -39,7 +39,7 @@ The selection evidence is encouraging for D2: under the development split it giv
 
 The development evidence is also scientifically useful because it is not uniformly favorable to deep fusion. D1 does not improve on the strongest classical development comparator, and D3S is close to rather than clearly better than C3/C5 on clean selection data. These outcomes are retained; they are not grounds for changing the locked family set.
 
-D1 also shows appreciable seed sensitivity (`d1-h8` ranges from EER 0.1763–0.3000). D2 is stronger but still variable across seeds. The fixed reporting seed and full three-seed sensitivity evidence are therefore both retained.
+D1 also shows seed sensitivity (`d1-h8` ranges from EER 0.1763–0.2000). D2 is stronger but still variable across seeds. The fixed reporting seed and full three-seed sensitivity evidence are therefore both retained.
 
 ## Next hard gate
 

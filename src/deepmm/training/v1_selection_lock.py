@@ -12,14 +12,14 @@ import hashlib
 import json
 
 
-V1_DEVELOPMENT_RUN_ID = 33986109443
-V1_DEVELOPMENT_HEAD_SHA = "e0e41d125eff126fa3a0a583623dfa069a0b3c83"
-V1_DEVELOPMENT_ARTIFACT_ID = 9975210497
+V1_DEVELOPMENT_RUN_ID = 34019887091
+V1_DEVELOPMENT_HEAD_SHA = "8055c03363ee98e8ca8038ccdecfb045cfe9cdb6"
+V1_DEVELOPMENT_ARTIFACT_ID = 9985137496
 V1_DEVELOPMENT_ARTIFACT_ZIP_SHA256 = (
-    "1070570c085061da6656b70fe9034232e4973f82dba6efb87a113c01ec9fb7e7"
+    "49b0756ee49b026eaa06f7ac625e4f47010b21c97ac772e87202025f0243c7db"
 )
 V1_COMMITTED_DEVELOPMENT_JSON_SHA256 = (
-    "23b9babe0e8503273e27ab06e41168b5978c576691d82f25a22c092f623c4c79"
+    "2818c4f84b083b6d9a0efb4e32151a3e2f00c6d646197f1230f0a9e03a206ecf"
 )
 V1_TRAINING_LOCK_SHA256 = (
     "d7a118af2bd02cdb0625602713cf3254f65a8acc06459672a72ff3a48ec22f45"
@@ -45,9 +45,9 @@ V1_SELECTED_MODELS = {
     "D1": {
         "candidate_id": "d1-h16",
         "expected_checkpoint_hash": (
-            "19c603fcf1cbfb4e2ae78a7f1621cc34ee594b335689b124f67653c659357e00"
+            "6bc9eff9e6ac58a5b533ba23dc8f6af77a003f6382bd1ab918e9e09edf1aa997"
         ),
-        "best_epoch": 3,
+        "best_epoch": 2,
         "trainable_parameters": 65,
         "selection_eer_median": 0.1763157894736842,
         "selection_eer_mean": 0.17456140350877192,
@@ -55,9 +55,9 @@ V1_SELECTED_MODELS = {
     "D2": {
         "candidate_id": "d2-h128-z64",
         "expected_checkpoint_hash": (
-            "ac046ce1b3ff2c45c5ccef81b4479f20f81e5113c590d50c2850fccfa705f201"
+            "055c07b041f655b15e89a672420ff01c6a8f2b2df48f04cd33d2e12793873b48"
         ),
-        "best_epoch": 30,
+        "best_epoch": 10,
         "trainable_parameters": 139456,
         "selection_eer_median": 0.05263157894736842,
         "selection_eer_mean": 0.06754385964912281,
@@ -65,7 +65,7 @@ V1_SELECTED_MODELS = {
     "D3S": {
         "candidate_id": "d3s-h16",
         "expected_checkpoint_hash": (
-            "e9a407f6f8d2c81479b06d03d240810cdba06e8b3f731395a3d1d37ab68bcab1"
+            "fc1987af6ff80d2f19b907857aa300a09fefa21e9b2787590f66462987d65e34"
         ),
         "best_epoch": 1,
         "trainable_parameters": 116,
@@ -101,7 +101,7 @@ def v1_selection_lock_hash() -> str:
 
 
 V1_SELECTION_LOCK_SHA256 = (
-    "12e8a4b64ed68b348f2bd7481d2eea317a5ba5cc4a5518a20fc203c93d5c47e1"
+    "83ecd9e4f357babc7e7e70652dc3f7f95c2cf65dacea2c558f4b6c4d656ada14"
 )
 
 
