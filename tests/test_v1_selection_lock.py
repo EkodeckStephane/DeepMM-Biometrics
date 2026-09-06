@@ -10,7 +10,7 @@ from deepmm.training.v1_selection_lock import (
 
 def test_v1_selection_lock_is_exact():
     assert_v1_selection_lock()
-    assert V1_DEVELOPMENT_RUN_ID == 33986109443
+    assert V1_DEVELOPMENT_RUN_ID == 34019887091
     assert V1_REPORTING_SEED == 1701
     assert v1_selection_lock_hash() == V1_SELECTION_LOCK_SHA256
 
