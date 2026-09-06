@@ -1,0 +1,9 @@
+contrast,system_a,system_b,delta
+equal fusion vs best unimodal,C1,U-FP,0.0008474350787568419
+best classical vs best unimodal,C4,U-FP,-0.09822387120571072
+deep vs best classical score fusion,D1,C2,0.0010746224641510205
+deep vs classical feature fusion,D2,C4,0.07498529768465131
+deep vs classical quality-aware fusion,D3S,C5,-0.0032173413179705235
+headline DL family vs best classical,D1,C4,0.09836756472741112
+headline DL family vs best classical,D2,C4,0.07498529768465131
+headline DL family vs best classical,D3S,C4,0.09894060141631342

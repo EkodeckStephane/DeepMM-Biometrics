@@ -1,6 +1,6 @@
-# Implementation Plan v1.0
+# Implementation Plan v1.1
 
-Gate 4 is closed at **PASS-POSITIONING**. Implementation remains dataset-conscious: infrastructure and low-capacity controlled baselines may advance now, while high-capacity/token-specific architectures wait for the selected data and encoder regime.
+Gate 4 is closed at **PASS-POSITIONING** and the bounded V1 Q1--Q3 campaign is complete. This plan records the implemented evidence chain and the remaining article/V2 boundary.
 
 ## Work package A — evaluation core
 
@@ -17,7 +17,7 @@ Implemented and tested:
 - immutable split/trial/score hashing;
 - run-manifest provenance.
 
-**Status:** **CORE IMPLEMENTED; external calibration parity/data-dependent inference locks remain.** Issue #6 still blocks final calibration claims, and issue #5 blocks a convenient one-way bootstrap for dense symmetric impostor protocols.
+**Status:** **V1 CORE COMPLETE.** Held-out calibration is executed. Dense symmetric impostor trials and unresolved person mapping still exclude person-population inference; this is a scope boundary, not an omitted V1 calculation.
 
 ## Work package B — common evidence/model interfaces
 
@@ -37,7 +37,7 @@ Still data-dependent:
 - token/local-feature contract for a possible D4 attention/Transformer representative;
 - final fusion-only cost-accounting instrumentation on target hardware.
 
-**Status:** **SCORE/EMBEDDING CONTRACT IMPLEMENTED; TOKEN/COST SUBCONTRACT OPEN.** See `docs/fusion_evidence_contract.md` and issue #7.
+**Status:** **V1 SCORE/EMBEDDING AND COST CONTRACTS COMPLETE.** Token-level methods remain outside confirmatory V1.
 
 ## Work package C — classical baselines
 
@@ -50,7 +50,7 @@ Implemented:
 
 Synthetic sanity tests enforce deterministic behavior, correct modality dimensions, held-out transform semantics and quality handling.
 
-**Status:** **IMPLEMENTED FOR PILOT.** Final parameter/tuning fairness is frozen after the real data dimensionality and train/development counts are known.
+**Status:** **IMPLEMENTED AND EVALUATED IN V1.** Final parameters and tuning opportunities were frozen before final access.
 
 ## Work package D — deep fusion heads
 
@@ -62,7 +62,7 @@ Gate-4-locked implementation order:
 
 Implementation will use a common family API and frozen search budgets. The goal is to compare families, not to maximize architecture count.
 
-**Status:** **NEXT DATASET-AGNOSTIC CODING TARGET = common neural-head interface and D1/D2/D3 skeletons.** No final training/tuning yet.
+**Status:** **D1/D2/D3S IMPLEMENTED, SELECTED, CALIBRATED, AND FINALLY EVALUATED.** D3F/D4 remain outside the confirmatory V1 family set.
 
 ## Work package E — robustness harness
 
@@ -76,7 +76,7 @@ Planned modality-aware corruptions behind one deterministic API:
 
 Severity parameters remain configuration values and will be frozen before final test inspection.
 
-**Status:** **API can be implemented next; exact corruption families/severities remain modality/data dependent.**
+**Status:** **V1 BLUR/CONTRAST PLAN IMPLEMENTED AND EXECUTED.** Other corruption families remain possible V2 extensions, not post-final V1 additions.
 
 ## Work package F — missing-modality harness
 
@@ -88,7 +88,7 @@ Planned:
 
 Representation reconstruction/generation remains secondary unless the final SOTA/data/compute regime justifies a faithful comparison.
 
-**Status:** **MASK CONTRACT IMPLEMENTED; operational policies/training axis OPEN.**
+**Status:** **M0 FALLBACK IMPLEMENTED AND EXECUTED.** All fusion families tie when reduced to the same available unimodal evidence; a learned missingness advantage is not claimed.
 
 ## Work package G — reproducibility and evidence generation
 
@@ -99,14 +99,14 @@ Implemented infrastructure already supports:
 - raw ordered per-trial score validation;
 - failure-state semantics.
 
-Still required for real experiments:
-- environment snapshot;
-- checkpoint/model hash;
-- target-hardware timing/cost output;
-- generated aggregate-result records;
-- table/figure regeneration scripts.
+Completed for V1:
+- environment and workflow provenance;
+- checkpoint/model hashes;
+- fusion-only timing/cost output;
+- ordered trials, raw/calibrated scores and aggregate records;
+- deterministic CSV, LaTeX-table and PGFPlots regeneration.
 
-**Status:** **ADVANCED INFRASTRUCTURE; REAL-RUN ARTIFACTS OPEN.**
+**Status:** **V1 EVIDENCE PACKAGE COMPLETE.**
 
 ## Work package H — automated scientific audits
 
@@ -119,24 +119,20 @@ Active/pre-final:
 - claim/evidence manifest planning.
 
 Final campaign/submission:
-- numerical cross-check;
+- numerical cross-check (**complete for the V1 evidence package**);
 - claim-level reference audit and correction/retraction refresh;
 - Senior Reviewer prescreen;
 - Q1 Gates 1–10 audit.
 
-## Immediate execution order after Gate 4
+## Immediate execution order after V1 evidence closure
 
-1. finish common neural-head interfaces without committing to a high-capacity architecture;
-2. implement deterministic robustness and missingness harness APIs;
-3. build an end-to-end **synthetic pipeline test** that exercises trials → evidence → fusion → metrics → calibration → paired statistics → Pareto/rank output, explicitly marked as CI evidence only;
-4. when ready, screen directly accessible genuine multimodal datasets against the frozen inclusion contract;
-5. lock real data, modality pair/subset, upstream encoders and trial topology;
-6. resolve issues #5, #6 and #7 from the actual data/protocol;
-7. run a pilot on development data only;
-8. freeze hyperparameter budgets, stress severities, seeds/runs and confirmatory family list;
-9. only then authorize final-test evaluation.
+1. integrate the generated V1 tables/figures and drafted Results/Discussion into the complete article;
+2. perform the final claim-level reference audit and submission-time SOTA refresh;
+3. run the Senior Reviewer and title/number/terminology consistency audits;
+4. retain G10 as NO-GO until those editorial checks pass;
+5. obtain/audit the complete NUPT-FPV archive for independent V2 replication with verified person mapping and dependence-aware inference.
 
 ## Current implementation boundary
 
-**GO:** interfaces, deterministic harnesses, synthetic end-to-end validation, dataset-access screening, development-only pilot preparation.  
-**NO-GO:** final-test model selection, post-hoc family additions, token/Transformer privilege, or image-specific severity choices before data/protocol lock.
+**GO:** bounded V1 reporting and independent V2 preparation.
+**NO-GO:** post-final V1 model/configuration/condition changes, universal DL-superiority claims, person-population inference from the public identifiers, or complete-dataset claims from the subset.

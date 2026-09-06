@@ -1,0 +1,51 @@
+\section{Discussion}
+\label{sec:discussion}
+
+The central V1 result is negative for universal deep-fusion superiority. A
+simple, controlled classical feature concatenation method (C4) produced the
+lowest clean ROCCH-EER and retained first rank under every predeclared image
+degradation. The compact deep feature model D2 was the strongest neural family
+and exhibited a favorable robustness-loss point estimate, yet did not close the
+clean discrimination gap to C4. Likewise, D1 did not beat the strongest
+classical score fusion, while D3S only narrowly improved on its quality-aware
+classical counterpart. These outcomes are retained because they directly answer
+Q1--Q3 under matched final trials and frozen selection decisions.
+
+The Q2 frontier explains why a single scalar ranking would be misleading.
+Feature methods bought lower error at materially higher fusion cost, whereas
+small score combiners remained non-dominated through latency and parameter
+economy. Frontier membership is descriptive for the four predeclared dimensions
+and is not evidence that a method would dominate for a particular operational
+utility or target device.
+
+The Q3 findings separate winner stability from full-ranking stability. C4's
+first position survived every locked blur and contrast condition, but the
+ordering among the remaining families was condition-dependent. Under complete
+loss of one modality, the frozen fallback intentionally eliminates method
+differences. This is operationally predictable behavior, but it cannot support
+a claim that the learned gates exploit missingness better than classical
+systems.
+
+\subsection{Limitations and V2 boundary}
+
+V1 uses 800 images associated with 20 public biometric-instance identifiers,
+not the complete 33,600-image NUPT-FPV archive. Public documentation does not
+establish how these identifiers map to independent human volunteers. The dense
+all-versus-all impostor construction also makes a one-way identity bootstrap an
+inadequate substitute for person-level inference. For these reasons V1 reports
+point estimates only; the results cannot be generalized to a human population,
+the full database, other sensors, demographic groups, presentation attacks, or
+deployment conditions.
+
+Only the frozen blur, contrast, and complete-modality-absence conditions were
+tested. Noise, compression, occlusion, cross-dataset transfer, security,
+fairness, and end-to-end encoder variation remain outside the confirmatory V1
+scope. Fusion-only timings were measured under the recorded workflow
+environment and should not be treated as device-independent latency claims.
+
+V2 should preserve the Q1--Q3 comparison and acquire the complete archive with
+verified person-to-finger mapping. Person-disjoint partitions and an appropriate
+dependence-aware inferential design can then quantify uncertainty and test
+whether the observed classical advantage and condition-wise winner stability
+replicate at population-relevant scale. V2 is a replication/generalization
+stage, not an opportunity to retune V1 after observing its final scores.

@@ -1,0 +1,72 @@
+\section{Results}
+\label{sec:results}
+
+All values in this section were generated from the locked V1 final artifact. The
+evaluation contains 4,000 fixed verification trials (200 genuine and 3,800
+impostor) in each of 15 conditions. The 20 identity labels denote public
+biometric instances; they are not asserted to be independent people. We
+therefore report bounded benchmark point estimates and do not attach
+person-population confidence intervals or hypothesis tests.
+
+\subsection{Q1: contribution of deep fusion}
+
+Table~\ref{tab:v1-clean-results} and Figure~\ref{fig:v1-clean-eer} summarize the
+clean condition. Classical feature concatenation (C4) achieved the lowest
+ROCCH-EER, 0.2115, compared with 0.3097 for the best unimodal system (U-FP), an
+absolute reduction of 0.0982. Equal score fusion (C1) did not improve on U-FP
+(0.3105 versus 0.3097).
+
+The best deep family was feature fusion D2 (0.2865), but it remained 0.0750
+above the matched classical feature method C4. Within the score stratum, D1
+(0.3098) did not improve over C2 (0.3088). The quality-aware deep gate D3S
+(0.3104) was slightly lower than C5 (0.3136), by 0.0032, but both were worse
+than C4. Thus V1 supports a benefit for multimodal classical feature fusion on
+this benchmark, not a general benefit for deep fusion.
+
+\input{results/v1/tables/table_clean_metrics}
+\input{results/v1/figures/fig_clean_rocch_eer}
+
+\subsection{Q2: performance--robustness--calibration--cost trade-off}
+
+The locked four-dimensional point-estimate Pareto analysis identifies C1, C2,
+C4, D1, and D2 as non-dominated (Table~\ref{tab:v1-q2-pareto}). C4 combines the
+lowest clean error with the strongest condition-wise discrimination, but its
+fusion-only median latency was 2.930~ms. D2 required 1.928~ms and 139,456
+trainable parameters; it had the smallest mean stress ROCCH-EER loss (0.0030)
+among the reported families, but worse clean error than C4. Low-capacity score
+systems remained on the frontier because of their much smaller latencies.
+Consequently no single deep family is the unqualified best trade-off, and no
+point-estimate frontier membership is interpreted as uncertainty-supported
+dominance.
+
+\input{results/v1/tables/table_q2_pareto}
+\input{results/v1/figures/fig_q2_eer_latency_pareto}
+
+\subsection{Q3: degradation and modality absence}
+
+C4 had the lowest ROCCH-EER in clean data and in every one of the 12 locked
+blur/contrast conditions. Rankings below the winner did change: Kendall's
+$\tau_b$ against the clean ranking ranged from 0.2143 to 0.8571 across those
+conditions, with 2--11 pairwise reversals. The most severe fingerprint blur
+produced both the lowest agreement ($\tau_b=0.2143$) and 11 reversals.
+
+Under the frozen M0 missing-modality policy, every fusion family falls back to
+the same available unimodal evidence. All eight fusion methods therefore tie at
+0.3097 when finger vein is missing and at 0.3441 when fingerprint is missing.
+Kendall's $\tau_b$ is mathematically undefined for these all-tie rankings and is
+stored as JSON \texttt{null}; the serialized row order is only a deterministic
+tie break. These conditions validate the declared fallback, not a learned
+missing-modality advantage.
+
+\input{results/v1/figures/fig_q3_conditionwise_eer}
+
+\subsection{Calibration transfer}
+
+Clean-condition affine calibrators were fitted only on the calibration split
+and transferred unchanged to final conditions. Matching-condition
+recalibration is reported as a diagnostic secondary analysis and does not
+replace the primary transfer result. Figure~\ref{fig:v1-calibration-transfer}
+shows that calibration behavior depends strongly on this choice; discrimination
+metrics alone are therefore not used to claim calibration improvement.
+
+\input{results/v1/figures/fig_calibration_transfer}

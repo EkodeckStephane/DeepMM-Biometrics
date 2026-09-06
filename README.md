@@ -106,15 +106,18 @@ Missing evidence is represented explicitly; `NaN`, infinity and sentinel values 
 
 Final corruption operators and severities remain data/modality dependent. Their condition IDs, targets, parameters and severity order will be frozen and hashed before final-test inspection. Missing-modality handling is a second experimental axis rather than automatically a separate fusion family.
 
-## Dataset direction — P1 access candidate selected
+## Dataset and completed V1 boundary
 
-**NUPT-FPV (fingerprint + finger vein) is the current P1 access candidate. It is not yet the locked primary dataset.** The public project documentation reports 140 human volunteers, six fingers per volunteer, 20 acquisitions per finger across two sessions and 33,600 images in total. The final scientific lock requires obtaining the official archive and independently auditing its identity/session/capture topology and access terms.
+V1 is complete on the official public NUPT-FPV fingerprint/finger-vein subset:
+800 images associated with 20 public biometric-instance identifiers. Those
+identifiers are not described as independent people because the public material
+does not establish their mapping to the volunteers in the complete archive.
 
-For a multi-finger dataset, the outer biological grouping unit is the **human volunteer**, not the finger. All fingers from one volunteer must remain in the same train/development/calibration/test partition. `person_id` and nested `instance_id` are therefore separate fields in the dataset manifest contract.
-
-Current fallback/generalization order is recorded in `docs/dataset_feasibility.md` and `docs/dataset_lock_decision_v0.1.md`. Restricted raw biometric data are never committed unless source terms explicitly permit redistribution.
-
-After lawful access, a local metadata manifest can be audited with `scripts/audit_dataset_manifest.py`; `data/manifest_template.csv` documents the required schema. The tool validates multimodal/session completeness and emits a deterministic dataset-manifest SHA-256 without reading biometric pixels.
+The full 33,600-image archive remains V2. It requires verified person-to-finger
+mapping, person-disjoint partitions, and a dependence-aware inferential design.
+V1 therefore reports bounded public-instance point estimates rather than
+person-population confidence intervals or hypothesis tests. Restricted raw
+biometric images are not committed.
 
 ## Literature traceability
 
@@ -135,6 +138,8 @@ DeepMM-Biometrics/
 ├── data/                     # metadata schema only; no raw restricted biometrics
 ├── docs/                     # protocol, SOTA, Gates, dataset/access contracts
 ├── literature/               # verified registry + BibTeX + Gate-4 search log
+├── manuscript/sections/      # V1 Results and Discussion/limitations source
+├── results/v1/               # generated CSV, LaTeX tables and PGFPlots figures
 ├── scripts/                  # literature, documentation and dataset-manifest audits
 ├── src/deepmm/
 │   ├── calibration/          # held-out score calibration
@@ -154,18 +159,30 @@ DeepMM-Biometrics/
 | Gate | Status |
 |---|---|
 | G1 — scientific object | **PASS-DESIGN** |
-| G2 — claim/evidence alignment | **PASS-DESIGN / evidence open** |
-| G3 — final scientific narrative | **rule fixed** |
+| G2 — claim/evidence alignment | **PASS-V1 (bounded claims)** |
+| G3 — final scientific narrative | **V1 Results/Discussion drafted; full article open** |
 | G4 — current SOTA / novelty | **PASS-POSITIONING — 2026-09-05** |
-| G5 — experimental validity | **P1 ACCESS CANDIDATE SELECTED / archive & data lock open** |
-| G8 — reproducibility | **ADVANCED INFRASTRUCTURE / real evidence open** |
+| G5 — experimental validity | **PASS-V1 EXECUTION / population inference excluded** |
+| G8 — reproducibility | **PASS-V1 EVIDENCE PACKAGE** |
 | G9 — bibliography/editorial hygiene | **OPEN / machine consistency active** |
 | G10 — submission readiness | **NO-GO** |
 
-## Immediate next boundary
+## V1 result package
 
-**GO:** obtain NUPT-FPV through the official research route, audit its delivered archive, complete dataset-agnostic neural training infrastructure, freeze person-disjoint development/calibration/test logic after topology verification, and run non-final pilots without final-test access.
+The final campaign ran on commit
+`480c1f4e67757e4789b270b5ea12ecd0e9eac16b` and contains 15 conditions with
+4,000 trials each. C4 has the lowest clean ROCCH-EER (0.2115); D2 is the best
+deep family (0.2865) but does not beat C4. C4 remains first in all 12 frozen
+blur/contrast conditions. Under the M0 missing-modality policy, fusion methods
+tie because each receives the same available unimodal evidence.
 
-**NO-GO:** confirmatory final-test model selection, post-hoc family additions, treating fingers as independent human subjects, unvalidated dense-trial inference, test-fitted calibration, token/Transformer information privilege, or final corruption severities before the real data/protocol lock.
+Run `PYTHONPATH=src python scripts/audit_v1_final_evidence.py` to validate the
+committed provenance/trial/score chain and
+`PYTHONPATH=src python scripts/generate_v1_result_assets.py` to regenerate the
+tables and PGFPlots figures. See `results/v1/README.md` and
+`docs/v1_claim_code_data_audit.md`.
 
-No scientific biometric performance result is currently claimed.
+**GO:** complete the full article around the bounded V1 findings and prepare V2
+as an independent replication/generalization stage. **NO-GO:** post-final V1
+retuning, universal DL-superiority wording, person-population inference, or
+claims about the complete archive from this subset.
