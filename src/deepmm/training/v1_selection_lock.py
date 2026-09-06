@@ -101,7 +101,7 @@ def v1_selection_lock_hash() -> str:
 
 
 V1_SELECTION_LOCK_SHA256 = (
-    "729ca6603d2e6989a6d8c696dd6e777a001492a7dcc292a031db09690813f029"
+    "12e8a4b64ed68b348f2bd7481d2eea317a5ba5cc4a5518a20fc203c93d5c47e1"
 )
 
 
