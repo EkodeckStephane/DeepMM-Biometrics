@@ -154,7 +154,12 @@ def _reconstruct_selected_models(
 
     for family in ("D1", "D2", "D3S"):
         candidate = _selected_candidate(family)
-        model = _build_model(family, candidate, embedding_dim)
+        model = _build_model(
+            family,
+            candidate,
+            embedding_dim,
+            seed=V1_REPORTING_SEED,
+        )
         if family == "D2":
             train_batches = _feature_batch_factory(fit_neural, balanced_indices)
             selection_batches = _feature_batch_factory(selection_neural, selection_indices)

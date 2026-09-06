@@ -34,7 +34,7 @@ from deepmm.fusion.neural_torch import (
 )
 from deepmm.metrics import eer, roc_auc
 from deepmm.training.contracts import FinalTestFirewall
-from deepmm.training.torch_fit import fit_binary_score_model
+from deepmm.training.torch_fit import fit_binary_score_model, set_torch_seed
 from deepmm.training.v1_public_config import (
     V1_BATCH_SIZE,
     V1_NEURAL_BUDGET,
@@ -242,7 +242,20 @@ def _selection_scores(model: torch.nn.Module, family: str, data: dict[str, Any])
     return scores.detach().cpu().numpy().astype(np.float64)
 
 
-def _build_model(family: str, candidate: dict[str, Any], embedding_dim: int) -> torch.nn.Module:
+def _build_model(
+    family: str,
+    candidate: dict[str, Any],
+    embedding_dim: int,
+    *,
+    seed: int,
+) -> torch.nn.Module:
+    # Model parameters are initialized before fit_binary_score_model() is entered.
+    # Seed here so the same declared seed yields the same initial state in every
+    # workflow, independently of earlier model construction in the process.
+    set_torch_seed(
+        seed,
+        deterministic_algorithms=V1_OPTIMIZER.deterministic_algorithms,
+    )
     common = {
         "activation": candidate["activation"],
         "dropout": candidate["dropout"],
@@ -351,7 +364,12 @@ def run(root: Path) -> dict[str, Any]:
             candidate_runs: list[dict[str, Any]] = []
             trainable_parameters = None
             for seed in V1_NEURAL_BUDGET.seeds:
-                model = _build_model(family, candidate, encoder.spec.embedding_dim)
+                model = _build_model(
+                    family,
+                    candidate,
+                    encoder.spec.embedding_dim,
+                    seed=seed,
+                )
                 params = parameter_count(model)
                 trainable_parameters = params if trainable_parameters is None else trainable_parameters
                 if params != trainable_parameters:
