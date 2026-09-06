@@ -45,7 +45,7 @@ V1_SELECTED_MODELS = {
     "D1": {
         "candidate_id": "d1-h16",
         "expected_checkpoint_hash": (
-            "89859538190356025c34b8e07f2b61efac99a0aa6dd6df55029ee1995b9abc82"
+            "19c603fcf1cbfb4e2ae78a7f1621cc34ee594b335689b124f67653c659357e00"
         ),
         "best_epoch": 3,
         "trainable_parameters": 65,
