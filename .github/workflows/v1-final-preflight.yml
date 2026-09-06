@@ -1,0 +1,65 @@
+name: v1-final-preflight
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "artifacts/locked/v1_calibration.json"
+      - "src/deepmm/calibration/v1_calibration_lock.py"
+      - "src/deepmm/evaluation/v1_final_execution_lock.py"
+      - "scripts/run_v1_final_evaluation.py"
+      - "tests/test_v1_calibration_lock.py"
+      - "tests/test_v1_final_execution_lock.py"
+      - ".github/workflows/v1-final-preflight.yml"
+      - ".github/workflows/v1-final-evaluation.yml"
+  workflow_dispatch:
+
+jobs:
+  no-final-data-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout DeepMM-Biometrics
+        uses: actions/checkout@v4
+        with:
+          path: deepmm
+
+      - name: Checkout official NUPT-FPV public subset
+        uses: actions/checkout@v4
+        with:
+          repository: REN382333467/NUPT-FPV
+          ref: main
+          path: external/NUPT-FPV
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: deepmm/pyproject.toml
+
+      - name: Install pinned CPU stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "numpy==1.26.4"
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.2.2 torchvision==0.17.2
+          python -m pip install "Pillow>=10,<13" "scikit-learn>=1.4,<1.9" "pytest>=8,<10"
+          python -m pip install -e deepmm --no-deps
+
+      - name: Validate immutable final locks
+        working-directory: deepmm
+        run: |
+          pytest \
+            tests/test_v1_training_lock.py \
+            tests/test_v1_selection_lock.py \
+            tests/test_v1_final_policy_lock.py \
+            tests/test_v1_stress_plan.py \
+            tests/test_v1_calibration_lock.py \
+            tests/test_v1_final_execution_lock.py
+
+      - name: Preflight without final-role generation or image access
+        working-directory: deepmm
+        run: |
+          python scripts/run_v1_final_evaluation.py \
+            ../external/NUPT-FPV \
+            --preflight-only

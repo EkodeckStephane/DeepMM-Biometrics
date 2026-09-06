@@ -1,0 +1,2212 @@
+{
+  "calibration_C": 1.0,
+  "calibration_evidence_sha256": "047a4a786e5d88364d44227c03a4ae471ba6ff0481e011a72a7dda3295c56eaf",
+  "calibration_trial_manifest_sha256": "f6104160a138bccebc1f4b03fd5012be1712027d41c44ad5f916a8c34639ca88",
+  "conditions": {
+    "clean": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "77bf79b468dec0ad8917f4a20c0b22d168d40370fc29bcb429717e3a59d6d461",
+          "effective_target_prior": 0.5,
+          "intercept": -2.844093568358027,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "900bea6452e131c34ae7cb5bf9674ba5116afcc15ea469e150be3047a149600b",
+          "slope": 3.8615440475432328,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "c5d1315d8bdcc9a612f7e91aab7b1e1484ac5a14329b28da1dd8ac063838fe82",
+          "effective_target_prior": 0.5,
+          "intercept": -3.102588122785673,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "b005c3962bffc26c43361763184a2481b766d68dd0dab2db3c956fb224222de7",
+          "slope": 4.08066291578867,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "69a2af62b10c61a2c5abbd98b698a90da65d98b4447fa531ffdce68bf8a5e66e",
+          "effective_target_prior": 0.5,
+          "intercept": 2.7472622434438945,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "0cb2a8bc3f03bae5eaea94d8bd350fa9e69859d3e0ab347fb510c46938497cf6",
+          "slope": 1.1131989961594686,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "4b41087664c162c9f31d77052965734a96b7d2f808f1c563cca235882623ee9d",
+          "effective_target_prior": 0.5,
+          "intercept": -1.5883240840853767,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "bc493443b58eafcb13388f3babf0114314b7f80ddbfc5620b6883148c94bd75b",
+          "slope": 7.776223229450294,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "6f194e125499083c5d81e6b4632b37aa76d95893fe445029db077fc7ed10916b",
+          "effective_target_prior": 0.5,
+          "intercept": -3.7219736301713806,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "132af6835c324f52cf2b26c77e1709aac010c66e6e499540479a0125f4a00381",
+          "slope": 4.510551299532475,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "2af3f1d48d993d0bd898b51d6b64e898c54930510d98699741e8266daecdbd06",
+          "effective_target_prior": 0.5,
+          "intercept": -1.7297348320449704,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "a16ae8dffa7d21529f98d353c0a9f486f0c471bee2d59fea13f9b6ff37174d21",
+          "slope": 6.932102404825738,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "df5bc5df18699ece926eb2348771f0e8100b3255cd6e169caeba6547f9f74e52",
+          "effective_target_prior": 0.5,
+          "intercept": -3.6573146852949456,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "76ff0b433e29b23801e98a4eefb6e4c546542012a227f03b7420a642ee496829",
+          "slope": 5.315242242537501,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "02ed3d88a0b47352e1474eefca5ea52725370abf4e1563ed170c13bf24a1837d",
+          "effective_target_prior": 0.5,
+          "intercept": -2.587881499022946,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "c5032fe66b253d7e2bc77dc823fd4e572d633237a3fc32ccc0c5543b519304d9",
+          "slope": 3.5845928916301655,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "clean",
+        "kind": "clean",
+        "operator": "none",
+        "parameters": {},
+        "severity_rank": 0,
+        "target_modalities": []
+      },
+      "trial_manifest_sha256": "f6104160a138bccebc1f4b03fd5012be1712027d41c44ad5f916a8c34639ca88"
+    },
+    "finger_vein-blur-1": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "f91d4019858c75800e7f6a21190cf812a9e65c76257185503e7715349390e629",
+          "effective_target_prior": 0.5,
+          "intercept": -1.9364351142966851,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ec53cfaf2e4589a2bc78d2e81b1117600d899ab8e0bbecc8ce980f59c27fe46a",
+          "slope": 4.191456074325643,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "adfc937fcaa5be9a0ed396f73ee8b2c2292e05124d8ea058f27e4dbf9254bb5d",
+          "effective_target_prior": 0.5,
+          "intercept": -2.363902014775732,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "6f5be0117d9adead6d54977b99ee0249fe827a0eed7e437451c0c4a228db1469",
+          "slope": 4.353291328602146,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "85c758ddd50aa2dc8e5426eaf3ce0d987d6795a2f8086517cbe65894407c93f3",
+          "effective_target_prior": 0.5,
+          "intercept": 4.555197843723325,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "072760999420c38b96aecf1da0706ec51dcef1349ae09c24d3687fd7aa223c07",
+          "slope": 1.2555860727121506,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "53cc4e552a2c20ad70611438eb0040d34822e502a66d580af8845acc97365411",
+          "effective_target_prior": 0.5,
+          "intercept": -1.4496603560146546,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "15517df33d7f365c177a2fd1dd4445c7260f5d6a68f0f69db62d13a8c69ad2c8",
+          "slope": 7.664662097034261,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "2d8cc035f7825332d14dfacff77e264b4d0c3fbb5efafffc657c9484211b5ed4",
+          "effective_target_prior": 0.5,
+          "intercept": -2.8366947857881146,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "f6f6701969c48451e47d49a3a76dc627714c3b1b2101ed7033d9082069e04410",
+          "slope": 4.224636751063115,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "a8ec365125fa074024d46e3756356c3563550ec01b80ae2554b52a11f7a28b2f",
+          "effective_target_prior": 0.5,
+          "intercept": -1.4450809726338343,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ff972b1bfed53dcb8ebba23329105b352d215787378ee42dca8986cc4ecddf30",
+          "slope": 6.958689194139885,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "d463f433312f5d7f05cc47f613f623396d3c34b06ca458b6940e0a39c108f548",
+          "effective_target_prior": 0.5,
+          "intercept": -3.634507761355289,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "b59fcf3586458bec29e9476e9facd63afbc143d0630e51bc729f3f0be0ba6719",
+          "slope": 5.359933964383694,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "3407b5c39daa1661118a21f7aff819e03c384949f22bfa674f059ab00dc51313",
+          "effective_target_prior": 0.5,
+          "intercept": -1.5279442139996835,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "371fa5e79b37fadfb1f24c3cb31cb0ed1c4de20b208357d728094c89524d1eaa",
+          "slope": 3.9007781354584585,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "ebb2549025d33d7982706591bdf42f24e11fd6f685cefbdf20401fc12403c9c0",
+          "effective_target_prior": 0.5,
+          "intercept": -3.7335217537808836,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ed85a4a7ffde9170f5f8d9a7a9e99971871f84b5449729a6fbadc366da0c7bae",
+          "slope": 4.092341738638671,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "finger_vein-blur-1",
+        "kind": "corruption",
+        "operator": "gaussian_blur",
+        "parameters": {
+          "radius": 1.0,
+          "scope": "probe_only"
+        },
+        "severity_rank": 1,
+        "target_modalities": [
+          "finger_vein"
+        ]
+      },
+      "trial_manifest_sha256": "185a97e465c6a00c71814bacd8de6573da8368393bf148dc5bf2eec8bb76be4d"
+    },
+    "finger_vein-blur-2": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "a678941aa3f9798544268c50760a0ae25e3199e200a43df957b0eeeaf20ba643",
+          "effective_target_prior": 0.5,
+          "intercept": 1.922464746635742,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "6a2d21c5de7daad74a38d99be990b0f8c7ade92a29f2f9d15af6836aaaf8feea",
+          "slope": 3.712177939775513,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "a0d792a9f96dd5e8fbb6360224485d49af75b9deb22a6edd7cd20e6931689dfd",
+          "effective_target_prior": 0.5,
+          "intercept": 0.9444144383142208,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "43aedab5360e4d1c079e78ef911ee9a97ceb444065c4d065c511985d313c5750",
+          "slope": 3.828589070831292,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "1788d3f0e30a836442400efc292527f053d5c3f0326d38e48e2ef213b38e204b",
+          "effective_target_prior": 0.5,
+          "intercept": 8.25879262634736,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "17fef570075ec262048c0246d326dde7bea1e399e3942aece11d05ea7d99eb34",
+          "slope": 1.0645459595398017,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "36694584a4bd24d9472ff530654bb3b7955c298631b589f8817da15a36f71c11",
+          "effective_target_prior": 0.5,
+          "intercept": -1.0373102679876287,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "0e1b51e61f9c00945768a832ef1f0633485f4b6ebed4abcde82fb6aed196edaf",
+          "slope": 7.709357862921211,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "283824c813e1256c3a2dc6be92698c4ec19b0e28feccfdfd137895bb528d0642",
+          "effective_target_prior": 0.5,
+          "intercept": -0.03966123764003564,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "2d16432473b31eae1406f45550b3609f56af953d55516c30bd7d591fe2e15eb2",
+          "slope": 1.8094309975947185,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "c4f7850091e7ee9841754610f5cb4942dcd6553e25e314f660e4770fb3535016",
+          "effective_target_prior": 0.5,
+          "intercept": -0.9395163991027152,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d935d9f4abc20a65b0d2efae44922728db9ffc7f5018825031d3c6c208c1ce81",
+          "slope": 6.062238004375687,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "c70944db12cfdcd265a7502b147a53a5e23d46ee17549d5c6af8ed6f7641862a",
+          "effective_target_prior": 0.5,
+          "intercept": -3.7216008945784926,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "93cfead6afd68ade42f04c78c7340b7111981953787a4613f4209147603635ca",
+          "slope": 5.455682797434549,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "6cabb4200402fd741d5b5434b59d51109a87310c834b9beed4919df8061d13c4",
+          "effective_target_prior": 0.5,
+          "intercept": 2.6268379749846362,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "9c80d9ccc43124f7aa80940115eddaa4810558d559a607d72eef94a60ad6a85c",
+          "slope": 3.4050111996423107,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "402e298be2497d429a29fd38bc4039a1f3752835f6db85b693fa7cae5e15c644",
+          "effective_target_prior": 0.5,
+          "intercept": -3.2349137842116527,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "f029f480bd633e9ca635902ec0644f86d9ee83cc2cb5e291291b3c5cffca2b4e",
+          "slope": 3.790283673496658,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "finger_vein-blur-2",
+        "kind": "corruption",
+        "operator": "gaussian_blur",
+        "parameters": {
+          "radius": 2.0,
+          "scope": "probe_only"
+        },
+        "severity_rank": 2,
+        "target_modalities": [
+          "finger_vein"
+        ]
+      },
+      "trial_manifest_sha256": "985d3a11d7b926075dd4cd44e6d036952b833e73d618036b7188a8f620c247c1"
+    },
+    "finger_vein-blur-3": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "affdda3b4d39c324a2651e87a7400321d8164731377474f765ef6c6a834b137a",
+          "effective_target_prior": 0.5,
+          "intercept": 4.952169646832725,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "326024e6cfe77cdab4faf87b6b8c27997d0c23e0bd601b5ad9511707e8467c26",
+          "slope": 2.9104637515971024,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "ab6a71790cf718e76659da1a1b314e3a81ee6d7771983c4a88ee9b3246cfa1dd",
+          "effective_target_prior": 0.5,
+          "intercept": 3.7448655506138224,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "b9e1178af02b78268ac1adea4e2de4c7d5d5fcf3ac8a0be3f186682f45c38f84",
+          "slope": 3.127695213041552,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "83c90df8393d84bd8d054751a801ef5f1f85dc6840ee0a08f6a1457ad05014bd",
+          "effective_target_prior": 0.5,
+          "intercept": 9.802259269457519,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "fca08528df71e9b5c4d78a41be7b228047c2b30b59c85366db5732c46e748fa9",
+          "slope": 0.7691626931542315,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "b09dbda45c19836304208d165a3ac9f43122eec34d22419150c7ebbb82085d60",
+          "effective_target_prior": 0.5,
+          "intercept": -0.8872198135942155,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "0caade34dc13977aafa6f2216049058107068d67f7c3a06f1364c50a761d4cc5",
+          "slope": 7.538498317966028,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "f5cf28b69b3f710e2c78c5fdebf0897a8d3ce11146163a15602f5bf465d28e0f",
+          "effective_target_prior": 0.5,
+          "intercept": 0.47602291424803117,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "6ed51297217d8bb0e5a51078e1595990302f367e1d3826554d4a6a89cdb6e3fb",
+          "slope": 0.8023743191989812,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "37e6d9880fc4d58916eba9e9acbe8d9825c453beb077808fb8ba9c49ac42060c",
+          "effective_target_prior": 0.5,
+          "intercept": -1.634105642896956,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "2e6a0858a1f15cc3f4a4416af30c16cf9e7a3631b9325a62f27ee7654595fa77",
+          "slope": 6.129103734834497,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "f4906dc4e826b8ebdd61fe95a12e0f68f17f0e165624572aee87b6a0c66810cc",
+          "effective_target_prior": 0.5,
+          "intercept": -2.64928550708287,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "909fe19d2fc8077c8ee6748abe729f5180f65041d855bd5bbca3b5d6f6f86bc2",
+          "slope": 4.416925228133865,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "aeda421cad169d03aa0de05919d9a1bcf39c0ced626d11632ee97724beff9468",
+          "effective_target_prior": 0.5,
+          "intercept": 5.65065591947177,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "3fb3e7f8ab82ee1289b72a0fbd839bf31474efa6bc80a05a77768b0b8bf76a70",
+          "slope": 2.5935520283327023,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "77338d309520432f46e6581b155d7085517da086628822fd9a49389aa8465ac3",
+          "effective_target_prior": 0.5,
+          "intercept": -2.489670262495029,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "89d70d91f1264a55ddd0dbd167e38a832fac9bd742dd54636a011b2d3f3e4575",
+          "slope": 3.1860087758879563,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "finger_vein-blur-3",
+        "kind": "corruption",
+        "operator": "gaussian_blur",
+        "parameters": {
+          "radius": 3.0,
+          "scope": "probe_only"
+        },
+        "severity_rank": 3,
+        "target_modalities": [
+          "finger_vein"
+        ]
+      },
+      "trial_manifest_sha256": "cb5d70a72aca2dad7960ea24d3f1706163913fbc03b6bd7f8318781b647ed390"
+    },
+    "finger_vein-contrast-1": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "e9db465bcc160bfc869fc3e14eff13ed289f387b93b8f83fde0340da111d9cd0",
+          "effective_target_prior": 0.5,
+          "intercept": -2.061248916308014,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "86e8707c0b086a8e42eea4d827b6296fe81864b792effb772f15a73362976cbe",
+          "slope": 3.5139215153475636,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "1a04c5a49ad6a298228a309279f83f6ed0d35b0b12b767f2eb3f59442ea5755e",
+          "effective_target_prior": 0.5,
+          "intercept": -2.4281779743755165,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "0429363af961b3bfe926a778ec886eec6791dd91f1a95f91e87dccc277e3756c",
+          "slope": 3.806782572145204,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "ea3fa7c4d2b5e125c8cdc0317c6cb992645733b24717100b5b523de1c5a93170",
+          "effective_target_prior": 0.5,
+          "intercept": 2.9959869147652953,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "65b20a1b026d506d215a46e7bf115c9b2731e107f1700a0880ebd34063ba5d50",
+          "slope": 0.9665221737098321,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "fa65d3e800709217e5b83381ecb0e8f709ae2e42ec0db15029b22d9bf4b312a9",
+          "effective_target_prior": 0.5,
+          "intercept": -1.559033740873285,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "1c549dcacfa4f258ad3f1a23ba336bebfea4c7e39b21a8b8ca487a8847eb4d0c",
+          "slope": 7.829642600612665,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "4fe4658e1608e7e2e72d4f7b64e5a48a13a4309ead8e3f319b32bf75e1176cc7",
+          "effective_target_prior": 0.5,
+          "intercept": -3.067625579186553,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "f4dd77d8926a700e3590575a24940e0a0369df6e9f60b97b7cacf15745616f85",
+          "slope": 3.877762823005914,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "ab995a614cd1cd14a27f30f839809daa415c511a11fe33e14e964c4093ea8abf",
+          "effective_target_prior": 0.5,
+          "intercept": -1.5595970117863,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "278dd4a27d2ec2f385668e4d418bce3112687b6b6012f1ec8b2dab5f0cb12931",
+          "slope": 6.815864810556584,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "ba1ddbc3d5e7c826882aeb68a3fcace6eb2e5cacf1b5eeb3afe1a45b47b2d6ec",
+          "effective_target_prior": 0.5,
+          "intercept": -3.3293401311460205,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb1f9d2b918c671895925da5b4d803413858883d119a14361d91f05249ee126a",
+          "slope": 4.961541822036676,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "09404ac162ab76646b0a592b0da728264145b786825933d25f95accb615c1b81",
+          "effective_target_prior": 0.5,
+          "intercept": -1.7342065321921025,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "9063e2e30d9ba41a978d90fe667b12c0470b2a3dfa03af307fb8594d0ee26a6a",
+          "slope": 3.1760993408647167,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "1cad985db113fd459c6fcd87468eea28f586b23f8481c71b9f8f53f43423c168",
+          "effective_target_prior": 0.5,
+          "intercept": -4.021991519668511,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "397d8357c4948e1a14cdabd9cdcd2f0e83dd20d7a77ebeb17bbdf6ead4fe119e",
+          "slope": 4.362371558198889,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "finger_vein-contrast-1",
+        "kind": "corruption",
+        "operator": "contrast_scale",
+        "parameters": {
+          "factor": 0.75,
+          "scope": "probe_only"
+        },
+        "severity_rank": 1,
+        "target_modalities": [
+          "finger_vein"
+        ]
+      },
+      "trial_manifest_sha256": "e82c95325501571819225e6263d5180f57f5b2b83797c86be6765aa11828659c"
+    },
+    "finger_vein-contrast-2": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "4870511752e619fab17d271ed8174fe8a21b35c3468261c6e5f3d1378c59330b",
+          "effective_target_prior": 0.5,
+          "intercept": -0.44060425457747115,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "b80f22e00f3f27beb6eaea56d70fbd91bb063489717222da32c648eaefa364c7",
+          "slope": 3.040438540412821,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "d1ac45dc60aa18d3a6d15f579fe1f76e4acd8c3b3e70f0db63b082ad9c62ef4e",
+          "effective_target_prior": 0.5,
+          "intercept": -0.9487689023737597,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "59c3d255dd80f5b9a54877d7c68fcaac0db0ad0e0416f9db996449671f5bafd4",
+          "slope": 3.387684055205429,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "d308276f2a4eb668d92545e5f10f63b7b533477cd6b662387bbfdfcd55a340d2",
+          "effective_target_prior": 0.5,
+          "intercept": 3.954016363405638,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "a95a386aa56b31dc54487a1dfe3a592237bb7256201ae2372f0de432b2b50a35",
+          "slope": 0.7980073985624982,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "192326506a77281a00adeb3c1872198b7ecbcbe57b87d0a0a8117309da2496c2",
+          "effective_target_prior": 0.5,
+          "intercept": -1.3708047223030932,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "6c1408538b23612f7e3ee07615bd1a5ad70830283f8e59d244a9dd2989f65a95",
+          "slope": 7.871504633383669,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "9559b24230a623b341604295b6e4d8e1531ef63bc386c44cb56e3abcaf1e4f9c",
+          "effective_target_prior": 0.5,
+          "intercept": -2.2070299607779478,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ad3fc1edc3337306e3562778daef58c0f0778269dca4b9b0cddf0bc6fefa6a16",
+          "slope": 3.6123132266717906,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "0727b422a04a62ca0683320d3baa092ec6686fd725592826d45e52ea4c2c7ffd",
+          "effective_target_prior": 0.5,
+          "intercept": -1.1827562825197417,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "e902721f00831369602d6b51d604483c57cceb0e2ef78530395bef5dc674e93e",
+          "slope": 6.53161210120137,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "228645c8ad71b4e2b1ebfb64e26e479f2634519420d172e855efda0543b23238",
+          "effective_target_prior": 0.5,
+          "intercept": -2.833905017994277,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "828d6ef978e0404bcdbf58e00d31c25e6f8c6a83505bb7ec6fb212d9b2f7217d",
+          "slope": 4.429151085152535,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "d374b86ee794174b2936b60d5eb16a84c718f0759c676539ee44a5459caa970a",
+          "effective_target_prior": 0.5,
+          "intercept": -0.06400193163255499,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "a1b1f17b2b822a0e7784c6342a1eee1e3eb27c06973ac02b9d8358f06cdaaba4",
+          "slope": 2.7119942259844487,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "fc83d2829b81fa7c1b755976e4a974ed18e945b294d1b6a0da532c0b518fad3c",
+          "effective_target_prior": 0.5,
+          "intercept": -3.7012154795150236,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "c157b8c7f8b396a70b2528d5a33c831bd38a81539eca4078025b13f9b08c6253",
+          "slope": 4.13704162493747,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "finger_vein-contrast-2",
+        "kind": "corruption",
+        "operator": "contrast_scale",
+        "parameters": {
+          "factor": 0.5,
+          "scope": "probe_only"
+        },
+        "severity_rank": 2,
+        "target_modalities": [
+          "finger_vein"
+        ]
+      },
+      "trial_manifest_sha256": "32d5eabe23266215ffd837ecb4ff193008b06ce5b16e8c2f79e9cdd9bdfac3ac"
+    },
+    "finger_vein-contrast-3": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "68fc94f4ecef96cf0eab672876fb708ac07e5ebc13bac4c21edcb344db53f229",
+          "effective_target_prior": 0.5,
+          "intercept": 2.888499655663911,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "4903f98009b0ae65f4f7dfa81dc9279b333edf91e02bd907cdd1f4983c3aad33",
+          "slope": 2.751207062430279,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "ef2a3e6ab762697a4af584e8d8811cac5a8b04d28b5f4568caaa782cd5d47f85",
+          "effective_target_prior": 0.5,
+          "intercept": 2.0714598760455507,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "45df036c35d52b90ad3a25a2f4cc0a6821bf7d670c7f6cd247a40e81ca2eafd4",
+          "slope": 3.0578293907429863,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "6ac87c1cf7179876f9d235b40208098d026d6ef86b5151f377d137df0f5dd12d",
+          "effective_target_prior": 0.5,
+          "intercept": 7.121760681357438,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "a499852b493d084e55744f45ecd1b9a6ab80fdb370cc6af75619da8cc7d18811",
+          "slope": 0.7125310517305791,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "5e854f8eefeb7e146d0f45ff8f51c660abe3d6dc044399d029743daace62ec00",
+          "effective_target_prior": 0.5,
+          "intercept": -1.0168966163094055,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "8b305099144d63525222cc54cf72cb22f8d972f4c08a1b304163885a9d39449c",
+          "slope": 7.365893581780048,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "9a512138fe471e49616f190497c680b29043fbee856118fec2430fdfe126e872",
+          "effective_target_prior": 0.5,
+          "intercept": -0.04682791570299452,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "4136ec6925691e3c7f4e116077ab02eb5c78b3520b5e44682fad69712229ab14",
+          "slope": 1.84302759940774,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "28368e492969497b40c48bea3d820c537e90b3cea123c55804fca11077f9ff16",
+          "effective_target_prior": 0.5,
+          "intercept": -1.2097429430868558,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "083fd19cf03e0808ec9434379f199ef4871f4f55416ec378af250e13cf295391",
+          "slope": 6.17549290648116,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "f60271c8c10194a2f75f031b2509017c9956823c235286cee003841bea3c0983",
+          "effective_target_prior": 0.5,
+          "intercept": -2.382894426947586,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "43b0394fa09da836c15d5ecf448a8de09e50ddf7a5dabfe028503cadd4d9af1c",
+          "slope": 4.023613602598271,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "d13301b813835410a102ea2841d15b8b90c4f4dc8f7fa6ea7bd7cc160ecf0778",
+          "effective_target_prior": 0.5,
+          "intercept": 3.3994915521759745,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "419b3515aef450f6e15ec81d76278a369504e32f0ffb1fbeb2296f2a8da78260",
+          "slope": 2.4267443169771847,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "0344590287ead8ed44aa0fa1ff398d236e057b5b134ea717874c4f97a2d9aa65",
+          "effective_target_prior": 0.5,
+          "intercept": -2.7278381719103963,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "054ce7ce084db8a477679e24a4b0ee284650249ae7c41bff7388fca4b34bd5d4",
+          "slope": 3.31948111611948,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "finger_vein-contrast-3",
+        "kind": "corruption",
+        "operator": "contrast_scale",
+        "parameters": {
+          "factor": 0.25,
+          "scope": "probe_only"
+        },
+        "severity_rank": 3,
+        "target_modalities": [
+          "finger_vein"
+        ]
+      },
+      "trial_manifest_sha256": "e1429358a4341f3e6d3a1df28d52fd020309d2fab19f57f9c72b6cf96b3bb281"
+    },
+    "fingerprint-blur-1": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "c90446fd8dc5adca4da4d1c9d9a5c78612fbbcdaa38e9ce02c63b468eafd7514",
+          "effective_target_prior": 0.5,
+          "intercept": -2.2507879720023274,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "2953ac2bdad5066ab36bb384b50b189da3d6983b75e98e5f073c82e53f6e42c7",
+          "slope": 4.398866733465375,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "6709117764817e78d97927946b9026fee0f664f4c584abb55666e6662d74b96e",
+          "effective_target_prior": 0.5,
+          "intercept": -2.29072592598821,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "039e0ae1377cbce8858517ef1283368128ba527224b15a3b8d3c70e1cd507967",
+          "slope": 4.662727510326431,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "6be9b74d9bac934b5cc5cff0ec12f76dac5f2b9f1e6219fc794720bfe735dd07",
+          "effective_target_prior": 0.5,
+          "intercept": 4.344523239894196,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "6c57a2b19804f68b10eddf7dc302a54d95a3ea696a1034b943095597c7b99561",
+          "slope": 1.3314301671906335,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "d84130f0c47be0b71ea2b56f53738909d6f5d63e7759ca928d3f0c271d365694",
+          "effective_target_prior": 0.5,
+          "intercept": -1.5279751395610277,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "4ee31e3864d078172fbff76c7ef9b0cadb09e4706f04aab3c7f09481ff7b4b55",
+          "slope": 8.220167455365097,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "2a5d3e281e6a25c7c31c8fac5c8048751d8135eaf03e4cb48430756911a1a4ed",
+          "effective_target_prior": 0.5,
+          "intercept": -2.403453867219424,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "5f683f7428cb7e8496ea41b6a234c20543ed36d5e417b285a3662ee7732af2f5",
+          "slope": 3.9345686261941784,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "aedcfb244ff217ae41e253d9465f71b3bbb77b5c53f2add5164f22a2d27897e3",
+          "effective_target_prior": 0.5,
+          "intercept": -0.8857083770389961,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "8d205ead891f31fc2cebb6eebb0ca5dfc81e2da58552ff7ca77c2860a4a99e22",
+          "slope": 7.532004228915615,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "00e75ecc46429f00a687a057048839c0f98619865664e805af067839a0c5d123",
+          "effective_target_prior": 0.5,
+          "intercept": -3.9073021431007486,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "2e1ab1e22189012208ccaa4cc0afd2a908affd24896c487129bc41a489ef90e6",
+          "slope": 5.549013094408529,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "b718dacfe20c6cd5a1507c1564d231040435093a3e5419915dd33279543b115b",
+          "effective_target_prior": 0.5,
+          "intercept": -2.057108091669883,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "4447d332ff3fbe5903e6c7ee2f2577407d3411dd594832415fadea28aeba6f97",
+          "slope": 3.8901791015042377,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "4decc3ee73334191bcfb05b740f0bfc59dd4835d2325f9a3b5a8c83da9b25a20",
+          "effective_target_prior": 0.5,
+          "intercept": -4.095463673417211,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ff363b0ae78c94a1c737c8d735429414dd9042cb3ad7481573df9610b7438ea4",
+          "slope": 4.5287624250403455,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "fingerprint-blur-1",
+        "kind": "corruption",
+        "operator": "gaussian_blur",
+        "parameters": {
+          "radius": 1.0,
+          "scope": "probe_only"
+        },
+        "severity_rank": 1,
+        "target_modalities": [
+          "fingerprint"
+        ]
+      },
+      "trial_manifest_sha256": "2ed33d5e7b9fd58cab773c75fb05ff991cf986a472f41b8e8eca715b7f201430"
+    },
+    "fingerprint-blur-2": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "3912ce8202e4e583da993f4fea126e4144e8040e85fd7d5276918c6fc703a7ca",
+          "effective_target_prior": 0.5,
+          "intercept": 0.5227329498394482,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "aa2f6be4a3f3b6cd6fcb1e68fbe00c9c4f15bf5ee0f69e9f24945b61d7e4897b",
+          "slope": 3.980078992817219,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "6a7c421596c8e67d67c16a6f53083ed18ca8d0a301783d01ac6546e6b4198b77",
+          "effective_target_prior": 0.5,
+          "intercept": 1.1506793865706142,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "678d977b2d6e04c4f774cd36b671271b3ea22a20a8df6e00c722b63ae9aef7af",
+          "slope": 3.9992696679548985,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "e74a34179c8d552a1f73ae304c2fadd35afc32dfda39494c86e831a41eda7442",
+          "effective_target_prior": 0.5,
+          "intercept": 6.479126723305534,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "9e45d45f47d3a816c424e434486698839af334983c11bf805f62f59d43bdf4de",
+          "slope": 1.1615806225434988,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "7b74aa9fa6402d4e97a79f840ce04e7fb6261da942a6112a3dc226b72e54c8d8",
+          "effective_target_prior": 0.5,
+          "intercept": -1.1296961694078895,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "724e0d8e9ec89d30f4a5ebe1b3b5913aae19492ab596712298c3b36df2a405b0",
+          "slope": 7.9807483271668485,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "b858b62f3f34cc877bec2ac5c802f4a93bd688321ffc0cfe0f59c6cb15c6fddc",
+          "effective_target_prior": 0.5,
+          "intercept": -0.5123004373628681,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "241e1b6de26ab30f4df045d57ea9f5c88aae403ab3305a2bb6cb902d026511ae",
+          "slope": 2.5796549003406404,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "7a7c261d68140c6a11e1772f5d21616e6a98c5556dea415c8b540a31b7dc4f10",
+          "effective_target_prior": 0.5,
+          "intercept": 1.215278747712817,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "de6160b3b97450ded594734162b112d98dbf0be3604ac9c62c1a5b8c55d6c07e",
+          "slope": 7.444957180463624,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "5f0752e233e93e623315503ff17a891f0ec92e37dda674ddb0a42d4422cac290",
+          "effective_target_prior": 0.5,
+          "intercept": -3.514738593594424,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ad2655576fae65f2d133415bc4d1244c792cc78709a4579b270f679a65d5eabe",
+          "slope": 5.226882091942346,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "3dd5b64a11aa599e1a0215406d886a926da906af655a561b23b786d28a19b398",
+          "effective_target_prior": 0.5,
+          "intercept": 0.0012903111455861622,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "e03617ab60673aa7cae6ce2d574e19713055827ffff87ad3bebad0feb2b0026a",
+          "slope": 3.617809404530201,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "4419472b0fa9d8d9bd83a3369b25856145f2dc35e08904cbfa1fb5930c5163d9",
+          "effective_target_prior": 0.5,
+          "intercept": -3.120267463206293,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "508884d17614cd7e995c0a6a1176af09ba4c220fc90af3cb4a4265be4ffc7bc9",
+          "slope": 3.63985639306915,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "fingerprint-blur-2",
+        "kind": "corruption",
+        "operator": "gaussian_blur",
+        "parameters": {
+          "radius": 2.0,
+          "scope": "probe_only"
+        },
+        "severity_rank": 2,
+        "target_modalities": [
+          "fingerprint"
+        ]
+      },
+      "trial_manifest_sha256": "8f251db6a9db815faef02bcd0ecf7d5501419527aff8b19b73ee1ee541f8949b"
+    },
+    "fingerprint-blur-3": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "64b1a06d864fc68874cb3c52608d16601654291e20cf087385aeb5b406b9b4c0",
+          "effective_target_prior": 0.5,
+          "intercept": 1.8655953200982127,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "4e1a73900f5a5c61da5b46c689ac633927702710a860a4e45a0e6acf4a2805d7",
+          "slope": 0.733846490923483,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "ed5a2e77634e53be21bd2ee4047b7fda4767c217f505b5235495ead792d2db68",
+          "effective_target_prior": 0.5,
+          "intercept": 1.6575011569769598,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "66cb158c43260bfadd7dfc8eb5d268f22c5cbdc043d5db0fc8fdcb5aa2d3d6cc",
+          "slope": 0.5200931388263517,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "f5cfab4124e08230cb69956da996a927140c78c4df9d2e5c1ebb868b722b6654",
+          "effective_target_prior": 0.5,
+          "intercept": 3.100323664027712,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "38697ee39d73f4ccf4935331582c4858c255646b3a26fddc88bcea9b2adce13e",
+          "slope": 0.2169971852073953,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "83adac7e53dc98c2c971625b0729e04711dd8a02206f5bf2a62905fdf2460c3e",
+          "effective_target_prior": 0.5,
+          "intercept": -0.7980247737678169,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "825a4225e31b3bf1f3d5d018e94fb971d5b26107e48c98b63815ab34600375f5",
+          "slope": 7.696034879843527,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "c05b7cd4befe74cd2e829e2ef1b52d6b145caa3d4ec7aad7df1e4d70e279b356",
+          "effective_target_prior": 0.5,
+          "intercept": 0.9388789679045333,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "a18bef481b85d4962c0051702eda6c2fa35c5d88d485c8497bff2ed5f5527fc3",
+          "slope": 0.9192250359409342,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "492c2c8bec13c77da06a8f1d1ede5f2935421791734a685417290d07fd27a64d",
+          "effective_target_prior": 0.5,
+          "intercept": 2.5928596422417756,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ca4bc958574d6a92fd44ea62c989e8381fe050e758ec46fc2058303164ee93d6",
+          "slope": 6.2676606832145865,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "59fed9d6ca949d7a516d81fe28461fb880b20657b6ba8bd42f74569daafaac2c",
+          "effective_target_prior": 0.5,
+          "intercept": -0.6251077904552608,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ecc039c256a585270cdfaba614b44cd8731b504d8776f56ee3a25b0003868f43",
+          "slope": 2.0060379671989095,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "765fa7b6f8c042d779e27abd2a1c7480664a2747222b39094437c159ecf754ee",
+          "effective_target_prior": 0.5,
+          "intercept": 1.9827443452527067,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "257d9b8adb88bc8e3fdd8c01c7545de24b646e20a9512be070e652352f45d42b",
+          "slope": 1.00245871375894,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "fd06acc836a0883c2c8a28003928f40ad5b09f941d58391fde79642f8e5299bc",
+          "effective_target_prior": 0.5,
+          "intercept": -0.9075839651168689,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d8c1fcc720def140a0f03a7e16796ea5b26c1da1025018bb8333b6166a89467e",
+          "slope": 1.3113138428793,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "fingerprint-blur-3",
+        "kind": "corruption",
+        "operator": "gaussian_blur",
+        "parameters": {
+          "radius": 3.0,
+          "scope": "probe_only"
+        },
+        "severity_rank": 3,
+        "target_modalities": [
+          "fingerprint"
+        ]
+      },
+      "trial_manifest_sha256": "31319ca8570066300ffba13504a4adbdd3f530dad251e002826d2322ee50ce69"
+    },
+    "fingerprint-contrast-1": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "cb390ecfce73e8a3254eb2ab33c36a4e8c95db0d27c2987c36b8aadbd44826c6",
+          "effective_target_prior": 0.5,
+          "intercept": -1.7886766075435778,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "7637324acf5d7f212986cd7f205a458d562ed8018d6e590d216d94cde5c812dc",
+          "slope": 3.508892387645422,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "3e3e7b6a2fee7674d04d66161503713032bdd703a1777b8b718681ce34387a28",
+          "effective_target_prior": 0.5,
+          "intercept": -1.759516063157541,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "64d8bef7c7c7e7b3f4cdb1499c7ef3e121f67303cfd6ef0910062fe4c15cb9cb",
+          "slope": 3.6302806696271395,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "ebb9a82f233ee583e7a75e8f6727733e7aa0f250d24b98da71be9490e127073a",
+          "effective_target_prior": 0.5,
+          "intercept": 3.2274025754779383,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "1b1edbd76d9a1a1cfc1b3dbf1137b609d190e52c7e7cdd54a08f4373ac9ffd3f",
+          "slope": 0.9854523993140232,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "6685bf7ab3fc8d8f23f770a93e15cbcb933c2022ddbe14d75c51f750fc1ed04c",
+          "effective_target_prior": 0.5,
+          "intercept": -1.3758588033682637,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d8c338d9dafb3d9d287a7cbd905d4c242ff6cd2b1751f3673f9e4f9744d5ff9e",
+          "slope": 7.9718484157271225,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "31b28a8194f68412951cd81fa35ae9eb9de510d9ec4b33c2650b155ba22186b5",
+          "effective_target_prior": 0.5,
+          "intercept": -2.0271854514614693,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ec46797f905cc06a4b881d427297ad3e37a79d26f1beaa1a6e36bbc8fcd55c97",
+          "slope": 3.325269323161378,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "50e02c4a78ead1a501b40043afafe29034fd59687827cd95171d7df43577a28e",
+          "effective_target_prior": 0.5,
+          "intercept": -0.8609143807892897,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "dd83fc16bdbe632862944ab61643f98466179333a942d692d8f2470a7af7c26f",
+          "slope": 6.548794524889372,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "78dfa1f7d7906715152ffc57ef8cf39ff4a065cc0f12bf4f6f7b9cf7cfa7716b",
+          "effective_target_prior": 0.5,
+          "intercept": -2.5455555713230136,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "18c42490f483937046f76eb0ac69393f0f21fc76e8fad4752de00b9d28fbb5d7",
+          "slope": 4.319778811761094,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "dbf96a6b8773e4e499d7cfec4833aa23692d2c297925b16a55b5846760282127",
+          "effective_target_prior": 0.5,
+          "intercept": -1.7251948326544178,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "f22d2ce39d8ab595dad78aa3c3e79713ba770498e417323d4a1cd4596d6e2ad5",
+          "slope": 3.251039200625062,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "140fba7e1919d3c7f432afe9f783b9a9cd8fa0795559ac4e954b5aae551aa6e2",
+          "effective_target_prior": 0.5,
+          "intercept": -3.9616712217811556,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "650a72d40cdc33537de030674ff7d2e3defcf61a253e07f462eda0752ef04af6",
+          "slope": 4.3681673491690365,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "fingerprint-contrast-1",
+        "kind": "corruption",
+        "operator": "contrast_scale",
+        "parameters": {
+          "factor": 0.75,
+          "scope": "probe_only"
+        },
+        "severity_rank": 1,
+        "target_modalities": [
+          "fingerprint"
+        ]
+      },
+      "trial_manifest_sha256": "05a4f9b02b6950be541cb5a517640926dd6d4c0ebf6203b3c986a8373b3c2a33"
+    },
+    "fingerprint-contrast-2": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "f3f5ec11e4411b312e683d5b8da0736a48cfef754068947539e1729205a8061f",
+          "effective_target_prior": 0.5,
+          "intercept": -0.25657167992503904,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "32c0c328e3723c7d0740dbf27ec41b30846704ff3513f44e560d075a2d8fce51",
+          "slope": 2.96659068219653,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "0cea48751ea2459506137907bfaafe40e461f1bccb35ca1a035c0ef28f03b6c6",
+          "effective_target_prior": 0.5,
+          "intercept": 0.07231744825887843,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "8a527f5eff7664a95de0fbf2edafcc814921c90561852661e21eabce33c17f56",
+          "slope": 2.867338735251374,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "4d3b45616658962f3ba35f7f6eda8c66edcc67b9aea8abd433410bd0386ae60a",
+          "effective_target_prior": 0.5,
+          "intercept": 3.96302373305493,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "2609cec5519daaa83067127ca499b584027ecde090ced58ff0efd33646c9d9d3",
+          "slope": 0.82416588770182,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "2aea80d52385d8d7ce074d79cf24178b2fabcdc781c21967dc96309c8fa8ddde",
+          "effective_target_prior": 0.5,
+          "intercept": -1.0953057931314936,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ba5336e829892e76da4f3b2e1c66831044d694f26e2603600a74b006d3c1803e",
+          "slope": 7.714450443045325,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "5dac2b6a1f911e8cf652ed5764551051a9dd374b1af538c48e003b09dab93157",
+          "effective_target_prior": 0.5,
+          "intercept": -1.0546991832642671,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "e3169be8e827fad03b72b11cca886b0657171b7731d5d3e6dbf1bd5031e9e675",
+          "slope": 2.425195484864781,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "76b45da05c3cd39bc85a45b97594e2d76451de55d6d59357dfe1a150ea075ad3",
+          "effective_target_prior": 0.5,
+          "intercept": 0.3609755052733223,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "84bec3b736cbb68a7a7b3021a6376f7587de65fedf4fb7b8800199d32f6c958a",
+          "slope": 5.697168456605262,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "d13877aa79c2c308d0712ee453bb928d84dadeed31b9f98fe4ca950b5b75254b",
+          "effective_target_prior": 0.5,
+          "intercept": -1.2272297205175904,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ab8c5f4608c5df7500a6fa0c29f5807204341ddbb36b245125b8f09e641554e4",
+          "slope": 2.9821836580961874,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "466bcdc1e88f28e244ff8f00887463ef97a8a86e095bbcd5732124eeaf175cae",
+          "effective_target_prior": 0.5,
+          "intercept": -0.5320321542950868,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "c560681301a5d32a7893a83cf027f4b7bbb6ea6cae3e1591f853779b61f07fc2",
+          "slope": 2.878898895459348,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "0dc6b424d9419b7f70c7931e8790ba1cff43b470e32bb4ae3e91a4802ef28104",
+          "effective_target_prior": 0.5,
+          "intercept": -3.376326361008089,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "af94c792266098b4706ed2edcf133890e11137304f056217fd32713eb802f827",
+          "slope": 3.8440868258904644,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "fingerprint-contrast-2",
+        "kind": "corruption",
+        "operator": "contrast_scale",
+        "parameters": {
+          "factor": 0.5,
+          "scope": "probe_only"
+        },
+        "severity_rank": 2,
+        "target_modalities": [
+          "fingerprint"
+        ]
+      },
+      "trial_manifest_sha256": "9291f806aea0c679311d328e75ac321c932fc2d0c163141db01ad9b49eb7efd3"
+    },
+    "fingerprint-contrast-3": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "01f733e40748d4107ecfabdc3f397aa676fdcb23c82f617fa8640f24396833c8",
+          "effective_target_prior": 0.5,
+          "intercept": 1.4791948676024758,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "568790e6043ea2a9d925c23d65dbc421779843fee87bba7d4d78bceee64b5c77",
+          "slope": 2.5631446938396714,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "e313fd64e5c7a11057b70597dd3b197471346bbb79a9d266b4193945f9c9583a",
+          "effective_target_prior": 0.5,
+          "intercept": 1.9386515194798537,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "3a606a454f9b36835394ab2c4af2f67587b52dceb1f54e3ebeed225510ca16e7",
+          "slope": 2.361736121896365,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "eb280ebe0fc19240760d18fbe3aefc5353224c60697333972d5831e459550ccf",
+          "effective_target_prior": 0.5,
+          "intercept": 5.117416547730074,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "6a33f2745d945674b11d19fe43a74cba780614e3f08b39d79db3c30fdcb2eecd",
+          "slope": 0.7098748733812363,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "93ce97ca4a916161c2f94d65281c842037c0b148872d7e42a645bf66ba5e7234",
+          "effective_target_prior": 0.5,
+          "intercept": -0.9110329741745321,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "1d6bf4d9c3fb72fb1105636175e569442b59f15365eb84542c7846665c47280b",
+          "slope": 7.6269608915323825,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "c6b8b752925eb7edbc1c929cd2057bdd4be364e4c13e762d24f2dfa283424ad6",
+          "effective_target_prior": 0.5,
+          "intercept": -0.3012506567946674,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "ceb6bbd42adb4cc893b7b78736cb7fa5366152c7c7c475b6152a55eec5e10e6a",
+          "slope": 2.051166770926632,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "644436dce21f65a871c4ac337db6a3c97a5d56e1c953dc1bbeb1e1431d8589e5",
+          "effective_target_prior": 0.5,
+          "intercept": 1.6585080348376733,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "f8be818fa338a96718d93c34197bccf68333a42fa4ad8ca63b8b3bae7aa53d7c",
+          "slope": 6.642609015604116,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "f9589eef1858bbb1af3ef1e613b6f16cb0b7c7444cc7139c11e073c17d73e482",
+          "effective_target_prior": 0.5,
+          "intercept": -0.6562454797006055,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "63e95000765cb61dcde127ab8a31f7949f03536ba9e43ba6fa59acc6dfdca0ad",
+          "slope": 2.3312131875766546,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "ae344842b5481febdd12825a4e96f85f423c23ef8fe5a971f1a012851e132a41",
+          "effective_target_prior": 0.5,
+          "intercept": 0.9405438998852645,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "a9c7788fcb8de78d6b10bb2dc01f67115b0f60535335a7f781aaa4ce46ad3e02",
+          "slope": 2.579719971413159,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "d2f520f0a1cee2ba7cbda672eedc3e0d545931dae94cc73edce0be1387b3cba6",
+          "effective_target_prior": 0.5,
+          "intercept": -2.5940507652440608,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "903d10c23ccfe3854561bf842a9c80b29955c50aa96bd215b2b31c113698b3db",
+          "slope": 3.119940322544283,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "fingerprint-contrast-3",
+        "kind": "corruption",
+        "operator": "contrast_scale",
+        "parameters": {
+          "factor": 0.25,
+          "scope": "probe_only"
+        },
+        "severity_rank": 3,
+        "target_modalities": [
+          "fingerprint"
+        ]
+      },
+      "trial_manifest_sha256": "f142ac9b497f8cf99a5e58acac11e575bfc25df6fe732a53fea86acf096c8a1b"
+    },
+    "missing-finger-vein": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "466731b62b9625aa3904fd244480636129dd74a9ed9c01033fe194642b003d1e",
+          "effective_target_prior": 0.5,
+          "intercept": -2.652910425980175,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "8ae172d47c0de3e55fa124b325ff3ca974ba081506365f164f294494daa717cf",
+          "slope": 3.044739148064634,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "760abafc103823674aa508519911773283ff76753b3cf59a05fd136ea9a3107d",
+          "effective_target_prior": 0.5,
+          "intercept": -2.6091582277426024,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "3a7159b28f0bde14d59b7b3d43ea0c2d3d60549e243dbfb4e5a0778539500b85",
+          "slope": 3.001672189071636,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "C": 1.0,
+          "calibrator_sha256": "8f8ffa0f56eac90bcafb914749b1e86dfde613e172dd08961e34f563d5059275",
+          "effective_target_prior": 0.5,
+          "intercept": -4.368580433844763,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "eb0109ec325fe4ad9f579352d5074acfa729e37b8cf83aa84afbaa86858488b6",
+          "slope": 4.730576408702211,
+          "status": "fitted"
+        },
+        "U-FV": {
+          "reason": "U-FV requires the missing modality",
+          "status": "unavailable"
+        }
+      },
+      "condition": {
+        "condition_id": "missing-finger-vein",
+        "kind": "missing",
+        "operator": "missing",
+        "parameters": {},
+        "severity_rank": 1,
+        "target_modalities": [
+          "finger_vein"
+        ]
+      },
+      "trial_manifest_sha256": "99d629655fd298a19fc7cedd9702e76ee8b89f5d4331b77ca39bfe5e0b1414b2"
+    },
+    "missing-fingerprint": {
+      "calibrators": {
+        "C1": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        },
+        "C2": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        },
+        "C3": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        },
+        "C4": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        },
+        "C5": {
+          "C": 1.0,
+          "calibrator_sha256": "ddc77ef06e22dadeb23e29095c42484e136364738da6546f94d9c2c420f59301",
+          "effective_target_prior": 0.5,
+          "intercept": -1.3885308877679954,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "c4e107cbd40ee7519cae73c2f6792e5aa62aba649d66b95713c124a458a6d342",
+          "slope": 1.952116735710049,
+          "status": "fitted"
+        },
+        "D1": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        },
+        "D2": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        },
+        "D3S": {
+          "C": 1.0,
+          "calibrator_sha256": "f284b015992356d4fdfe94a3474b19e54e28d44a099f5adc7e81fc9d6a036365",
+          "effective_target_prior": 0.5,
+          "intercept": -1.3571163851387593,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "b3616348f3ca60b40ba7045cbff1c739a4328f318b506d26ee357ea973bd7fd2",
+          "slope": 1.9212771649903213,
+          "status": "fitted"
+        },
+        "U-FP": {
+          "reason": "U-FP requires the missing modality",
+          "status": "unavailable"
+        },
+        "U-FV": {
+          "C": 1.0,
+          "calibrator_sha256": "b571ccb7b65b281a129f8f8cc0f42129a70e6f8e2bc3eae8b3381a02cda52fc4",
+          "effective_target_prior": 0.5,
+          "intercept": -4.093176595984326,
+          "method": "class-balanced affine logistic LLR",
+          "n_genuine": 20,
+          "n_impostor": 380,
+          "n_trials": 400,
+          "score_sha256": "d89f282eb127e3e2bc189e2bfd477ea0c4cbe727172e642a59fe3bc4204166ef",
+          "slope": 4.397351758886761,
+          "status": "fitted"
+        }
+      },
+      "condition": {
+        "condition_id": "missing-fingerprint",
+        "kind": "missing",
+        "operator": "missing",
+        "parameters": {},
+        "severity_rank": 1,
+        "target_modalities": [
+          "fingerprint"
+        ]
+      },
+      "trial_manifest_sha256": "f6a763cfbeb91df92d2b807d4b184dbd0ede1b1a54c8b072eef9979680293a24"
+    }
+  },
+  "dataset_manifest_sha256": "be7d83e353476e50a6193d77e47d7f176ab0a9cb805f81cb8b8a87f79368238c",
+  "development_checkpoints_verified_before_calibration": true,
+  "encoder_weight_state_hash": "00eb5b1bfe8ea60f64c93ce1aeba14523e5197adf8ba562afb56ee36e91e7e24",
+  "final_images_read": false,
+  "quality_model_hash": "219874362a61c6b181248820c17d24056644564512ec16ccafe5117133ad0f0d",
+  "reporting_seed": 1701,
+  "scope": "V1 held-out calibration only; final role untouched",
+  "selected_checkpoint_hashes": {
+    "D1": "6bc9eff9e6ac58a5b533ba23dc8f6af77a003f6382bd1ab918e9e09edf1aa997",
+    "D2": "055c07b041f655b15e89a672420ff01c6a8f2b2df48f04cd33d2e12793873b48",
+    "D3S": "fc1987af6ff80d2f19b907857aa300a09fefa21e9b2787590f66462987d65e34"
+  },
+  "stress_plan_sha256": "6ba45461396f61dda720e7d289cdade98cac750cf9172b7502518428e022bbd3",
+  "training_final_policy_sha256": "e9701015b541e9c7e4debccd01fd1f32affecc97abaf2996b8cf6c5811adbfb5"
+}
